@@ -1,19 +1,14 @@
 # 🌌 As Above, So Below (A Cosmic Tarot Synthesizer)
 
-# What should I look forward to?
-# What should I beware?
-# It's not about fate. It's about awareness and awareness creates freedom <3
+> What should I look forward to?
+> What should I beware?
+> It's not about fate. It's about awareness and awareness creates freedom <3
 
----
+Welcome to **As Above, So Below**, a digital tarot matchmaking engine built to bring cosmic alignment to the present moment <3
 
-Welcome to **As Above, So Below**, a digital tarot matchmaking engine built to bring cosmic alignment to the present moment. 
-
-Tarot is an ancient tool for self-discovery, guidance, and personal growth. It helps you connect with your intuition and see things from an entirely new perspective. This platform is not about predicting the future; it is about understanding yourself deeper in the present moment, translating the chaotic randomness of the universe into mindful, active intuition.
-
----
+Tarot is an ancient tool for self-discovery, guidance, and personal growth. It helps you connect with your intuition and see things from an entirely new perspective. This platform is not about predicting the future; it is about understanding yourself deeper in the present moment, translating the chaotic randomness of the universe into mindful, active intuition >:D
 
 ## The Cosmic Core: As Above, So Below
-
 The entire architecture of this application is designed to encompass the classic hermetic maxim: *As above, so below; as within, so without; as the universe, so the soul.*
 
 *   **As Above:** Your first card drawn—representing the cosmic path ahead and *what you should look forward to*.
@@ -81,25 +76,24 @@ DELETE FROM saved_readings WHERE created_at < NOW() - INTERVAL 7 DAY;
 ```
 
 ## 🔮 Generate Your Profecy
-### Prerequisites
+* **Prerequisites**
 *   PHP (v8.0+)
 *   MySQL / MariaDB
 *   A local Apache server environment (like XAMPP, MAMP, or Docker)
 
-### Installation
-
+* **Installation**
 1. Clone the repository into your local server directory (e.g., `htdocs` or `www`):
    ```bash
    git clone [https://github.com/your-username/as-above-so-below.git](https://github.com/your-username/as-above-so-below.git)
 
    cd as-above-so-below
    ```
-# Database Setup:
+## Database Setup:
 * Open your SQL client (e.g., phpMyAdmin).
 * Create a database named as_above_so_below.
 * Import the schema.sql file containing the cards, suits, and numerology tables.
 
-# Configuration:
+## Configuration:
 Create a config.php file in the root directory to securely connect to your database:
 ```PHP
 <?php
@@ -111,7 +105,7 @@ define('DB_NAME', 'as_above_so_below');
 $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 ?>
 ```
-# Launch:
+## Launch:
 Start Apache and MySQL via your local environment manager.
 Navigate to http://localhost/as-above-so-below in your browser.
 
