@@ -11,13 +11,26 @@
   <body>
 
   <!-- PHP HAPPENS FIRST (Server-side) -->
+<header>
+  <!-- MAYBE MAKE THIS A REUSABLE COMPONENET SO WE CAN GLOBALLY ANCHOR IT ON EVERY PAGE?? -->
+  <div class="header-container">
+<img src="assets/lamp.png" class="lamp" id="left-lamp"alt="Left Lamp" />
 
+<div class="title-container">
+  <img src="assets/trippleMoon.svg" alt="Logo" />
+      <h1 class="title">As Above <br> So Below</h1>
+    </div>
+
+    <img src="assets/lamp.png" class="lamp" id="right-lamp" alt="Right Lamp" />
+    </div>
+</header>
 
 
 <!-- HTML -->
 <div class="conatiner-fluid">
   <div class="row">
     <div class="col-12">
+
 
     <div class="tarot-wheel-container">
 

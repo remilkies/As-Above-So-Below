@@ -1,13 +1,76 @@
 @import url('https://fonts.googleapis.com/css2?family=Jaini&family=Jim+Nightshade&display=swap');
 
-.your-title-class {
-    font-family: "Jim Nightshade", cursive;
-  }
-  
-  .your-body-text-class {
-    font-family: "Jaini", system-ui;
-  }
+body{
+    /* WHY DO I NEED TO PUT IMPORTANT ON THE FUCKING BACKGROUND COLOUR WHHAHAAAAT IS HAPPENINGGF UEHFIU */
+    background-color: #111111 !important;
+    width: 100vw !important;
+}
 
+body::after{
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('assets/background.svg');
+    background-repeat: repeat;
+    background-position: center;
+    z-index: -1;
+}
+.font {
+    font-family: "Jim Nightshade", cursive;
+}
+
+.header-container{
+    position: relative;
+    width: 100vw;
+    height: auto;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.title-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.title {
+    font-family: "Jaini", system-ui;
+    text-align: center;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 20px 0;
+}
+
+.lamp{
+    width: 314.335px;
+height: 248.632px;
+aspect-ratio: 177/140;
+}
+
+#left-lamp{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+}
+
+#right-lamp{
+    position: absolute;
+    top: 0;
+    right: 0;
+transform: scaleX(-1);
+}
 .wheel-title {
     text-align: center;
     font-family: "Jim Nightshade", cursive;
@@ -49,18 +112,18 @@
 
     /* this has been the worst expirience of my life O_O */
 
-background-image: url('assets/spakles.png');
-background-size: cover;
-background-repeat: repeat;
+    background-image: url('assets/spakles.png');
+    background-size: cover;
+    background-repeat: repeat;
 
 
--webkit-background-clip: text;
-background-clip: text;
+    -webkit-background-clip: text;
+    background-clip: text;
 
 
--webkit-text-fill-color: transparent;
-color: transparent;
-  }
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
 
 
 .meet-fate-btn:hover h3 {
@@ -74,7 +137,7 @@ color: transparent;
 /* --- 3D FLIP MECHANIC STUFF --- */
 .tarot-card-container {
     width: 100%;
-    height: 100%; 
+    height: 100%;
     perspective: 1000px;
     animation: cardEntry 0.5s ease-out;
 }
@@ -108,7 +171,7 @@ color: transparent;
 
 .card-front {
     transform: rotateY(180deg);
-    
+
 }
 
 .card-face {
@@ -175,8 +238,8 @@ TAROT WHEEL >:D
 
 .wheel-card {
     position: absolute;
-    width: 162.235px;
-    height: 253.331px;
+    width: 186.265px;
+    height: 312.431px;
     cursor: pointer;
 
     /* Calculate angle: (360deg / total cards) * current index */
@@ -189,13 +252,6 @@ TAROT WHEEL >:D
     transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     /* filter: drop-shadow(0 0 14.2px rgba(0, 0, 0, 0.50)); */
 }
-
-.wheel-card img {
-    width: 100%;
-    height: 100%;
-    border-radius: 12px;
-}
-
 
 .wheel-card:hover {
     z-index: 20;
