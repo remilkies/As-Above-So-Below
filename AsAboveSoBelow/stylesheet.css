@@ -15,7 +15,7 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-
+    width: 360px;
     background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
     background-clip: text;
     -webkit-background-clip: text;
@@ -72,14 +72,14 @@ color: transparent;
 
 
 /* --- 3D FLIP MECHANIC STUFF --- */
-#tarot-card-container {
-    width: 340px;
-    height: 272px;
+.tarot-card-container {
+    width: 100%;
+    height: 100%; 
     perspective: 1000px;
     animation: cardEntry 0.5s ease-out;
 }
 
-#tarot-card-flipper {
+.tarot-card-flipper {
     width: 100%;
     height: 100%;
     position: relative;
@@ -88,7 +88,7 @@ color: transparent;
     cursor: pointer;
 }
 
-#tarot-card-flipper.is-flipped {
+.tarot-card-flipper.is-flipped {
     transform: rotateY(180deg);
     cursor: default;
     /* i dont even know if we're using like an ipad tablet type thing but anywayyy */
@@ -106,17 +106,22 @@ color: transparent;
     }
 }
 
-#card-front {
+.card-front {
     transform: rotateY(180deg);
+    
 }
 
 .card-face {
+    width: 100%;
+    height: 100%;
     box-shadow: 4px 8px 0 rgba(0, 0, 0, 0.2);
     backface-visibility: hidden;
     position: absolute;
     top: 0;
     left: 0;
 
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 .card-face::before {
@@ -140,10 +145,15 @@ img {
 TAROT WHEEL >:D 
 ============================ */
 
+.tarot-card-loader {
+    width: 100%;
+    height: 100%;
+}
+
 .tarot-wheel-container {
     position: relative;
     width: auto;
-    height: auto;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -157,21 +167,27 @@ TAROT WHEEL >:D
     max-width: 220px;
 }
 
+/* .wheel-card-wrapper {
+    width: 162.235px;
+    height: 253.331px;
+    position: relative;
+} */
+
 .wheel-card {
     position: absolute;
     width: 162.235px;
     height: 253.331px;
     cursor: pointer;
 
-    /* 1. Calculate angle: (360deg / total cards) * current index */
-    /* 2. Rotate to angle, then translate up to form radius */
+    /* Calculate angle: (360deg / total cards) * current index */
+    /* Rotate to angle, then translate up to form radius */
     transform:
         rotate(calc((360deg / var(--total)) * var(--i))) translateY(-360px);
-    /* Adjust this number to change circle radius */
+    /* Adjust circle radius */
 
     transform-origin: center center;
     transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-    filter: drop-shadow(0 0 14.2px rgba(0, 0, 0, 0.50));
+    /* filter: drop-shadow(0 0 14.2px rgba(0, 0, 0, 0.50)); */
 }
 
 .wheel-card img {

@@ -26,14 +26,14 @@
 
   ?>
 
-<div id="tarot-card-container">
-      <div id="tarot-card-flipper">
+<div class="tarot-card-container">
+      <div class="tarot-card-flipper">
 
-      <div class="card-face" id="card-back">
+      <div class="card-face card-back">
         <img src="<?php echo $card_back_image; ?>" alt="Card Back" />
       </div>
 
-      <div class="card-face" id="card-front">
+      <div class="card-face card-front">
         <img src="<?php echo $drawn_card_image; ?>" alt="Card Front"/>
       </div>
 
