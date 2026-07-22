@@ -14,8 +14,26 @@
 
 
 <!-- HTML -->
-<div id="tarot-card-loader"></div>
 
+<div class="tarot-wheel-container">
+
+  <div class="wheel-center-content">
+    <p class="wheel-title">The right match changes everything</p>
+    <button class="meet-fate-btn">
+      <h3>Meet Your Fate</h3>
+    </button>
+  </div>
+<div class="cards-ring">
+  <?php 
+    $total_cards = 16;
+    for ($i = 0; $i < $total_cards; $i++): 
+  ?>
+    <div class="wheel-card" style="--i: <?php echo $i; ?>; --total: <?php echo $total_cards; ?>;">
+      <img src="assets/cardBack.png" alt="Card Back">
+    </div>
+  <?php endfor; ?>
+</div>
+</div>
 <!-- 3. JAVASCRIPT HAPPENS LAST (Browser-side) -->
   <!-- JS waits for the user to click the container -->
     <script type="module" src="script.js"></script>

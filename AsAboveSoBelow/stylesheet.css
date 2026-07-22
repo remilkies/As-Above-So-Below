@@ -1,4 +1,75 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cinzel+Decorative:wght@700&family=Josefin+Sans:wght@400;600;700&family=Vollkorn:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jaini&family=Jim+Nightshade&display=swap');
+
+.your-title-class {
+    font-family: "Jim Nightshade", cursive;
+  }
+  
+  .your-body-text-class {
+    font-family: "Jaini", system-ui;
+  }
+
+.wheel-title {
+    text-align: center;
+    font-family: "Jim Nightshade", cursive;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+
+}
+
+.meet-fate-btn {
+    padding: 0 15px;
+    border-radius: 25.5px;
+    background: linear-gradient(270deg, #D08596 0%, #F2CBD1 50%, #D08596 100%);
+}
+
+.meet-fate-btn:hover {
+
+    background-image: url('assets/spakles.png');
+    background-size: cover;
+    background-repeat: repeat;
+
+}
+
+
+.meet-fate-btn h3 {
+    text-align: center;
+    font-family: "Jaini", system-ui;
+    font-size: 1.3em;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    /* this has been the worst expirience of my life O_O */
+
+background-image: url('assets/spakles.png');
+background-size: cover;
+background-repeat: repeat;
+
+
+-webkit-background-clip: text;
+background-clip: text;
+
+
+-webkit-text-fill-color: transparent;
+color: transparent;
+  }
+
+
+.meet-fate-btn:hover h3 {
+    background: linear-gradient(90deg, #D08596 0%, #F2CBD1 50%, #D08596 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 
 /* --- 3D FLIP MECHANIC STUFF --- */
 #tarot-card-container {
@@ -35,20 +106,20 @@
     }
 }
 
-#card-front{
+#card-front {
     transform: rotateY(180deg);
 }
 
 .card-face {
     box-shadow: 4px 8px 0 rgba(0, 0, 0, 0.2);
-    backface-visibility: hidden; 
+    backface-visibility: hidden;
     position: absolute;
     top: 0;
     left: 0;
 
 }
 
-.card-face::before{
+.card-face::before {
     content: "";
     position: absolute;
     top: 0;
@@ -63,4 +134,57 @@ img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* =========================
+TAROT WHEEL >:D 
+============================ */
+
+.tarot-wheel-container {
+    position: relative;
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.wheel-center-content {
+    position: absolute;
+    text-align: center;
+    z-index: 10;
+    max-width: 220px;
+}
+
+.wheel-card {
+    position: absolute;
+    width: 162.235px;
+    height: 253.331px;
+    cursor: pointer;
+
+    /* 1. Calculate angle: (360deg / total cards) * current index */
+    /* 2. Rotate to angle, then translate up to form radius */
+    transform:
+        rotate(calc((360deg / var(--total)) * var(--i))) translateY(-360px);
+    /* Adjust this number to change circle radius */
+
+    transform-origin: center center;
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    filter: drop-shadow(0 0 14.2px rgba(0, 0, 0, 0.50));
+}
+
+.wheel-card img {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+}
+
+
+.wheel-card:hover {
+    z-index: 20;
+    transform:
+        rotate(calc((360deg / var(--total)) * var(--i))) translateY(-390px)
+        /* scale(1.08) */
+    ;
 }
