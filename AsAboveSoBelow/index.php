@@ -22,6 +22,7 @@
 // =====================
 // RANDOM CUPS >:D
 // =====================
+
   // PHP to find any png that ends with 'Cups'
   $cups_cards = glob("assets/*Cups.png");
   
@@ -30,6 +31,7 @@
 
   $drawn_card_image = $cups_cards[$random_index];
   
+
   // universal card back NEVER TOUCH THIS THERE IS GENUINLY NO REASON TO
   $card_back_image = "assets/cardBack.png";
 
