@@ -1,7 +1,5 @@
 <img src="/asabovesobelow/icons/Group 93.png" width="100%">
 
-# 🌌 As Above, So Below (A Cosmic Tarot Synthesizer)
-
 > What should I look forward to?
 > What should I beware?
 > It's not about fate. It's about awareness and awareness creates freedom <3
@@ -11,14 +9,10 @@ Welcome to **As Above, So Below**, a digital tarot matchmaking engine built to b
 Tarot is an ancient tool for self-discovery, guidance, and personal growth. It helps you connect with your intuition and see things from an entirely new perspective. This platform is not about predicting the future; it is about understanding yourself deeper in the present moment, translating the chaotic randomness of the universe into mindful, active intuition >:D
 
 ## The Cosmic Core: As Above, So Below
-The entire architecture of this application is designed to encompass the classic hermetic maxim: *As above, so below; as within, so without; as the universe, so the soul.*
+The entire architecture of this application is designed to encompass the classic hermetic maxim: *As above, so below*
 
 *   **As Above:** Your first card drawn—representing the cosmic path ahead and *what you should look forward to*.
 *   **So Below:** Your second card drawn—representing the earthly warnings and *what you should beware*.
-*   **As Within:** Your active choice. The moment you decide to draw, pulling your inner energy into the digital realm.
-*   **So Without:** The complete lack of a human moderator, administrator, or dictator pulling the strings. The system operates entirely autonomously.
-*   **As the Universe:** Pure randomness, chance, and chaotic database generation. 
-*   **So the Soul:** Your personal interpretation of this digital chaos, reflecting on thoughts, paths, and patterns you might have never even considered before.
 
 ---
 
