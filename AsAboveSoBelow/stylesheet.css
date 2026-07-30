@@ -1,14 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Jaini&family=Jim+Nightshade&display=swap');
 
-body{
+body {
     /* WHY DO I NEED TO PUT IMPORTANT ON THE FUCKING BACKGROUND COLOUR WHHAHAAAAT IS HAPPENINGGF UEHFIU */
     background-color: #111111 !important;
     width: 100vw !important;
+    overflow-x: hidden !important;
 }
 
-body::after{
+body::after {
     content: "";
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -18,11 +19,12 @@ body::after{
     background-position: center;
     z-index: -1;
 }
+
 .font {
     font-family: "Jim Nightshade", cursive;
 }
 
-.header-container{
+.header-container {
     position: relative;
     width: 100vw;
     height: auto;
@@ -30,14 +32,15 @@ body::after{
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
 }
 
-.title-container{
+.title-container {
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
+
 .title {
     font-family: "Jaini", system-ui;
     text-align: center;
@@ -52,25 +55,26 @@ body::after{
     margin: 20px 0;
 }
 
-.lamp{
+.lamp {
     width: 314.335px;
-height: 248.632px;
-aspect-ratio: 177/140;
+    height: 248.632px;
+    aspect-ratio: 177/140;
 }
 
-#left-lamp{
+#left-lamp {
     position: absolute;
     top: 0;
     left: 0;
 
 }
 
-#right-lamp{
+#right-lamp {
     position: absolute;
     top: 0;
     right: 0;
-transform: scaleX(-1);
+    transform: scaleX(-1);
 }
+
 .wheel-title {
     text-align: center;
     font-family: "Jim Nightshade", cursive;
@@ -259,4 +263,25 @@ TAROT WHEEL >:D
         rotate(calc((360deg / var(--total)) * var(--i))) translateY(-390px)
         /* scale(1.08) */
     ;
+}
+
+#footer-container {
+    width: 100vw;
+    background: linear-gradient(270deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+    font-family: "Jaini", system-ui;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+#footer{
+    display: flex;
+flex-direction: column;
+justify-content: end;
+align-items: center;
 }

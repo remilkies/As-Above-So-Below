@@ -48,7 +48,11 @@
   ?>
 
     <div class="wheel-card" style="--i: <?php echo $i; ?>; --total: <?php echo $total_cards; ?>;">
-      <div class="tarot-card-loader"></div>
+      <!-- <div class="tarot-card-loader"></div> -->
+      <?php 
+      include("TarotCard.php");
+      ?>
+       <!-- //instead of injecing the componenet using javascrip -->
     </div>
 
   <?php endfor; ?>
@@ -58,6 +62,14 @@
     </div>
   </div>
 </div>
+<footer>
+  <div id="footer-container">
+    <div id="footer">
+    <img src="assets/rembyte.svg"alt="REMByte Logo" />
+    <h1>Brought to you by REMByte</h1>
+  </div>
+  </div>
+</footer>
 
 <!-- 3. JAVASCRIPT HAPPENS LAST (Browser-side) -->
   <!-- JS waits for the user to click the container -->
