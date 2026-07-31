@@ -2,6 +2,17 @@
 
 <?php //this is suprisingly important
 
+$arcana = [
+    'major' => [
+        'name' => 'Major Arcana',
+        'meaning' => 'the grand narrative of life, spiritual lessons, and transformative experiences'
+    ],
+    'minor' => [
+        'name' => 'Minor Arcana',
+        'meaning' => 'the day-to-day experiences, challenges, and opportunities that shape our journey'
+    ]
+    ];
+
 $suits = [
     'cups' => [
         'name' => 'Cups',
@@ -21,7 +32,7 @@ $suits = [
     ]
 ];
 // i understand why people use ai...this is the worst most tedious thing i've ever lived through 
-$ranks = [
+$numerology = [
     '3' => [
         'name' => 'Three',
         'meaning' => 'a time of collaborative energy, creative growth, and outward expression'
@@ -32,7 +43,7 @@ $ranks = [
     ]
 ];
 
-$numbers = [
+$ranks = [
     'knight' => [
         'name' => 'Knight',
         'meaning' => 'action, momentum, and the pursuit of a specific vision or goal'
