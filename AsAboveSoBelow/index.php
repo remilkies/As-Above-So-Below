@@ -16,10 +16,7 @@
   <div class="header-container">
 <img src="assets/lamp.png" class="lamp" id="left-lamp"alt="Left Lamp" />
 
-<div class="title-container">
-  <img src="assets/trippleMoon.svg" alt="Logo" />
-      <h1 class="title">As Above <br> So Below</h1>
-    </div>
+
 
     <img src="assets/lamp.png" class="lamp" id="right-lamp" alt="Right Lamp" />
     </div>
@@ -35,6 +32,10 @@
     <div class="tarot-wheel-container">
 
   <div class="wheel-center-content">
+  <div class="title-container">
+  <img src="assets/trippleMoon.svg" alt="Logo" />
+      <h1 class="title">As Above <br> So Below</h1>
+    </div>
     <p class="wheel-title">The right match changes everything</p>
     <button class="meet-fate-btn">
       <h3>Meet Your Fate</h3>
@@ -48,10 +49,8 @@
   ?>
 
     <div class="wheel-card" style="--i: <?php echo $i; ?>; --total: <?php echo $total_cards; ?>;">
-      <!-- <div class="tarot-card-loader"></div> -->
-      <?php 
-      include("TarotCard.php");
-      ?>
+      <div class="tarot-card-loader"></div>
+
        <!-- //instead of injecing the componenet using javascrip -->
     </div>
 
@@ -59,6 +58,41 @@
 </div>
 </div>
 
+<section class="app-info-container">
+
+<div class="info-container">
+  <div class="container-fluid">
+
+
+  <div class="info-content">
+    <div class="info-text">
+      <h2>The Hands of the Universe</h2>
+      <p>The admin is not seen for no moderation is required, the movement of the cosmos is your only hope</p>
+    </div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="info-text">
+      <h2>The Right Match
+      Changes Everything</h2>
+      <p>There are no mistakes and no coincidences, each choice has a meaning but can be turned upsidedonwn when paired with  anouther</p>
+    </div>
+
+    <div class="info-text">
+      <h2>But Fate is not Certain</h2>
+      <p>The universe is forever moving for times arrow only marches foreward. Fates drawn will expire wintin 7 days of drawing,</p>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="info-img">
+      <img src="assets/twoCards.png" alt="Two Cards">
+    </div>
+  </div>
+</div>
+</div>  
+</div>
+</div>
+</section>
     </div>
   </div>
 </div>

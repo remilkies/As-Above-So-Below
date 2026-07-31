@@ -12,13 +12,21 @@
 // =====================
 
   // PHP to find any png that ends with 'Cups'
-  $cups_cards = glob("assets/*Cups.png");
+  // $cups_cards = glob("assets/*Cups.png");
   
   
-  $random_index = array_rand($cups_cards);
+  // $random_index = array_rand($cups_cards);
 
-  $drawn_card_image = $cups_cards[$random_index];
+  // $drawn_card_image = $cups_cards[$random_index];
   
+  $allCards = glob("assets/cards/*.png");
+  
+  
+  $random_index = array_rand($allCards);
+
+  $drawn_card_image = $allCards[$random_index];
+  
+
 
   // universal card back NEVER TOUCH THIS THERE IS GENUINLY NO REASON TO
   $card_back_image = "assets/cardBack.png";

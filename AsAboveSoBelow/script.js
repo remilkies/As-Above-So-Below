@@ -1,3 +1,8 @@
+// document.getElementById("enter-btn").addEventListener(click, function(){
+//     // navigate to login screen
+//     window.location.href = "login.php";
+
+// })
 
 //   carot card component
 document.addEventListener("DOMContentLoaded", () => {
