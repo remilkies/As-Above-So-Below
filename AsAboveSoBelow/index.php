@@ -43,15 +43,23 @@
   </div>
 
 <div class="cards-ring">
-  <?php 
+<?php 
+    $allCards = glob("assets/cards/*.png");
+    shuffle($allCards); 
+
     $total_cards = 16;
+    $drawnCards = array_slice($allCards, 0, $total_cards); 
+    $card_back = "assets/cardBack.png";
+
     for ($i = 0; $i < $total_cards; $i++): 
+      $drawn_card = $drawnCards[$i];
   ?>
 
     <div class="wheel-card" style="--i: <?php echo $i; ?>; --total: <?php echo $total_cards; ?>;">
-      <div class="tarot-card-loader"></div>
+      <div class="tarot-card-loader">
 
-       <!-- //instead of injecing the componenet using javascrip -->
+        <?php include 'TarotCard.php'; ?>
+      </div>
     </div>
 
   <?php endfor; ?>
