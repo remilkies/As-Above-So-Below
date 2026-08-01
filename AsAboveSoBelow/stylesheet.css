@@ -296,13 +296,33 @@ background-clip: text;
     LOGIN CSS 
     =========================*/
 
-    .border-wrapper{
-        background-image: url(assets/dashedBorder.svg);
-        width: 925px;
-height: 914.399px;
+    .moon-logo{
+width: 179px;
+height: auto;
 position: absolute;
+transform: translateY(-270px);
     }
 
+    .border-wrapper{
+        height: 100vh;
+background-image: url(assets/dashedBorder.svg);
+        background-attachment: fixed;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .login-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+    }
 .login-title{
     text-align: center;
 font-family: "Jaini", system-ui;
@@ -317,14 +337,31 @@ background-clip: text;
 
 }
 
+.login-form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.form-label{
+    font-family: "Jim Nightshade", cursive;
+font-size: 2.25rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+
+background: linear-gradient(180deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
 .form-control{
-    border-radius: 61px;
-border: 5px solid linear-gradient(180deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
+    border-radius: 15px;
+border: 50px solid blue;
 background-color: transparent;
 }
 
 .submit-btn {
-    border-radius: 15px;
+    border-radius: 50px;
     background: linear-gradient(270deg, #D08596 0%, #F2CBD1 50%, #D08596 100%);
     text-align: center;
     font-family: "Jaini", system-ui;
@@ -332,7 +369,6 @@ background-color: transparent;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    color: url(assets/nebulaFill.png);
 }
 
 .submit-btn:hover{

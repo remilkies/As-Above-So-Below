@@ -37,7 +37,7 @@
       <h1 class="title">As Above <br> So Below</h1>
     </div>
     <p class="wheel-title">The right match changes everything</p>
-    <button class="meet-fate-btn">
+    <button class="meet-fate-btn" onclick="window.location.href='pages/login.php';">
       <h3>Meet Your Fate</h3>
     </button>
   </div>
