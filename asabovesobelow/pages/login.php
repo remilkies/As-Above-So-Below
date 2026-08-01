@@ -9,12 +9,30 @@
     <title>as-above--so-below</title>
   </head>
   <body>
+  <header>
+  <!-- MAYBE MAKE THIS A REUSABLE COMPONENET SO WE CAN GLOBALLY ANCHOR IT ON EVERY PAGE?? -->
+  <div class="header-container">
+
+  <div class="lamp-wrapper" id="left-lamp">
+<img src="../assets/lamp.png" class="lamp"alt="Left Lamp" />
+  <div class="glow"></div>
+</div>
+
+
+<div class="lamp-wrapper" id="right-lamp">
+    <img src="../assets/lamp.png" class="lamp" alt="Right Lamp" />
+    <div class="glow"></div>
+</div>
+    </div>
+</header>
 <div class="border-wrapper">
   <div class="login-container">
     <img src="../assets/trippleMoon.svg" alt="Logo" class="moon-logo">
+
     <div class="login-form">
         <h2 class="login-title">Login</h2>
-        <form action="login.php" method="post">
+
+        <form action="login.php" method="post" class="login-field">
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
                 <input type="text" class="form-control" id="username" name="username" required>
@@ -24,8 +42,8 @@
             <label for="password" class="form-label">Sacred Key</label>
             <input type="password" class="form-control" id="password" name="password" required>
         </div>
-
         </form>
+
         <button type="submit" class="btn submit-btn">Login</button>
     </div>
   </div>

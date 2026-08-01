@@ -23,7 +23,6 @@ body {
     position: relative;
     width: 100vw;
     height: auto;
-    margin-top: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,25 +49,68 @@ body {
     margin: 20px 0;
 }
 
-.lamp {
+
+.lamp-wrapper {
+    position: absolute;
     width: 314.335px;
     height: 248.632px;
-    aspect-ratio: 177/140;
-}
-
-#left-lamp {
-    position: absolute;
+    aspect-ratio: 177 / 140;
+  }
+  
+  .lamp {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  
+  #left-lamp {
     top: 0;
     left: 0;
-
-}
-
-#right-lamp {
-    position: absolute;
+  }
+  
+  #right-lamp {
     top: 0;
     right: 0;
-    transform: scaleX(-1);
-}
+    transform: scaleX(-1); 
+  }
+  
+
+  .glow {
+    position: absolute;
+    z-index: -1;
+
+    top: 65%;  
+    left: 65%; 
+  
+
+    width: 80px;
+    height: 100px;
+    transform: translate(-50%, -50%); 
+    border-radius: 50%;
+  
+    background: radial-gradient(
+      circle at center,
+      #CF8394 17.31%,
+      #E5C1C0 51.92%,
+      #CF8394 83.17%,
+      rgba(207, 131, 148, 0) 100%
+    );
+  
+    filter: blur(12px);
+    mix-blend-mode: screen;  
+    pointer-events: none;    
+    animation: flickerGlow 9s ease-in-out infinite;
+  }
+
+  @keyframes flickerGlow {
+    0%, 100% { opacity: 0.9;  transform: translate(-50%, -50%) scale(1); }
+    18%      { opacity: 0.82; transform: translate(-50%, -50%) scale(0.97); }
+    22%      { opacity: 1;    transform: translate(-50%, -50%) scale(1.03); }
+    45%      { opacity: 0.88; transform: translate(-50%, -50%) scale(0.99); }
+    48%      { opacity: 0.96; transform: translate(-50%, -50%) scale(1.01); }
+    72%      { opacity: 0.84; transform: translate(-50%, -50%) scale(0.98); }
+    75%      { opacity: 0.98; transform: translate(-50%, -50%) scale(1.02); }
+  }
 
 .wheel-title {
     text-align: center;
@@ -341,6 +383,14 @@ background-clip: text;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    gap: 40px;
+}
+
+.login-field{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
 }
 .form-label{
     font-family: "Jim Nightshade", cursive;
