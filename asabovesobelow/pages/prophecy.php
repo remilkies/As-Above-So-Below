@@ -1,0 +1,1 @@
+<!-- generateSynthesis() and echo $_POST['cardA'] and $_POST['cardB'] -->

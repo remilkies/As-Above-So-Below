@@ -14,11 +14,17 @@
 <header>
   <!-- MAYBE MAKE THIS A REUSABLE COMPONENET SO WE CAN GLOBALLY ANCHOR IT ON EVERY PAGE?? -->
   <div class="header-container">
-<img src="assets/lamp.png" class="lamp" id="left-lamp"alt="Left Lamp" />
+
+  <div class="lamp-wrapper" id="left-lamp">
+    <img src="assets/lamp.png" class="lamp" alt="Left Lamp" />
+    <div class="glow"></div>
+  </div>
 
 
 
-    <img src="assets/lamp.png" class="lamp" id="right-lamp" alt="Right Lamp" />
+<div class="lamp-wrapper" id="right-lamp">
+    <img src="assets/lamp.png" class="lamp" alt="Right Lamp" />
+    <div class="glow"></div>
     </div>
 </header>
 

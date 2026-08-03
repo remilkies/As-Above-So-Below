@@ -51,7 +51,7 @@ $_SESSION['drawn_cards'][] = $drawn_card;
 
   ?>
 
-<div class="tarot-card-container">
+<div class="tarot-card-container spread-card" data-image="<?php echo $drawn_card; ?>">
       <div class="tarot-card-flipper">
 
       <div class="card-face card-back">

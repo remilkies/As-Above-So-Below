@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Jaini&family=Jim+Nightshade&display=swap');
 
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
     overflow-x: hidden;
+    cursor: url('assets/cursor.svg') 0 0, pointer !important;
 }
 
 body {
@@ -17,6 +19,19 @@ body {
 
 .font {
     font-family: "Jim Nightshade", cursive;
+}
+
+/* ======================= */
+/* CUSTOM CURSOR VARIABLE */
+/* ======================= */
+
+
+a,
+button,
+input[type="button"],
+input[type="submit"],
+[role="button"] {
+    cursor: url('assets/cursor.svg') 0 0, pointer !important;
 }
 
 .header-container {
@@ -55,62 +70,89 @@ body {
     width: 314.335px;
     height: 248.632px;
     aspect-ratio: 177 / 140;
-  }
-  
-  .lamp {
+}
+
+.lamp {
     width: 100%;
     height: 100%;
     display: block;
-  }
-  
-  #left-lamp {
+}
+
+#left-lamp {
     top: 0;
     left: 0;
-  }
-  
-  #right-lamp {
+}
+
+#right-lamp {
     top: 0;
     right: 0;
-    transform: scaleX(-1); 
-  }
-  
+    transform: scaleX(-1);
+}
 
-  .glow {
+
+.glow {
     position: absolute;
     z-index: -1;
 
-    top: 65%;  
-    left: 65%; 
-  
+    top: 70%;
+    left: 65%;
+
 
     width: 80px;
     height: 100px;
-    transform: translate(-50%, -50%); 
+    transform: translate(-50%, -50%);
     border-radius: 50%;
-  
-    background: radial-gradient(
-      circle at center,
-      #CF8394 17.31%,
-      #E5C1C0 51.92%,
-      #CF8394 83.17%,
-      rgba(207, 131, 148, 0) 100%
-    );
-  
-    filter: blur(12px);
-    mix-blend-mode: screen;  
-    pointer-events: none;    
-    animation: flickerGlow 9s ease-in-out infinite;
-  }
 
-  @keyframes flickerGlow {
-    0%, 100% { opacity: 0.9;  transform: translate(-50%, -50%) scale(1); }
-    18%      { opacity: 0.82; transform: translate(-50%, -50%) scale(0.97); }
-    22%      { opacity: 1;    transform: translate(-50%, -50%) scale(1.03); }
-    45%      { opacity: 0.88; transform: translate(-50%, -50%) scale(0.99); }
-    48%      { opacity: 0.96; transform: translate(-50%, -50%) scale(1.01); }
-    72%      { opacity: 0.84; transform: translate(-50%, -50%) scale(0.98); }
-    75%      { opacity: 0.98; transform: translate(-50%, -50%) scale(1.02); }
-  }
+    background: radial-gradient(circle at center,
+            #CF8394 17.31%,
+            #E5C1C0 51.92%,
+            #CF8394 83.17%,
+            rgba(207, 131, 148, 0) 100%);
+
+    filter: blur(12px);
+    mix-blend-mode: screen;
+    pointer-events: none;
+    animation: flickerGlow 9s ease-in-out infinite;
+}
+
+@keyframes flickerGlow {
+
+    0%,
+    100% {
+        opacity: 0.9;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    18% {
+        opacity: 0.82;
+        transform: translate(-50%, -50%) scale(0.97);
+    }
+
+    22% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.03);
+    }
+
+    45% {
+        opacity: 0.88;
+        transform: translate(-50%, -50%) scale(0.99);
+    }
+
+    48% {
+        opacity: 0.96;
+        transform: translate(-50%, -50%) scale(1.01);
+    }
+
+    72% {
+        opacity: 0.84;
+        transform: translate(-50%, -50%) scale(0.98);
+    }
+
+    75% {
+        opacity: 0.98;
+        transform: translate(-50%, -50%) scale(1.02);
+    }
+}
 
 .wheel-title {
     text-align: center;
@@ -190,12 +232,11 @@ body {
     position: relative;
     transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
     transform-style: preserve-3d;
-    cursor: pointer;
 }
 
 .tarot-card-flipper.is-flipped {
     transform: rotateY(180deg);
-    cursor: default;
+
     /* i dont even know if we're using like an ipad tablet type thing but anywayyy */
 }
 
@@ -282,7 +323,7 @@ TAROT WHEEL >:D
     position: absolute;
     width: 186.265px;
     height: 312.431px;
-    cursor: pointer;
+
 
     /* Calculate angle: (360deg / total cards) * current index */
     /* Rotate to angle, then translate up to form radius */
@@ -307,107 +348,129 @@ TAROT WHEEL >:D
     INFO CSS 
     =========================*/
 
-.info-text h2{
+.info-text h2 {
     text-align: center;
-font-family: "Jaini", system-ui;
-font-size: 4rem;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+    font-family: "Jaini", system-ui;
+    font-size: 4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 
-background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
-background-clip: text;
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
+    background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.info-text p{
+.info-text p {
     text-align: center;
-font-family: "Jim Nightshade", cursive;
-font-size: 2.5rem;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+    font-family: "Jim Nightshade", cursive;
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 
-background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
-background-clip: text;
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
+    background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
+
 /* ==========================
     LOGIN CSS 
     =========================*/
 
-    .moon-logo{
-width: 179px;
-height: auto;
-position: absolute;
-transform: translateY(-270px);
-    }
+.moon-logo {
+    width: 179px;
+    height: auto;
+    position: absolute;
+    transform: translateY(-270px);
+}
 
-    .border-wrapper{
-        height: 100vh;
-background-image: url(assets/dashedBorder.svg);
-        background-attachment: fixed;
-        background-position: center;
-        background-size: contain;
-        background-repeat: no-repeat;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-    }
-
-    .login-container{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-
-    }
-.login-title{
-    text-align: center;
-font-family: "Jaini", system-ui;
-font-size: 4rem;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
-background-clip: text;
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
+.border-wrapper {
+    height: 100vh;
+    background-image: url(assets/dashedBorder.svg);
+    background-attachment: fixed;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 
-.login-form{
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+
+}
+
+.login-title {
+    text-align: center;
+    font-family: "Jaini", system-ui;
+    font-size: 4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+}
+
+.login-form {
     display: flex;
     justify-content: center;
     flex-direction: column;
     gap: 40px;
+    width: 450px;
 }
 
-.login-field{
+.login-field {
     display: flex;
     justify-content: center;
     flex-direction: column;
     gap: 20px;
 }
-.form-label{
-    font-family: "Jim Nightshade", cursive;
-font-size: 2.25rem;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
 
-background: linear-gradient(180deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
-background-clip: text;
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
+.form-label {
+    font-family: "Jim Nightshade", cursive;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    background: linear-gradient(180deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
-.form-control{
-    border-radius: 15px;
-border: 50px solid blue;
-background-color: transparent;
+
+.form-control {
+    border-radius: 50px;
+    border: 5px solid transparent;
+    /* i hate myself so much for working almost entirely with gradients T-T
+    - inner element background color (clipped to padding-box)
+    - gradient border colours (extends to border-box 
+    */
+    background: linear-gradient(#ffffff, #ffffff) padding-box,
+        linear-gradient(270deg, #D08596 0%, #F2CBD1 50%, #D08596 100%) border-box;
+    /* figers crossed this works, i could just google the answer genuinly but whatever I'm subborn */
+    color: #CF8394 !important;
+
+}
+
+input::placeholder {
+    color: #CF8394 !important;
+}
+
+.form-control:focus {
+    outline: none;
 }
 
 .submit-btn {
@@ -421,7 +484,7 @@ background-color: transparent;
     line-height: normal;
 }
 
-.submit-btn:hover{
+.submit-btn:hover {
     background-image: url(assets/nebulaFill.png);
     color: linear-gradient(270deg, #D08596 0%, #F2CBD1 50%, #D08596 100%);
     text-align: center;
@@ -429,6 +492,105 @@ background-color: transparent;
     font-size: 2.25rem;
     font-style: normal;
     font-weight: 400;
+}
+
+/* ==========================
+DASBOARD CSS
+    =========================*/
+body,
+html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* Locks default browser scrolling */
+}
+
+.viewport {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+.stage {
+    width: 100%;
+    height: 200vh;
+    display: flex;
+    flex-direction: column;
+    /* Heavy, slow drop-and-settle easing */
+    transition: transform 1.4s cubic-bezier(0.7, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.screen {
+    width: 100vw;
+    height: 100vh;
+    flex-shrink: 0;
+}
+
+/* State Trigger */
+.stage.descended {
+    transform: translateY(-100vh);
+}
+
+.dashboard-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.dashboard-btn {
+    border-radius: 50px;
+    border: 5px solid transparent;
+    /* i hate myself so much for working almost entirely with gradients T-T
+        - inner element background color (clipped to padding-box)
+        - gradient border colours (extends to border-box 
+        */
+    background: linear-gradient(#ffffff00, #ffffff00) padding-box,
+        linear-gradient(270deg, #D08596 0%, #F2CBD1 50%, #D08596 100%) border-box;
+    /* figers crossed this works, i could just google the answer genuinly but whatever I'm subborn */
+
+    text-align: center;
+    font-family: "Jaini", system-ui;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+}
+
+/* ==========================
+READING CHAMBER CSS
+    =========================*/
+/* two cards */
+.drawn-cards-display {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.drawn-card {
+    width: 140px;
+    border-radius: 10px;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+.card-left {
+    transform: rotate(-12deg);
+}
+
+.card-right {
+    transform: rotate(12deg);
+}
+
+
+.card-left.reversed {
+    transform: rotate(168deg);
+}
+
+.card-right.reversed {
+    transform: rotate(192deg);
 }
 
 #footer-container {
