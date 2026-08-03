@@ -58,8 +58,8 @@ document.querySelectorAll('.spread-card').forEach(card => {
 });
 
 function revealReading(cards){
-    const card1 = cards[0];
-    const card2 = cards[1];
+    const cardA = cards[0];
+    const cardB = cards[1];
 
     document.getElementById('card-spread-container').style.display = 'none';
     document.getElementById('reading-stage').style.display = 'block';
@@ -68,19 +68,19 @@ function revealReading(cards){
     const imgRight = document.getElementById('visual-card-right');
 
 
-    imgLeft.src = `/cards/${card1.name}.png`;
-    imgRight.src = `/cards/${card2.name}.png`;
+    imgLeft.src = `/cards/${cardA.name}.png`;
+    imgRight.src = `/cards/${cardB.name}.png`;
 
-    if (card1.reversed) imgLeft.classList.add('reversed');
-    if (card2.reversed) imgRight.classList.add('reversed');
+    if (cardA.reversed) imgLeft.classList.add('reversed');
+    if (cardB.reversed) imgRight.classList.add('reversed');
 
-    const name1 = card1.reversed ? `${card1.name} (Reversed)` : card1.name;
-    const name2 = card2.reversed ? `${card2.name} (Reversed)` : card2.name;
-    document.getElementById('reading-subtitle').innerText = `${name1} | ${name2}`;
+    const nameA = cardA.reversed ? `${cardA.name} (Reversed)` : cardA.name;
+    const nameB = cardB.reversed ? `${cardB.name} (Reversed)` : cardB.name;
+    document.getElementById('reading-subtitle').innerText = `${nameA} | ${nameB}`;
 
     const formData = new FormData();
-    formData.append('card1', card1.id);
-    formData.append('card2', card2.id);
+    formData.append('cardA', cardA.id);
+    formData.append('cardB', cardB.id);
 
     // AJAX SO MY TRANSITIONS STAY INTACT MUTHAFAQUAAAA
     fetch('prophecy.php', {
