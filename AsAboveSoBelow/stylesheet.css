@@ -420,7 +420,13 @@ TAROT WHEEL >:D
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
 
+.login-title p{
+    background: url(assets/nebulaFill.png);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .login-form {
@@ -431,14 +437,19 @@ TAROT WHEEL >:D
     width: 450px;
 }
 
-.login-field {
+.login-field-container {
     display: flex;
     justify-content: center;
     flex-direction: column;
     gap: 20px;
 }
 
-.form-label {
+.login-field{
+    display: flex;
+    flex-direction: column;
+
+}
+.login-label {
     font-family: "Jim Nightshade", cursive;
     font-size: 2.25rem;
     font-style: normal;
@@ -451,17 +462,18 @@ TAROT WHEEL >:D
     -webkit-text-fill-color: transparent;
 }
 
-.form-control {
+.login-control {
     border-radius: 50px;
-    border: 5px solid transparent;
+    border: 2px solid transparent;
     /* i hate myself so much for working almost entirely with gradients T-T
     - inner element background color (clipped to padding-box)
     - gradient border colours (extends to border-box 
     */
-    background: linear-gradient(#ffffff, #ffffff) padding-box,
+    background: linear-gradient(#111111, #111111) padding-box,
         linear-gradient(270deg, #D08596 0%, #F2CBD1 50%, #D08596 100%) border-box;
     /* figers crossed this works, i could just google the answer genuinly but whatever I'm subborn */
     color: #CF8394 !important;
+    padding: 15px;
 
 }
 
@@ -469,7 +481,7 @@ input::placeholder {
     color: #CF8394 !important;
 }
 
-.form-control:focus {
+.login-control:focus {
     outline: none;
 }
 
@@ -482,11 +494,17 @@ input::placeholder {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    width: 214px;
+    height: 53px;
+    padding-bottom: 55px;
 }
 
-.submit-btn:hover {
+.submit-btn p {
     background-image: url(assets/nebulaFill.png);
-    color: linear-gradient(270deg, #D08596 0%, #F2CBD1 50%, #D08596 100%);
+    background-size: cover;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     text-align: center;
     font-family: "Jaini", system-ui;
     font-size: 2.25rem;
@@ -494,6 +512,37 @@ input::placeholder {
     font-weight: 400;
 }
 
+.submit-btn:hover {
+    background-image: url(assets/nebulaFill.png);
+    background-size: cover;
+    text-align: center;
+    font-family: "Jaini", system-ui;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.submit-btn p:hover{
+    background: linear-gradient(90deg, #D08596 0%, #F2CBD1 50%, #D08596 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+/* MOBILE LOGIN */
+@media (max-width: 768px) {
+    .login-form {
+        width: 350px;
+    }
+    .lamp-wrapper {
+        position: absolute;
+        width: 200px;
+        height: 158px;
+    }
+    
+    .login-control {
+        padding: 10px;
+    }
+}
 /* ==========================
 DASBOARD CSS
     =========================*/
@@ -531,6 +580,23 @@ html {
 .stage.descended {
     transform: translateY(-100vh);
 }
+.corner{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+#left-corner{
+    top: 0;
+    left: 0;
+}
+
+#right-corner{
+    top: 0;
+    right: 0;
+    transform: scaleX(-1);
+}
 
 .dashboard-buttons {
     display: flex;
@@ -558,6 +624,42 @@ html {
 
 }
 
+.dashboard-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.user-title{
+    text-align: center;
+font-family: "Jaini", system-ui;
+font-size: 64px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+
+.dashboard-controls{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 56px;
+}
+.window-container{
+    width: 334.97px;
+    height: 582.604px;
+    aspect-ratio: 23/40;
+}
+
+.window img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 /* ==========================
 READING CHAMBER CSS
     =========================*/

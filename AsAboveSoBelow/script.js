@@ -93,3 +93,5 @@ function revealReading(cards){
     })
 
 }
+
+//password reveal

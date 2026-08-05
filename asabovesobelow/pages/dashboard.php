@@ -1,3 +1,8 @@
+<?php 
+session_start();
+  $displayName = $_SESSION['username'] ?? 'Seeker';
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -17,38 +22,42 @@
 
       <section class="chamber top-chamber">
         <header>
-
+        <div class="header-container">
+          <img src="../assets/chamberCorner.svg" class="corner" id="corner-left" alt="Chamber Corner">
+          <img src="../assets/chamberCorner.svg" class="corner" id="corner-right" alt="Chamber Corner">
+      </div>
         </header>
         <div class="dashboard-container">
-          <div class="dashboard-left">
+          <div class="dashboard-left window-container">
             <img src="../assets/treeOfLife.png" alt="Stain Glass Window" class="window">
           </div>
 
           <div class="dashboard-center">
-            <h2 class="user-title">Welcome, Seeker</h2>
+
+            <div class="dashboard-controls">
+            <h2 class="user-title">Welcome, <?php echo htmlspecialchars($displayName); ?></h2>
 
             <div class="dashboard-buttons">
-              <button class="dashboard-btn">Seeker Sanctum</button>
-              <button class="dashboard-btn" id="btn-descend">Daily Draw</button>
+              <button class="dashboard-btn" id="btn-descend">Seeker Sanctum</button>
               <button class="dashboard-btn">Past Prophecies</button>
+            </div>
             </div>
 
 
-            <button type="submit" class="btn submit-btn">Logout</button>
+            <button class="submit-btn">Logout</button>
           </div>
 
-          <div class="dashboard-right">
+          <div class="dashboard-right window-container">
             <img src="../assets/treeOfLife.png" alt="Stain Glass Window" class="window">
           </div>
         </div>
       </section>
-<?php include 'chamber.php'; ?>
-
+      <!--  ?php include 'chamber.php'; ?> -->
     </div>
   </div>
 
-</body>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 <script type="module" src="script.js"></script>
-
+</body>
 </html>
