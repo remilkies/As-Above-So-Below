@@ -21,18 +21,27 @@ session_start();
     <div class="stage" id="stage">
 
       <section class="chamber top-chamber">
-        <header>
-        <div class="header-container">
+        <div class="chamber-header">
+          <div class="corner-wrapper">
           <img src="../assets/chamberCorner.svg" class="corner" id="corner-left" alt="Chamber Corner">
-          <img src="../assets/chamberCorner.svg" class="corner" id="corner-right" alt="Chamber Corner">
+          </div>
+         
+          <div class="corner-wrapper">
+        <img src="../assets/chamberCorner.svg" class="corner" id="corner-right" alt="Chamber Corner">
+          </div>
+          
       </div>
-        </header>
         <div class="dashboard-container">
+
           <div class="dashboard-left window-container">
             <img src="../assets/treeOfLife.png" alt="Stain Glass Window" class="window">
           </div>
 
           <div class="dashboard-center">
+
+          <div class="moon-container">
+            <img src="../assets/moonWindow.png" alt="Moon Window" class="moon-window">
+          </div>
 
             <div class="dashboard-controls">
             <h2 class="user-title">Welcome, <?php echo htmlspecialchars($displayName); ?></h2>
@@ -41,10 +50,12 @@ session_start();
               <button class="dashboard-btn" id="btn-descend">Seeker Sanctum</button>
               <button class="dashboard-btn">Past Prophecies</button>
             </div>
+            
+            <button class="submit-btn" onclick="n">Logout</button>
             </div>
 
 
-            <button class="submit-btn">Logout</button>
+            
           </div>
 
           <div class="dashboard-right window-container">
@@ -52,7 +63,11 @@ session_start();
           </div>
         </div>
       </section>
-      <!--  ?php include 'chamber.php'; ?> -->
+
+      <section class="chamber bottom-chamber">
+      <?php include 'chamber.php'; ?>
+      </section>
+
     </div>
   </div>
 

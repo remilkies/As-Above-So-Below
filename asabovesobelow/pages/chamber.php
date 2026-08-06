@@ -1,18 +1,20 @@
-<section class="chamber chamber-bottom">
-    <h2 class="chamber-title">The Chamber of Ascension</h2>
+
+<div class="chamber-container">
+    <button id="btn-ascend" class="dashboard-btn">Ascend</button>
+    <h2 class="chamber-title">The Chamber of Enlightenment</h2>
     <!-- dynamic card and php logic can live here -->
-    <div id="card-spread-container">
+    <!-- <div id="card-spread-container">
         <?php
         for ($i = 0; $i < 15; $i++) {
-            include 'TarotCard.php';
+            include '../TarotCard.php';
         }
         ?>
-    </div>
+    </div> -->
 
     </div>
 
 
-    <button id="btn-ascend" class="dashboard-btn">Ascend</button>
+    
 
     <!-- Reading Stage -->
     <div id="reading-stage" style="display: none;">

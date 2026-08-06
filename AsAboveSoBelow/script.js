@@ -19,16 +19,29 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-const stage = document.getElementById('stage');
-const descendBtn = document.getElementById('btn-descend');
-const ascendBtn = document.getElementById('btn-ascend');
+Document.addEventListener('DOMContentLoaded', () => {
+    const stage = document.getElementById('stage');
+    const descendBtn = document.getElementById('btn-descend');
+    const ascendBtn = document.getElementById('btn-ascend');
 
-descendBtn.addEventListener('click', () => {
-  stage.classList.add('descended');
-});
+    if (descendBtn && stage){
+        descendBtn.addEventListener('click', () => {
+            console.log('Into the gallows we go....')
+            stage.classList.add('descended');
 
-ascendBtn.addEventListener('click', () => {
-  stage.classList.remove('descended');
+            if ('vibrate' in navigator){
+                navigator.vibrate(200); // Vibrate mobile
+            }
+            
+        });
+    }
+        
+    if (ascendBtn && stage){
+            ascendBtn.addEventListener('click', () => {
+        stage.classList.remove('descended');
+    });
+    }
+
 });
 
 let selectedCards = [];
@@ -57,7 +70,7 @@ document.querySelectorAll('.spread-card').forEach(card => {
     });
 });
 
-function revealReading(cards){
+function revealReading(cards) {
     const cardA = cards[0];
     const cardB = cards[1];
 
@@ -87,11 +100,34 @@ function revealReading(cards){
         method: 'POST',
         body: formData
     })
-    .then(response => response.text())
-    .then(html => {
-        document.getElementById('reading-text').innerHTML = html;
-    })
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('reading-text').innerHTML = html;
+        })
 
 }
 
-//password reveal
+document.addEventListener('DOMContentLoaded', () => {
+    const passwordField = document.getElementById('password');
+    const toggleIcon = document.getElementById('eye-icon');
+    const toggleBtn = document.getElementById('toggle-btn');
+
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.src = 'assets/eye-slash-icon.svg';
+
+                toggleIcon.classList.remove('eye-icon');
+                toggleIcon.classList.add('eye-slash-icon');
+
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.src = 'assets/eye-icon.svg';
+                toggleIcon.classList.remove('eye-slash-icon');
+                toggleIcon.classList.add('eye-icon');
+            }
+        });
+    }
+});
