@@ -490,8 +490,10 @@ input::placeholder {
     padding: 4px 10px;
     justify-content: space-between;
 }
-#toggle-btn button{
+button{
     background: none;
+    background-color: transparent !important;
+    border: none;
 }
 
 .eye-icon{
@@ -499,6 +501,7 @@ input::placeholder {
 height: 46.064px;
 aspect-ratio: 57.00/46.06;
 }
+
 .submit-btn {
     border-radius: 50px;
     background: linear-gradient(270deg, #D08596 0%, #F2CBD1 50%, #D08596 100%);
