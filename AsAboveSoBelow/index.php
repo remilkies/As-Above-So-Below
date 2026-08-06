@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -14,14 +16,17 @@
 <header>
   <!-- MAYBE MAKE THIS A REUSABLE COMPONENET SO WE CAN GLOBALLY ANCHOR IT ON EVERY PAGE?? -->
   <div class="header-container">
-<img src="assets/lamp.png" class="lamp" id="left-lamp"alt="Left Lamp" />
 
-<div class="title-container">
-  <img src="assets/trippleMoon.svg" alt="Logo" />
-      <h1 class="title">As Above <br> So Below</h1>
-    </div>
+  <div class="lamp-wrapper" id="left-lamp">
+    <img src="assets/lamp.png" class="lamp" alt="Left Lamp" />
+    <div class="glow"></div>
+  </div>
 
-    <img src="assets/lamp.png" class="lamp" id="right-lamp" alt="Right Lamp" />
+
+
+<div class="lamp-wrapper" id="right-lamp">
+    <img src="assets/lamp.png" class="lamp" alt="Right Lamp" />
+    <div class="glow"></div>
     </div>
 </header>
 
@@ -35,30 +40,75 @@
     <div class="tarot-wheel-container">
 
   <div class="wheel-center-content">
+  <div class="title-container">
+  <img src="assets/trippleMoon.svg" alt="Logo" />
+      <h1 class="title">As Above <br> So Below</h1>
+    </div>
     <p class="wheel-title">The right match changes everything</p>
-    <button class="meet-fate-btn">
+    <button class="meet-fate-btn" onclick="window.location.href='pages/login.php';">
       <h3>Meet Your Fate</h3>
     </button>
   </div>
 
 <div class="cards-ring">
-  <?php 
+<?php 
+    $allCards = glob("assets/cards/*.png");
+    shuffle($allCards); 
+
     $total_cards = 16;
+    $drawnCards = array_slice($allCards, 0, $total_cards); 
+    $card_back = "assets/cardBack.png";
+
     for ($i = 0; $i < $total_cards; $i++): 
+      $drawn_card = $drawnCards[$i];
   ?>
 
     <div class="wheel-card" style="--i: <?php echo $i; ?>; --total: <?php echo $total_cards; ?>;">
-      <!-- <div class="tarot-card-loader"></div> -->
-      <?php 
-      include("TarotCard.php");
-      ?>
-       <!-- //instead of injecing the componenet using javascrip -->
+      <div class="tarot-card-loader">
+
+        <?php include 'TarotCard.php'; ?>
+      </div>
     </div>
 
   <?php endfor; ?>
 </div>
 </div>
 
+<section class="app-info-container">
+
+<div class="info-container">
+  <div class="container-fluid">
+
+
+  <div class="info-content">
+    <div class="info-text">
+      <h2>The Hands of the Universe</h2>
+      <p>The admin is not seen for no moderation is required, the movement of the cosmos is your only hope</p>
+    </div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="info-text">
+      <h2>The Right Match
+      Changes Everything</h2>
+      <p>There are no mistakes and no coincidences, each choice has a meaning but can be turned upsidedonwn when paired with  anouther</p>
+    </div>
+
+    <div class="info-text">
+      <h2>But Fate is not Certain</h2>
+      <p>The universe is forever moving for times arrow only marches foreward. Fates drawn will expire wintin 7 days of drawing,</p>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="info-img">
+      <img src="assets/twoCards.png" alt="Two Cards">
+    </div>
+  </div>
+</div>
+</div>  
+</div>
+</div>
+</section>
     </div>
   </div>
 </div>
