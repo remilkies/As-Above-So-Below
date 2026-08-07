@@ -32,6 +32,8 @@
 
 
 <!-- HTML -->
+ <section id="hero-section">
+  <div class="border-wrapper">
 <div class="conatiner-fluid">
   <div class="row">
     <div class="col-12">
@@ -73,45 +75,58 @@
   <?php endfor; ?>
 </div>
 </div>
-
-<section class="app-info-container">
-
-<div class="info-container">
-  <div class="container-fluid">
-
-
-  <div class="info-content">
-    <div class="info-text">
-      <h2>The Hands of the Universe</h2>
-      <p>The admin is not seen for no moderation is required, the movement of the cosmos is your only hope</p>
-    </div>
-<div class="row">
-  <div class="col-md-6">
-    <div class="info-text">
-      <h2>The Right Match
-      Changes Everything</h2>
-      <p>There are no mistakes and no coincidences, each choice has a meaning but can be turned upsidedonwn when paired with  anouther</p>
-    </div>
-
-    <div class="info-text">
-      <h2>But Fate is not Certain</h2>
-      <p>The universe is forever moving for times arrow only marches foreward. Fates drawn will expire wintin 7 days of drawing,</p>
-    </div>
-  </div>
-
-  <div class="col-md-6">
-    <div class="info-img">
-      <img src="assets/twoCards.png" alt="Two Cards">
-    </div>
-  </div>
 </div>
-</div>  
+
+</div>
 </div>
 </div>
 </section>
+
+<section id="about-section">
+
+
+<div class="about-container">
+  <div class="container">
+
+
+  <div class="about-content">
+    <div class="about-text">
+      <h2>The Hands of the Universe</h2>
+      <p>The admin is not seen for no moderation is required, <br> the movement of the cosmos is your only hope</p>
+    </div>
+
+<div class="row about-row">
+  <div class="col-md-6 text-container">
+
+    <div class="about-text">
+      <h2>The Right Match
+      Changes Everything</h2>
+      <p>There are no mistakes and no coincidences, each choice has a meaning but can be turned on it's head when paired with anouther.</p>
+    </div>
+
+    <div class="about-text">
+      <h2>Time's Arrow Only Marches Forward</h2>
+      <p>The universe is forever moving, fates conatantly changing. <br>Readings will expire wintin 7 days of drawing.</p>
     </div>
   </div>
+
+  <div class="col-md-6">
+    <div class="about-img">
+      <img src="assets/twoCards.png" alt="Two Cards">
+    </div>
+
+  </div>
+
 </div>
+
+
+</div> 
+
+</div>
+</div>
+</section>
+
+
 <footer>
   <div id="footer-container">
     <div id="footer">
