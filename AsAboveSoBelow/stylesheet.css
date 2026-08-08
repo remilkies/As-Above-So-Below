@@ -154,6 +154,15 @@ input[type="submit"],
     }
 }
 
+#hero-section{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .wheel-title {
     text-align: center;
     font-family: "Jim Nightshade", cursive;
@@ -348,10 +357,36 @@ TAROT WHEEL >:D
     INFO CSS 
     =========================*/
 
-.info-text h2 {
+#about-section{
+    position: relative;
+    margin: 20em 5em 0 5em;
+}
+
+.about-row{
+    display: flex;
+    justify-content: space-between;
+}
+.text-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.about-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+
+}
+
+.about-text h2 {
     text-align: center;
     font-family: "Jaini", system-ui;
-    font-size: 4rem;
+    font-size: 3rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -362,10 +397,10 @@ TAROT WHEEL >:D
     -webkit-text-fill-color: transparent;
 }
 
-.info-text p {
+.about-text p {
     text-align: center;
     font-family: "Jim Nightshade", cursive;
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -376,6 +411,13 @@ TAROT WHEEL >:D
     -webkit-text-fill-color: transparent;
 }
 
+.about-img{
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
 /* ==========================
     LOGIN CSS 
     =========================*/
@@ -596,23 +638,24 @@ DASBOARD CSS
 
 .chamber{
     position: relative;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
+
 .chamber-header{
-        position: relative;
-        width: 100vw;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+        width: 100%;
         height: auto;
 
 }
 .corner-wrapper {
-    position: absolute;
-    width: 314.335px;
-
+    height: 300px;
     aspect-ratio: 177 / 140;
 }
 
@@ -631,6 +674,28 @@ DASBOARD CSS
     top: 0;
     right: 0;
     transform: scaleX(-1);
+}
+
+.chamber-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: -17em;
+}
+
+.moon-container{
+    width: 400px;
+    height: auto;
+    aspect-ratio: 225/106;
+    justify-content: center;
+
+}
+
+.moon-window{
+    width: 100%;
+    height: 100%;
+    display: block;
 }
 
 .dashboard-buttons {
@@ -657,12 +722,15 @@ DASBOARD CSS
     font-weight: 400;
     line-height: normal;
 
+    padding: 0 20px;
+
 }
 
 .dashboard-container{
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+
 }
 
 .user-title{
@@ -678,17 +746,14 @@ background-clip: text;
 -webkit-text-fill-color: transparent;
 }
 
-.moon-container{
-    width: 521.075px;
-    height: 245.484px;
-    aspect-ratio: 225/106;
+.dashboard-center{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    gap: 56px;
 }
 
-.moon-window{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
 .dashboard-controls{
     display: flex;
     align-items: center;
@@ -705,6 +770,35 @@ background-clip: text;
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* DO NOT TOUCH ANY BOF THIS, IT IS PERFECT RIGHT NOW SO NO TOUCHY TOUCHY */
+@media (max-width: 768px) {
+    .corner-wrapper {
+        height: 200px;
+        aspect-ratio: 177 / 140;
+    }
+    .chamber-content{
+        gap: 40px;
+    }
+    .moon-container{
+        width: 300px;
+        height: auto;
+        aspect-ratio: 225/106;
+    }
+    .dashboard-container{
+        flex-direction: column;
+        gap: 40px;
+    }
+    .dashboard-controls{
+        gap: 40px;
+    }
+    .user-title{
+        font-size: 48px;
+    }
+    .window-container{
+        display: none;
+    }
 }
 /* ==========================
 READING CHAMBER CSS

@@ -109,6 +109,10 @@ $cards = [
             'suit' => 'swords',
             'rank' => '5',
             'card_meaning' => 'a hollow victory won at a high cost, urging you to choose your battles wisely'
+        ],
+        'tower' => [
+            'arcana' => 'major',
+            'card_meaning' => "If it all falls apart,consider that maybe it wasn't that well built to begin with."
         ]
     ]
 ];

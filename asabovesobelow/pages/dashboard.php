@@ -31,6 +31,12 @@ session_start();
           </div>
           
       </div>
+
+      <div class="chamber-content">
+        <div class="moon-container">
+            <img src="../assets/moonWindow.png" alt="Moon Window" class="moon-window">
+          </div>
+
         <div class="dashboard-container">
 
           <div class="dashboard-left window-container">
@@ -38,10 +44,6 @@ session_start();
           </div>
 
           <div class="dashboard-center">
-
-          <div class="moon-container">
-            <img src="../assets/moonWindow.png" alt="Moon Window" class="moon-window">
-          </div>
 
             <div class="dashboard-controls">
             <h2 class="user-title">Welcome, <?php echo htmlspecialchars($displayName); ?></h2>
@@ -62,6 +64,8 @@ session_start();
             <img src="../assets/treeOfLife.png" alt="Stain Glass Window" class="window">
           </div>
         </div>
+      </div>
+
       </section>
 
       <section class="chamber bottom-chamber">
