@@ -647,6 +647,7 @@ DASBOARD CSS
 }
 
 .chamber-header{
+    position: relative;
     display: flex;
     justify-content: space-between;
         width: 100%;
@@ -654,7 +655,7 @@ DASBOARD CSS
 
 }
 .corner-wrapper {
-    width: 314.335px;
+    height: 300px;
     aspect-ratio: 177 / 140;
 }
 
@@ -673,6 +674,28 @@ DASBOARD CSS
     top: 0;
     right: 0;
     transform: scaleX(-1);
+}
+
+.chamber-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: -17em;
+}
+
+.moon-container{
+    width: 400px;
+    height: auto;
+    aspect-ratio: 225/106;
+    justify-content: center;
+
+}
+
+.moon-window{
+    width: 100%;
+    height: 100%;
+    display: block;
 }
 
 .dashboard-buttons {
@@ -699,12 +722,15 @@ DASBOARD CSS
     font-weight: 400;
     line-height: normal;
 
+    padding: 0 20px;
+
 }
 
 .dashboard-container{
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+
 }
 
 .user-title{
@@ -720,17 +746,14 @@ background-clip: text;
 -webkit-text-fill-color: transparent;
 }
 
-.moon-container{
-    width: 521.075px;
-    height: 245.484px;
-    aspect-ratio: 225/106;
+.dashboard-center{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    gap: 56px;
 }
 
-.moon-window{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
 .dashboard-controls{
     display: flex;
     align-items: center;
@@ -747,6 +770,35 @@ background-clip: text;
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* DO NOT TOUCH ANY BOF THIS, IT IS PERFECT RIGHT NOW SO NO TOUCHY TOUCHY */
+@media (max-width: 768px) {
+    .corner-wrapper {
+        height: 200px;
+        aspect-ratio: 177 / 140;
+    }
+    .chamber-content{
+        gap: 40px;
+    }
+    .moon-container{
+        width: 300px;
+        height: auto;
+        aspect-ratio: 225/106;
+    }
+    .dashboard-container{
+        flex-direction: column;
+        gap: 40px;
+    }
+    .dashboard-controls{
+        gap: 40px;
+    }
+    .user-title{
+        font-size: 48px;
+    }
+    .window-container{
+        display: none;
+    }
 }
 /* ==========================
 READING CHAMBER CSS
