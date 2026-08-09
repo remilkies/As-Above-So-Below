@@ -2,6 +2,10 @@
 
 <?php //this is suprisingly important
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 $arcana = [
     'major' => [
         'name' => 'Major Arcana',
@@ -79,7 +83,7 @@ $numerology = [
     ]
 ];
 
-$ranks = [
+$rank = [
     'page' => [
         'name' => 'Page',
         'meaning' => 'curiosity, new messages, exploration, and the fresh spark of learning'
@@ -99,89 +103,138 @@ $ranks = [
 ];
 
 $cards = [
-    $card = [
-        '3_cups' => [
-            'suit' => 'cups',
-            'rank' => '3',
-            'card_meaning' => 'a joyful celebration of community, mutual support, and shared victory'
-        ],
-        '5_swords' => [
-            'suit' => 'swords',
-            'rank' => '5',
-            'card_meaning' => 'a hollow victory won at a high cost, urging you to choose your battles wisely'
-        ],
-        'tower' => [
-            'arcana' => 'major',
-            'card_meaning' => "If it all falls apart,consider that maybe it wasn't that well built to begin with."
-        ]
+    '3_cups' => [
+        'suit' => 'cups',
+        'rank' => '3',
+        'arcana' => 'minor',
+        'cardMeaning' => 'a joyful celebration of community, mutual support, and shared victory'
+    ],
+    '5_swords' => [
+        'suit' => 'swords',
+        'rank' => '5',
+        'arcana' => 'minor',
+        'cardMeaning' => 'a hollow victory won at a high cost, urging you to choose your battles wisely'
+    ],
+    'tower' => [
+        'suit' => 'none',
+        'rank' => 'none',
+        'arcana' => 'major',
+        'cardMeaning' => "If it all falls apart,consider that maybe it wasn't that well built to begin with."
     ]
+
 ];
 
 ?>
 
 <?php
 
-function getCardData($key, $suit, $customMeanings, $numerology, $ranks, $suits, $arcana, $type = 'minor') {
-    $rankOrNum = isset($numerology[$key]) ? $numerology[$key] : $ranks[$key];
-
-    return [
-        'card_id'        => "{$key}_{$suit}",
-        'arcana_type'    => $type,
-        'arcana_name'    => $arcana[$type]['name'],
-        'arcana_meaning' => $arcana[$type]['meaning'],
-        'suit_name'      => $suits[$suit]['name'],
-        'suit_meaning'   => $suits[$suit]['meaning'],
-        'number_name'    => $rankOrNum['name'],
-        'num_meaning'    => $rankOrNum['meaning'],
-        'card_meaning'   => getCardMeaning($key, $suit, $customMeanings, $numerology, $ranks, $suits)
-    ];
-}
-function generateSynthesis($cardA, $cardB) {
-    
-    if ($cardA['arcana_type'] === $cardB['arcana_type']) {
-        $arcanaParagraph = "This reading is rooted in the **" . $cardA['arcana_name'] . "**, highlighting " . $cardA['arcana_meaning'] . ".";
-    } else {
-        $arcanaParagraph = "This reading bridges the spiritual scope of the **" . $cardA['arcana_name'] . "** (" . $cardA['arcana_meaning'] . ") with the grounded nature of the **" . $cardB['arcana_name'] . "** (" . $cardB['arcana_meaning'] . ").";
+function getCardData($cardId, $arcana, $suits, $numerology, $rank, $cards)
+{
+    // fallback dictoinary incase the card isnt in the db yet
+    if (!isset($cards[$cardId])){
+        return [
+            'cardId'        => $cardId,
+            'arcana'    => 'minor',
+            'arcanaName'    => 'Minor Arcana',
+            'arcanaMeaning' => 'the day-to-day experiences, challenges, and opportunities that shape our journey',
+            'suitName'      => 'Unknown Suit',
+            'suitMeaning'   => 'mysterious influences',
+            'numName'    => 'Mystery Card',
+            'numMeaning'    => 'unwritten potential',
+            'cardMeaning'   => 'a path shrouded in mystery, awaiting to be coded '
+        ];
     }
 
-    $suitParagraph = "Your reading is governed by the collision of **" . $cardA['suit_name'] . " and " . $cardB['suit_name'] . "**. " .
-        "This cosmic alignment forces you into a space of " . $cardA['suit_meaning'] . ", " .
-        "which is actively clashing with " . $cardB['suit_meaning'] . ".";
+    $cardInfo = $cards[$cardId];
+    $cardArcana = $cardInfo['arcana'] ?? 'minor';
+    $cardSuit = $cardInfo['suit'] ?? 'none';
+    $cardRank = $cardInfo['rank'] ?? 'none';
 
-    $numParagraph = "The underlying numerological current pairs the progress of the **" . $cardA['number_name'] . "** " .
-        "with the testing energy of the **" . $cardB['number_name'] . "**. " .
-        "The universe indicates that " . $cardA['num_meaning'] . " is currently being disrupted by " . $cardB['num_meaning'] . ".";
+    //handle Major wihtout crashes
+    if ($cardArcana == 'major') {
+        return [
+            'cardId' => $cardId,
+            'arcana' => 'major',
+            'arcanaName'=> $arcana['major']['name'],
+            'arcanaMeaning'=> $arcana['major']['meaning'],
+            'suitName' => 'The Universe',
+            'suitMeaning' => 'the grand narrative of life, spiritual lessons, and transformative experiences',
+            'numName' => 'The Archetype',
+            'numMeaning' => 'the universal truth and the collective unconscious',
+            'cardMeaning' => $cardInfo['cardMeaning'] ?? 'a profound lesson from the cosmos, urging reflection and growth'
+        ];
+    }
 
-    $prophecyParagraph = "Ultimately, these energies manifest as a dual truth: you are experiencing " . $cardA['card_meaning'] . ", " .
-        "yet you must prepare for " . $cardB['card_meaning'] . ". **The path forward requires balancing both.**";
+    //Minor Arcana lookups
+    // look in numerology if it's a number or rank if it's a face card
+    $rankOrNum = isset($numerology[$cardRank]) ? $numerology[$cardRank] : ($rank[$cardRank] ?? ['name' => 'Unknown Rank', 'meaning' => 'shifting paths, an undefined role in the cosmic play']);
+
+    return [
+        'cardId'        => $cardId,
+        'arcana'    => 'minor',
+        'arcanaName'    => $arcana['minor']['name'],
+        'arcanaMeaning' => $arcana['minor']['meaning'],
+        'suitName'      => $suits[$cardSuit]['name'] ?? 'Unknown Suit',
+        'suitMeaning'   => $suits[$cardSuit]['meaning'] ?? 'mysterious influences',
+        'numName'    => $rankOrNum['name'],
+        'numMeaning'    => $rankOrNum['meaning'],
+        'cardMeaning'   => $cardInfo['cardMeaning'] ?? 'A unique path awaits, shaped by the energies of this card and the universe at large.'
+    ];
+}
+function generateSynthesis($cardA, $cardB)
+{
+
+    if ($cardA['arcana'] === $cardB['arcana']) {
+        $arcanaParagraph = "This reading is rooted in the **" . $cardA['arcanaName'] . "**, highlighting " . $cardA['arcanaMeaning'] . ".";
+    } else {
+        $arcanaParagraph = "This reading bridges the spiritual scope of the **" . $cardA['arcanaName'] . "** (" . $cardA['arcanaMeaning'] . ") with the grounded nature of the **" . $cardB['arcanaName'] . "** (" . $cardB['arcanaMeaning'] . ").";
+    }
+
+    $suitParagraph = "Your reading is governed by the collision of **" . $cardA['suitName'] . " and " . $cardB['suitName'] . "**. " .
+        "This cosmic alignment forces you into a space of " . $cardA['suitMeaning'] . ", " .
+        "which is actively clashing with " . $cardB['suitMeaning'] . ".";
+
+    $numParagraph = "The underlying numerological current pairs the progress of the **" . $cardA['numName'] . "** " .
+        "with the testing energy of the **" . $cardB['numName'] . "**. " .
+        "The universe indicates that " . $cardA['numMeaning'] . " is currently being disrupted by " . $cardB['numMeaning'] . ".";
+
+    $prophecyParagraph = "Ultimately, these energies manifest as a dual truth: you are experiencing " . $cardA['cardMeaning'] . ", " .
+        "yet you must prepare for " . $cardB['cardMeaning'] . ". **The path forward requires balancing both.**";
 
     return [
         'arcana'   => $arcanaParagraph,
         'suits'    => $suitParagraph,
-        'numbers'  => $numParagraph,
+        'numerology'  => $numParagraph,
         'prophecy' => $prophecyParagraph
     ];
 
 
     //AJAJAJAJAJAJAJAX
-}if (isset($_POST['cardA']) && isset($_POST['cardB'])) {
+}
+
+// AUTO PARSING EXECUTION THINGY
+
+if (isset($_POST['cardA']) && isset($_POST['cardB'])) {
+
     $cardA_id = $_POST['cardA'];
     $cardB_id = $_POST['cardB'];
 
+    // EXTRACT RANK KEY SUIT OUT THE CARD A ID TO MATCH THE DATABNASE
+
     // function to retrieve card data based on the card ID >:D (please end my suffering)
-    $cardA_data = getCardData($cardA['key'], $cardA['suit'], $customMeanings, $numerology, $ranks, $suits, $arcana, $cardA['type']);
-    $cardB_data = getCardData($cardB['key'], $cardB['suit'], $customMeanings, $numerology, $ranks, $suits, $arcana, $cardB['type']);
+    $cardA_data = getCardData($cardA_id, $cards, $suits, $numerology, $rank,  $arcana);
+    $cardB_data = getCardData($cardB_id, $cards, $numerology, $rank, $suits, $arcana);
 
 
     $reading = generateSynthesis($cardA_data, $cardB_data);
 
     echo "<p>" . $reading['arcana'] . "</p>";
     echo "<p>" . $reading['suits'] . "</p>";
-    echo "<p>" . $reading['numbers'] . "</p>";
-    echo "<p>" .$reading['prophecy'] . "</p>";
+    echo "<p>" . $reading['numerology'] . "</p>";
+    echo "<p>" . $reading['prophecy'] . "</p>";
 
     exit; //stop script so we don't spill the secrets of the whole universe
-} 
+}
 
 
 ?>

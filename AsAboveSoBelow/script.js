@@ -78,7 +78,7 @@ let selectedCards = [];
 document.querySelectorAll('.spread-card').forEach(card => {
     card.addEventListener('click', (e) => {
         // 2 already pickrd stop or when flipped
-        if (selectedCards.length >= 2 || this.classList.contains('flipped')) return;
+        if (selectedCards.length >= 2 || card.classList.contains('flipped')) return;
 
         const cardId = card.dataset.id;
         const cardName = card.dataset.name;
