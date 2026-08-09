@@ -1,4 +1,4 @@
-console.log("TIME YOU ");
+console.log("I'M AWAKE. I'M ALIVE");
 
 // document.getElementById("enter-btn").addEventListener(click, function(){
 //     // navigate to login screen

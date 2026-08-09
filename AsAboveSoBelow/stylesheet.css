@@ -30,8 +30,9 @@ h2 {
     line-height: normal;
 
     background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
-    background-clip: text;
     -webkit-background-clip: text;
+    background-clip: text;
+
     -webkit-text-fill-color: transparent;
 }
 
@@ -72,8 +73,9 @@ input[type="submit"],
     font-weight: 400;
     line-height: normal;
     background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
-    background-clip: text;
     -webkit-background-clip: text;
+    background-clip: text;
+
     -webkit-text-fill-color: transparent;
     margin: 20px 0;
 }
@@ -186,8 +188,9 @@ input[type="submit"],
     line-height: normal;
     width: 360px;
     background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
-    background-clip: text;
+    
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 
 
@@ -235,8 +238,9 @@ input[type="submit"],
 
 .meet-fate-btn:hover h3 {
     background: linear-gradient(90deg, #D08596 0%, #F2CBD1 50%, #D08596 100%);
-    background-clip: text;
+    
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -407,8 +411,9 @@ TAROT WHEEL >:D
     line-height: normal;
 
     background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
-    background-clip: text;
+    
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -421,8 +426,9 @@ TAROT WHEEL >:D
     line-height: normal;
 
     background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
-    background-clip: text;
+
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -475,15 +481,17 @@ TAROT WHEEL >:D
     font-weight: 400;
     line-height: normal;
     background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
-    background-clip: text;
+
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .login-title p {
     background: url(assets/nebulaFill.png);
-    background-clip: text;
+
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -516,8 +524,9 @@ TAROT WHEEL >:D
     line-height: normal;
 
     background: linear-gradient(180deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
-    background-clip: text;
+
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -581,8 +590,9 @@ button {
 .submit-btn p {
     background-image: url(assets/nebulaFill.png);
     background-size: cover;
-    background-clip: text;
+
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     text-align: center;
     font-family: "Jaini", system-ui;
@@ -603,8 +613,9 @@ button {
 
 .submit-btn p:hover {
     background: linear-gradient(90deg, #D08596 0%, #F2CBD1 50%, #D08596 100%);
-    background-clip: text;
+
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -791,8 +802,9 @@ DASBOARD CSS
     font-weight: 400;
     line-height: normal;
     background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
-    background-clip: text;
+
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -911,8 +923,9 @@ READING CHAMBER CSS
     line-height: normal;
 
     background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
-    background-clip: text;
+
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -925,8 +938,9 @@ READING CHAMBER CSS
     line-height: normal;
 
     background: linear-gradient(180deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
-    background-clip: text;
+
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
