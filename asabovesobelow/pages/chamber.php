@@ -1,5 +1,6 @@
+<section class="chamber bottom-chamber">
 <div class="chamber-container">
-    <button id="btn-ascend" class="dashboard-btn">Ascend</button>
+    <button id="ascend-btn" class="dashboard-btn">Ascend</button>
     <h2 class="chamber-title">The Chamber of Enlightenment</h2>
     <!-- dynamic card and php logic can live here -->
     <!-- <div id="card-spread-container">

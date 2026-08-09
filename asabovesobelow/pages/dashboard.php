@@ -49,11 +49,11 @@ session_start();
             <h2 class="user-title">Welcome, <?php echo htmlspecialchars($displayName); ?></h2>
 
             <div class="dashboard-buttons">
-              <button class="dashboard-btn" id="btn-descend">Seeker Sanctum</button>
+              <button class="dashboard-btn" id="descend-btn">Seeker Sanctum</button>
               <button class="dashboard-btn">Past Prophecies</button>
             </div>
             
-            <button class="submit-btn" onclick="n">Logout</button>
+            <button class="submit-btn" id="logout-btn">Logout</button>
             </div>
 
 
@@ -68,9 +68,9 @@ session_start();
 
       </section>
 
-      <section class="chamber bottom-chamber">
+      
       <?php include 'chamber.php'; ?>
-      </section>
+
 
     </div>
   </div>

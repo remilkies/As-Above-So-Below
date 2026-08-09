@@ -29,25 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-//   carot card component
-document.addEventListener("DOMContentLoaded", () => {
-    const containers = document.querySelectorAll('.tarot-card-container');
-
-    containers.forEach(container => {
-        const flipper = container.querySelector('.tarot-card-flipper');
-
-        if (container && flipper) {
-            container.addEventListener('click', function () {
-                flipper.classList.toggle('is-flipped');
-            });
-        }
-    });
-});
-
 document.addEventListener('DOMContentLoaded', () => {
     const stage = document.getElementById('stage');
-    const descendBtn = document.getElementById('btn-descend');
-    const ascendBtn = document.getElementById('btn-ascend');
+    const descendBtn = document.getElementById('descend-btn');
+    const ascendBtn = document.getElementById('ascend-btn');
 
     if (descendBtn && stage){
         descendBtn.addEventListener('click', () => {
@@ -68,6 +53,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
+//   carot card component
+document.addEventListener("DOMContentLoaded", () => {
+    const containers = document.querySelectorAll('.tarot-card-container');
+
+    containers.forEach(container => {
+        const flipper = container.querySelector('.tarot-card-flipper');
+
+        if (container && flipper) {
+            container.addEventListener('click', function () {
+                flipper.classList.toggle('is-flipped');
+            });
+        }
+    });
+});
+
+
 
 let selectedCards = [];
 
