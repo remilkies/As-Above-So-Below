@@ -54,8 +54,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['username'])) {
 
           <div class="login-field">
             <label for="password" class="login-label">Sacred Key</label>
-            <div class="password-container" >
-              <input type="password" class="login-control" style="border: none;" id="password" name="password" placeholder="Enter Sacred Key" required>
+            <div class="password-container">
+              <input type="password" class="login-control" style="border: none; background: transparent; outline: none;" id="password" name="password" placeholder="Enter Sacred Key" required>
 
               <button type="button" class="toggle-password" id="toggle-btn">
                 <img src="../assets/eye-icon.svg" alt="See Password" id="eye-icon" class="eye-icon">
@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['username'])) {
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-  <script type="module" src="script.js"></script>
+  <script type="module" src="../script.js"></script>
 </body>
 
 </html>

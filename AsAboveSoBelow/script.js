@@ -4,6 +4,31 @@
 
 // })
 
+document.addEventListener('DOMContentLoaded', () => {
+    const passwordField = document.getElementById('password');
+    const toggleIcon = document.getElementById('eye-icon');
+    const toggleBtn = document.getElementById('toggle-btn');
+
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.src = '../assets/eye-slash-icon.svg';
+
+                toggleIcon.classList.remove('eye-icon');
+                toggleIcon.classList.add('eye-slash-icon');
+
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.src = '../assets/eye-icon.svg';
+                toggleIcon.classList.remove('eye-slash-icon');
+                toggleIcon.classList.add('eye-icon');
+            }
+        });
+    }
+});
+
 //   carot card component
 document.addEventListener("DOMContentLoaded", () => {
     const containers = document.querySelectorAll('.tarot-card-container');
@@ -19,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-Document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     const stage = document.getElementById('stage');
     const descendBtn = document.getElementById('btn-descend');
     const ascendBtn = document.getElementById('btn-ascend');
@@ -107,27 +132,4 @@ function revealReading(cards) {
 
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const passwordField = document.getElementById('password');
-    const toggleIcon = document.getElementById('eye-icon');
-    const toggleBtn = document.getElementById('toggle-btn');
 
-    if (toggleBtn) {
-        toggleBtn.addEventListener('click', () => {
-
-            if (passwordField.type === 'password') {
-                passwordField.type = 'text';
-                toggleIcon.src = 'assets/eye-slash-icon.svg';
-
-                toggleIcon.classList.remove('eye-icon');
-                toggleIcon.classList.add('eye-slash-icon');
-
-            } else {
-                passwordField.type = 'password';
-                toggleIcon.src = 'assets/eye-icon.svg';
-                toggleIcon.classList.remove('eye-slash-icon');
-                toggleIcon.classList.add('eye-icon');
-            }
-        });
-    }
-});

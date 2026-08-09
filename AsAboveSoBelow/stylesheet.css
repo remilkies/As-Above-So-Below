@@ -538,7 +538,7 @@ button{
     border: none;
 }
 
-.eye-icon{
+.eye-icon, .eye-slash-icon{
     width: 57px;
 height: 46.064px;
 aspect-ratio: 57.00/46.06;
@@ -598,9 +598,25 @@ aspect-ratio: 57.00/46.06;
         height: 158px;
     }
     
-    .login-control {
-        padding: 10px;
+    .login-field-container{
+        margin-top: -6rem;
     }
+    .login-container{
+        margin-top: 13rem;
+    }
+
+    .login-title {
+        font-size: 3rem;
+        margin-bottom: 1em;
+        margin-top: -3rem;
+    }
+
+    .login-label {
+        font-size: 1.5rem;
+    }
+
+
+
 }
 /* ==========================
 DASBOARD CSS
@@ -782,6 +798,7 @@ background-clip: text;
         gap: 40px;
     }
     .moon-container{
+        margin-top: 10rem;
         width: 300px;
         height: auto;
         aspect-ratio: 225/106;
@@ -833,6 +850,42 @@ READING CHAMBER CSS
 
 .card-right.reversed {
     transform: rotate(192deg);
+}
+
+.reading-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.reading-container h2{
+    text-align: center;
+font-family: 'Jaini', system-ui;
+font-size: 4rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+
+    background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+
+#reading-subtitle{
+    text-align: center;
+font-family: "Jim Nightshade";
+font-size: 2.25rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+
+background: linear-gradient(180deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
 }
 
 #footer-container {
