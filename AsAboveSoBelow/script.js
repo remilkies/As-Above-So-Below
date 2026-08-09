@@ -1,3 +1,5 @@
+console.log("TIME YOU ");
+
 // document.getElementById("enter-btn").addEventListener(click, function(){
 //     // navigate to login screen
 //     window.location.href = "login.php";
@@ -29,30 +31,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
+
     const stage = document.getElementById('stage');
     const descendBtn = document.getElementById('descend-btn');
     const ascendBtn = document.getElementById('ascend-btn');
 
-    if (descendBtn && stage){
+    if (descendBtn && stage) {
         descendBtn.addEventListener('click', () => {
-            console.log('Into the gallows we go....')
+            console.log('...So Below')
             stage.classList.add('descended');
 
-            if ('vibrate' in navigator){
+            if ('vibrate' in navigator) {
                 navigator.vibrate(200); // Vibrate mobile
             }
-            
+
         });
     }
-        
-    if (ascendBtn && stage){
-            ascendBtn.addEventListener('click', () => {
-        stage.classList.remove('descended');
-    });
+
+    if (ascendBtn && stage) {
+        ascendBtn.addEventListener('click', () => {
+            console.log('As Above...')
+            stage.classList.remove('descended');
+        });
     }
 
-});
 
 //   carot card component
 document.addEventListener("DOMContentLoaded", () => {

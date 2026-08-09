@@ -750,6 +750,8 @@ DASBOARD CSS
     display: flex;
     flex-direction: column;
     gap: 40px;
+    position: relative;
+    z-index: 100;
 }
 
 .dashboard-btn {
@@ -833,7 +835,6 @@ DASBOARD CSS
     }
 
     .moon-container {
-        margin-top: 10rem;
         width: 300px;
         height: auto;
         aspect-ratio: 225/106;
