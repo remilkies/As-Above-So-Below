@@ -3,13 +3,14 @@
     <button id="ascend-btn" class="dashboard-btn">Ascend</button>
     <h2 class="chamber-title">The Chamber of Enlightenment</h2>
     <!-- dynamic card and php logic can live here -->
-    <!-- <div id="card-spread-container">
+     
+    <div id="card-spread-container">
         <?php
         for ($i = 0; $i < 15; $i++) {
             include '../TarotCard.php';
         }
         ?>
-    </div> -->
+    </div>
 
 </div>
 

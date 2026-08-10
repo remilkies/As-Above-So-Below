@@ -53,6 +53,7 @@
   </div>
 
 <div class="cards-ring">
+  <!-- OK SO IDEA, WHEN YOU CLICK ON A CARD ON THE HOME PAGE IT FLIPS OVER AND COVERS THE SCREEN (KINDA LIKE A TOAST) AND IT HAS THE LOGIN FORM ON IT (OR JUST A TOAST TELLING YOU TO LOG IN ) >:D -->
 <?php 
     $allCards = glob("assets/cards/*.png");
     shuffle($allCards); 

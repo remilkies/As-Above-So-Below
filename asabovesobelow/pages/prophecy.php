@@ -222,7 +222,9 @@ if (isset($_POST['cardA']) && isset($_POST['cardB'])) {
     // EXTRACT RANK KEY SUIT OUT THE CARD A ID TO MATCH THE DATABNASE
 
     // function to retrieve card data based on the card ID >:D (please end my suffering)
-    $cardA_data = getCardData($cardA_id, $cards, $suits, $numerology, $rank,  $arcana);
+    // HOLY MOLY THIS SHIT IT SPECIFIC,
+    // THE ORDER OF THE PARAMTERS NEEDS TO BE IN THE EXACT ORDER AS THEY ARE IN THE GETCARDDATA FUNCTION ✨PERFECTLY✨, OTHERWISE PHP WILL LOOK FOR SHIT IN THE WRONG PLACE AND YEVFHIWYAFU9IEHWEIFE
+    $cardA_data = getCardData($cardA_id, $arcana, $suits, $numerology, $rank, $cards);
     $cardB_data = getCardData($cardB_id, $cards, $numerology, $rank, $suits, $arcana);
 
 

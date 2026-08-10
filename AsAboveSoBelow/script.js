@@ -78,7 +78,7 @@ let selectedCards = [];
 document.querySelectorAll('.spread-card').forEach(card => {
     card.addEventListener('click', (e) => {
         // 2 already pickrd stop or when flipped
-        if (selectedCards.length >= 2 || card.classList.contains('flipped')) return;
+        if (selectedCards.length >= 2 || card.classList.contains('is-flipped')) return;
 
         const cardId = card.dataset.id;
         const cardName = card.dataset.name;
@@ -110,8 +110,8 @@ function revealReading(cards) {
     const imgRight = document.getElementById('visual-card-right');
 
 
-    imgLeft.src = `/cards/${cardA.name}.png`;
-    imgRight.src = `/cards/${cardB.name}.png`;
+    imgLeft.src = `assets/cards/${cardA.name}.png`;
+    imgRight.src = `assets/cards/${cardB.name}.png`;
 
     if (cardA.reversed) imgLeft.classList.add('reversed');
     if (cardB.reversed) imgRight.classList.add('reversed');
