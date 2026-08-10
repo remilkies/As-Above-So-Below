@@ -17,6 +17,7 @@ $arcana = [
     ]
 ];
 
+// ehhhhhhhhh maybe i'll add an array for the different $elements
 $suits = [
     'cups' => [
         'name' => 'Cups',
@@ -113,7 +114,8 @@ $cards = [
         'suit' => 'none',
         'rank' => 'none',
         'arcana' => 'major',
-        'cardMeaning' => "If it all falls apart,consider that maybe it wasn't that well built to begin with."
+        'cardMeaning' => "if it all falls apart,consider that maybe it wasn't that well built to begin with.",
+        'cardMeaningReversed' => 'averting disaster at the last moment, or an internal fear of inevitable change.'
     ],
     '1_cups' => [
         'suit' => 'cups',
@@ -165,14 +167,28 @@ $cards = [
 <?php
 
 // i might need to account for the fact that some cards share the same numerology and stuff and edit the structuring for those cases so it's not this card indicates y while this card indicates y and instead these cards represent y
-function getCardData($cardId, $arcana, $suits, $numerology, $rank, $cards)
+function getCardData($cardId, $isReversed, $arcana, $suits, $numerology, $rank, $cards)
 {
-    $uniqueMeaning = $cards[$cardId] ?? 'A unique path unfolds, shaped by the energies of the universe but shrouded in mystery.';
+    $cardInfo = $cards[$cardId] ?? null;
+    $defaultMeaning = 'a unique path unfolding, shaped by the energies of the universe but shrouded in mystery.';
+
+    if ($cardInfo){
+        if ($isReversed){
+            $uniqueMeaning = $cardInfo['cardMeaningReversed'] ?? 'an inverted energy, suggesting an internal blockage of ' . $cardInfo['cardMeaning'];
+        } else {
+            $uniqueMeaning = $cardInfo['cardMeaning'] ?? $defaultMeaning;
+        }
+    } else {
+        $uniqueMeaning = $defaultMeaning;
+    }
 
     //cheack for major arcana
     if (strpos($cardId, '_') === false){
         return [
             'cardId' => $cardId,
+            'cardName' => ucfirst($cardId), //dude i have to be soooo careful when nameing my files now T-T
+            'isReversed' => $isReversed,
+            'cardPosition' => $isReversed ? 'Reversed' : 'Upright',
             'arcana' => 'major',
             'arcanaName' => $arcana['major']['name'],
             'arcanaMeaning' => $arcana['major']['meaning'],
@@ -242,6 +258,9 @@ function getCardData($cardId, $arcana, $suits, $numerology, $rank, $cards)
 
     return [
         'cardId'        => $cardId,
+        'cardName'      => $rankOrNum['name'] . ' of ' . $suitData['name'],
+        'isReversed'    => $isReversed,
+        'cardPosition'  => $isReversed ? 'Reversed' : 'Upright',
         'arcana'        => 'minor',
         'arcanaName'    => $arcana['minor']['name'],
         'arcanaMeaning' => $arcana['minor']['meaning'],
@@ -271,8 +290,7 @@ function generateSynthesis($cardA, $cardB)
         "with the testing energy of the " . $cardB['numName'] . ". " .
         "The universe indicates that " . $cardA['numMeaning'] . " is currently being disrupted by " . $cardB['numMeaning'] . ".";
 
-    $prophecyParagraph = "Ultimately, these energies manifest as a dual truth: you are experiencing " . $cardA['cardMeaning'] . ", " .
-        "yet you must prepare for " . $cardB['cardMeaning'] . ". The path forward requires balancing both.";
+    $prophecyParagraph = "Ultimately, these energies manifest as a dual truth: you are experiencing the " . $cardA['cardMeaning'] . ", of the " . $cardA['cardName'] . ($cardA['isReversed'] ? "and it's reversal" : '') . "yet you must prepare for the " . $cardB['cardMeaning'] . " brought by the " . ($cardA['isReversed'] ? "reversed " : '') . $cardA['cardName'] . ". The path forward requires the balance of both.";
 
     return [
         'arcana'   => $arcanaParagraph,
@@ -292,13 +310,17 @@ if (isset($_POST['cardA']) && isset($_POST['cardB'])) {
     $cardA_id = $_POST['cardA'];
     $cardB_id = $_POST['cardB'];
 
+    //bools for the js formdata thingy
+    $cardA_rev = (isset($_POST['cardA_reversed']) && $_POST['cardA_reversed'] === 'true');
+    $cardB_rev = (isset($_POST['cardB_reversed']) && $_POST['cardB_reversed'] === 'true');
+
     // EXTRACT RANK KEY SUIT OUT THE CARD A ID TO MATCH THE DATABNASE
 
     // function to retrieve card data based on the card ID >:D (please end my suffering)
     // HOLY MOLY THIS SHIT IT SPECIFIC,
     // THE ORDER OF THE PARAMTERS NEEDS TO BE IN THE EXACT ORDER AS THEY ARE IN THE GETCARDDATA FUNCTION ✨PERFECTLY✨, OTHERWISE PHP WILL LOOK FOR SHIT IN THE WRONG PLACE AND YEVFHIWYAFU9IEHWEIFE
-    $cardA_data = getCardData($cardA_id, $arcana, $suits, $numerology, $rank, $cards);
-    $cardB_data = getCardData($cardB_id,  $arcana, $suits, $numerology, $rank, $cards);
+    $cardA_data = getCardData($cardA_id, $cardA_rev, $arcana, $suits, $numerology, $rank, $cards);
+    $cardB_data = getCardData($cardB_id, $cardB_rev, $arcana, $suits, $numerology, $rank, $cards);
 
 
     $reading = generateSynthesis($cardA_data, $cardB_data);

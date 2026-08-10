@@ -123,7 +123,9 @@ function revealReading(cards) {
 
     const formData = new FormData();
     formData.append('cardA', cardA.id);
+    formData.append('cardA_reversed', cardA.reversed);
     formData.append('cardB', cardB.id);
+    formData.append('cardB_reversed', cardB.reversed);
 
     // AJAX SO MY TRANSITIONS STAY INTACT MUTHAFAQUAAAA
     fetch('prophecy.php', {
