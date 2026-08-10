@@ -9,7 +9,7 @@ if (session_status() === PHP_SESSION_NONE) {
 $arcana = [
     'major' => [
         'name' => 'Major Arcana',
-        'meaning' => 'the grand narrative of life, spiritual lessons, and transformative experiences'
+        'meaning' => "major milestones and the grand narrative of life, it's spiritual lessons, and transformative experiences"
     ],
     'minor' => [
         'name' => 'Minor Arcana',
@@ -227,7 +227,7 @@ function getCardData($cardId, $arcana, $suits, $numerology, $rank, $cards)
         $parts = explode('_', $cardId);
         $cardRank = $parts[0];
         $cardSuit = $parts[1];
-        // wait for this to word properly i think that names need to match the data exactly so i need to write a function that makes it so that it doens't matter what case the words are in as long as the letters are in the same order
+        // wait for this to word properly i think that names need to match the data exactly so i need to write a function that makes it so that it doens't matter what case the words are in as long as the letters are in the same order? I THINK?
 
     
     $suitData = $suits[$cardSuit] ?? [
@@ -255,22 +255,24 @@ function getCardData($cardId, $arcana, $suits, $numerology, $rank, $cards)
 function generateSynthesis($cardA, $cardB)
 {
 
-    if ($cardA['arcana'] === $cardB['arcana']) {
-        $arcanaParagraph = "This reading is rooted in the **" . $cardA['arcanaName'] . "**, highlighting " . $cardA['arcanaMeaning'] . ".";
+    if ($cardA['arcana'] === 'major' && $cardB['arcana'] === 'major') {
+        $arcanaParagraph = "This reading is rooted in the " . $cardA['arcanaName'] . ", highlighting " . $cardA['arcanaMeaning'] . ". The Universe is talking about your soul path. Embrance new beginnings and transformation.";
+    } elseif ($cardA['arcana'] === 'minor' && $cardB['arcana'] === 'minor'){
+        $arcanaParagraph = "This reading is grounded in " . $cardA['arcanaName'] . ", focusing on " . $cardA['arcanaMeaning'] . ".";
     } else {
-        $arcanaParagraph = "This reading bridges the spiritual scope of the **" . $cardA['arcanaName'] . "** (" . $cardA['arcanaMeaning'] . ") with the grounded nature of the **" . $cardB['arcanaName'] . "** (" . $cardB['arcanaMeaning'] . ").";
+        $arcanaParagraph = "This reading bridges the spiritual scope of the " . $cardA['arcanaName'] . " which represents, " . $cardA['arcanaMeaning'] . ", with the grounded nature of the " . $cardB['arcanaName'] . ", which looks at" . $cardB['arcanaMeaning'] . ".";
     }
 
-    $suitParagraph = "Your reading is governed by the collision of **" . $cardA['suitName'] . " and " . $cardB['suitName'] . "**. " .
+    $suitParagraph = "Your reading is governed by the collision of " . $cardA['suitName'] . " and " . $cardB['suitName'] . ". " .
         "This cosmic alignment forces you into a space of " . $cardA['suitMeaning'] . ", " .
         "which is actively clashing with " . $cardB['suitMeaning'] . ".";
 
-    $numParagraph = "The underlying numerological current pairs the progress of the **" . $cardA['numName'] . "** " .
-        "with the testing energy of the **" . $cardB['numName'] . "**. " .
+    $numParagraph = "The underlying numerological current pairs the progress of the " . $cardA['numName'] . " " .
+        "with the testing energy of the " . $cardB['numName'] . ". " .
         "The universe indicates that " . $cardA['numMeaning'] . " is currently being disrupted by " . $cardB['numMeaning'] . ".";
 
     $prophecyParagraph = "Ultimately, these energies manifest as a dual truth: you are experiencing " . $cardA['cardMeaning'] . ", " .
-        "yet you must prepare for " . $cardB['cardMeaning'] . ". **The path forward requires balancing both.**";
+        "yet you must prepare for " . $cardB['cardMeaning'] . ". The path forward requires balancing both.";
 
     return [
         'arcana'   => $arcanaParagraph,
