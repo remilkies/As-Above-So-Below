@@ -68,7 +68,7 @@ There is no human admin controlling the cards, managing the database, or moderat
 ## 🛠️ Tech Stack & Architecture
 ### Dynamic "Stitching" Engine
 Instead of hardcoding thousands of unique card pairings, the system utilizes a highly scalable, modular object-oriented approach in PHP. 
-*   **Suits** (4 options), **Numerology** (10 options), and **Cards** (78 options) are stored as individual objects.
+*   **Suits** (4 options), **Numerology** (10 options) : **Ranks** (4 options) and **Cards** (78 options) as well as their **Arcana** (2 options) are stored as individual objects.
 *   When two cards are drawn, the backend dynamically weaves their variables into a cohesive, poetic narrative.
 
 ### Ephemeral MySQL Database
