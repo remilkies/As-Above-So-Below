@@ -111,10 +111,7 @@ $cards = [
         'cardMeaning' => 'a hollow victory won at a high cost, urging you to choose your battles wisely'
     ],
     'tower' => [
-        'suit' => 'none',
-        'rank' => 'none',
-        'arcana' => 'major',
-        'cardMeaning' => "if it all falls apart,consider that maybe it wasn't that well built to begin with.",
+        'cardMeaning' => "if it all falls apart,consider that maybe it wasn't that well built to begin with. Let go when the tower finally falls, in the rubble you will find your freedom",
         'cardMeaningReversed' => 'averting disaster at the last moment, or an internal fear of inevitable change.'
     ],
     '1_cups' => [
