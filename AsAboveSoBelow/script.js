@@ -110,8 +110,8 @@ function revealReading(cards) {
     const imgRight = document.getElementById('visual-card-right');
 
 // using filename aka id for the images
-    imgLeft.src = `./assets/cards/${cardA.id}.png`;
-    imgRight.src = `./assets/cards/${cardB.id}.png`;
+    imgLeft.src = `../assets/cards/${cardA.id}.png`;
+    imgRight.src = `../assets/cards/${cardB.id}.png`;
 
     if (cardA.reversed) imgLeft.classList.add('reversed');
     if (cardB.reversed) imgRight.classList.add('reversed');
