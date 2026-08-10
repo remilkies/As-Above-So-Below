@@ -103,12 +103,6 @@ $rank = [
 ];
 
 $cards = [
-    '3_cups' => [
-        'suit' => 'cups',
-        'rank' => '3',
-        'arcana' => 'minor',
-        'cardMeaning' => 'a joyful celebration of community, mutual support, and shared victory'
-    ],
     '5_swords' => [
         'suit' => 'swords',
         'rank' => '5',
@@ -120,7 +114,49 @@ $cards = [
         'rank' => 'none',
         'arcana' => 'major',
         'cardMeaning' => "If it all falls apart,consider that maybe it wasn't that well built to begin with."
-    ]
+    ],
+    '1_cups' => [
+        'suit' => 'cups',
+        'rank' => '1',
+        'arcana' => 'minor',
+        'cardMeaning' => 'a joyful celebration of community, mutual support, and shared victory'
+    ],
+    '2_cups' => [
+        'suit' => 'cups',
+        'rank' => '2',
+        'arcana' => 'minor',
+        'cardMeaning' => 'a joyful celebration of community, mutual support, and shared victory'
+    ],
+    '3_cups' => [
+        'suit' => 'cups',
+        'rank' => '3',
+        'arcana' => 'minor',
+        'cardMeaning' => 'a joyful celebration of community, mutual support, and shared victory'
+    ],
+    '4_cups' => [
+        'suit' => 'cups',
+        'rank' => '4',
+        'arcana' => 'minor',
+        'cardMeaning' => 'a joyful celebration of community, mutual support, and shared victory'
+    ],
+    '5_cups' => [
+        'suit' => 'cups',
+        'rank' => '5',
+        'arcana' => 'minor',
+        'cardMeaning' => 'a joyful celebration of community, mutual support, and shared victory'
+    ],
+    '6_cups' => [
+        'suit' => 'cups',
+        'rank' => '6',
+        'arcana' => 'minor',
+        'cardMeaning' => 'a joyful celebration of community, mutual support, and shared victory'
+    ],
+    '7_cups' => [
+        'suit' => 'cups',
+        'rank' => '7',
+        'arcana' => 'minor',
+        'cardMeaning' => 'a joyful celebration of community, mutual support, and shared victory'
+    ],
 
 ];
 
@@ -128,57 +164,92 @@ $cards = [
 
 <?php
 
+// i might need to account for the fact that some cards share the same numerology and stuff and edit the structuring for those cases so it's not this card indicates y while this card indicates y and instead these cards represent y
 function getCardData($cardId, $arcana, $suits, $numerology, $rank, $cards)
 {
-    // fallback dictoinary incase the card isnt in the db yet
-    if (!isset($cards[$cardId])){
-        return [
-            'cardId'        => $cardId,
-            'arcana'    => 'minor',
-            'arcanaName'    => 'Minor Arcana',
-            'arcanaMeaning' => 'the day-to-day experiences, challenges, and opportunities that shape our journey',
-            'suitName'      => 'Unknown Suit',
-            'suitMeaning'   => 'mysterious influences',
-            'numName'    => 'Mystery Card',
-            'numMeaning'    => 'unwritten potential',
-            'cardMeaning'   => 'a path shrouded in mystery, awaiting to be coded '
-        ];
-    }
+    $uniqueMeaning = $cards[$cardId] ?? 'A unique path unfolds, shaped by the energies of the universe but shrouded in mystery.';
 
-    $cardInfo = $cards[$cardId];
-    $cardArcana = $cardInfo['arcana'] ?? 'minor';
-    $cardSuit = $cardInfo['suit'] ?? 'none';
-    $cardRank = $cardInfo['rank'] ?? 'none';
-
-    //handle Major wihtout crashes
-    if ($cardArcana == 'major') {
+    //cheack for major arcana
+    if (strpos($cardId, '_') === false){
         return [
             'cardId' => $cardId,
             'arcana' => 'major',
-            'arcanaName'=> $arcana['major']['name'],
-            'arcanaMeaning'=> $arcana['major']['meaning'],
+            'arcanaName' => $arcana['major']['name'],
+            'arcanaMeaning' => $arcana['major']['meaning'],
             'suitName' => 'The Universe',
-            'suitMeaning' => 'the grand narrative of life, spiritual lessons, and transformative experiences',
+            'suitMeaning' => 'the grand narrative of life and transformative spiritual lessons',
             'numName' => 'The Archetype',
-            'numMeaning' => 'the universal truth and the collective unconscious',
-            'cardMeaning' => $cardInfo['cardMeaning'] ?? 'a profound lesson from the cosmos, urging reflection and growth'
+            'numMeaning' => 'universal truth and the collective unconcious',
+            'cardMeaning' => $uniqueMeaning
         ];
     }
 
+
+
+
+    // fallback dictoinary incase the card isnt in the db yet
+    // if (!isset($cards[$cardId])){
+    //     return [
+    //         'cardId'        => $cardId,
+    //         'arcana'    => 'minor',
+    //         'arcanaName'    => 'Minor Arcana',
+    //         'arcanaMeaning' => 'the day-to-day experiences, challenges, and opportunities that shape our journey',
+    //         'suitName'      => 'Unknown Suit',
+    //         'suitMeaning'   => 'mysterious influences',
+    //         'numName'    => 'Mystery Card',
+    //         'numMeaning'    => 'unwritten potential',
+    //         'cardMeaning'   => 'a path shrouded in mystery, awaiting to be coded '
+    //     ];
+    // }
+
+    // $cardInfo = $cards[$cardId];
+    // $cardArcana = $cardInfo['arcana'] ?? 'minor';
+    // $cardSuit = $cardInfo['suit'] ?? 'none';
+    // $cardRank = $cardInfo['rank'] ?? 'none';
+
+    //handle Major wihtout crashes
+    // if ($cardArcana == 'major') {
+    //     return [
+    //         'cardId' => $cardId,
+    //         'arcana' => 'major',
+    //         'arcanaName'=> $arcana['major']['name'],
+    //         'arcanaMeaning'=> $arcana['major']['meaning'],
+    //         'suitName' => 'The Universe',
+    //         'suitMeaning' => 'the grand narrative of life, spiritual lessons, and transformative experiences',
+    //         'numName' => 'The Archetype',
+    //         'numMeaning' => 'the universal truth and the collective unconscious',
+    //         'cardMeaning' => $cardInfo['cardMeaning'] ?? 'a profound lesson from the cosmos, urging reflection and growth'
+    //     ];
+    // }
+
     //Minor Arcana lookups
+        //minofr arcana 
+        $parts = explode('_', $cardId);
+        $cardRank = $parts[0];
+        $cardSuit = $parts[1];
+        // wait for this to word properly i think that names need to match the data exactly so i need to write a function that makes it so that it doens't matter what case the words are in as long as the letters are in the same order
+
+    
+    $suitData = $suits[$cardSuit] ?? [
+        'name'      => 'Unknown Suit',
+        'meaning'   => 'mysterious influences'
+    ];
     // look in numerology if it's a number or rank if it's a face card
-    $rankOrNum = isset($numerology[$cardRank]) ? $numerology[$cardRank] : ($rank[$cardRank] ?? ['name' => 'Unknown Rank', 'meaning' => 'shifting paths, an undefined role in the cosmic play']);
+    $rankOrNum = isset($numerology[$cardRank]) ? $numerology[$cardRank] : ($rank[$cardRank] ?? [
+        'name'      => 'Unknown Rank', 
+        'meaning'   => 'shifting paths, an undefined role in the cosmic play'
+    ]);
 
     return [
         'cardId'        => $cardId,
-        'arcana'    => 'minor',
+        'arcana'        => 'minor',
         'arcanaName'    => $arcana['minor']['name'],
         'arcanaMeaning' => $arcana['minor']['meaning'],
-        'suitName'      => $suits[$cardSuit]['name'] ?? 'Unknown Suit',
-        'suitMeaning'   => $suits[$cardSuit]['meaning'] ?? 'mysterious influences',
-        'numName'    => $rankOrNum['name'],
+        'suitName'      => $suitData['name'],
+        'suitMeaning'   => $suitData['meaning'],
+        'numName'       => $rankOrNum['name'],
         'numMeaning'    => $rankOrNum['meaning'],
-        'cardMeaning'   => $cardInfo['cardMeaning'] ?? 'A unique path awaits, shaped by the energies of this card and the universe at large.'
+        'cardMeaning'   => $uniqueMeaning
     ];
 }
 function generateSynthesis($cardA, $cardB)
@@ -225,7 +296,7 @@ if (isset($_POST['cardA']) && isset($_POST['cardB'])) {
     // HOLY MOLY THIS SHIT IT SPECIFIC,
     // THE ORDER OF THE PARAMTERS NEEDS TO BE IN THE EXACT ORDER AS THEY ARE IN THE GETCARDDATA FUNCTION ✨PERFECTLY✨, OTHERWISE PHP WILL LOOK FOR SHIT IN THE WRONG PLACE AND YEVFHIWYAFU9IEHWEIFE
     $cardA_data = getCardData($cardA_id, $arcana, $suits, $numerology, $rank, $cards);
-    $cardB_data = getCardData($cardB_id, $cards, $numerology, $rank, $suits, $arcana);
+    $cardB_data = getCardData($cardB_id,  $arcana, $suits, $numerology, $rank, $cards);
 
 
     $reading = generateSynthesis($cardA_data, $cardB_data);
