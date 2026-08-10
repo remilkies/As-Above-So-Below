@@ -109,13 +109,14 @@ function revealReading(cards) {
     const imgLeft = document.getElementById('visual-card-left');
     const imgRight = document.getElementById('visual-card-right');
 
-
-    imgLeft.src = `assets/cards/${cardA.name}.png`;
-    imgRight.src = `assets/cards/${cardB.name}.png`;
+// using filename aka id for the images
+    imgLeft.src = `./assets/cards/${cardA.id}.png`;
+    imgRight.src = `./assets/cards/${cardB.id}.png`;
 
     if (cardA.reversed) imgLeft.classList.add('reversed');
     if (cardB.reversed) imgRight.classList.add('reversed');
 
+    // aaaand name for the html display side
     const nameA = cardA.reversed ? `${cardA.name} (Reversed)` : cardA.name;
     const nameB = cardB.reversed ? `${cardB.name} (Reversed)` : cardB.name;
     document.getElementById('reading-subtitle').innerText = `${nameA} | ${nameB}`;

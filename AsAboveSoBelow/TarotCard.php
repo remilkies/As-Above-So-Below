@@ -61,19 +61,31 @@ if (!empty($remainingCards)) {
 $filename = pathinfo($drawn_card_path, PATHINFO_FILENAME);
 
 // ace = 1, just in case
-if (strpos($filename, 'ace') === 0) {
-  $filename = str_ireplace('ace', '1', $filename);
+if (strpos($filename, '1') === 0) {
+  $filename = str_ireplace('1', 'ace', $filename);
 }
 
 // Mark it as drawn so it can't be picked again
 // $_SESSION['drawn_cards'][] = $drawn_card; cheak line 56
+
+// =====================================================
+// DISPLAYING THE CARD NAME INSTEAD OF THE FILE NAME >:D
+// =====================================================
+
+$parts = explode('_', $filename);
+if (count($parts) === 2) {
+  // 3_cups = 3 of Cups (i'm not updating all the card names)
+  $displayName = ucfirst($parts[0]) . ' of ' . (ucfirst($parts[1]));
+} else {
+  $displayName = ucfirst($filename);
+}
 // universal card back NEVER TOUCH THIS THERE IS GENUINLY NO REASON TO
 $card_back = "../assets/cardBack.png";
 
 
 ?>
 
-<div class="tarot-card-container spread-card" data-image="<?php echo $drawn_card_path; ?>" data-id="<?php echo $filename; ?>" data-name="<?php echo $filename; ?>">
+<div class="tarot-card-container spread-card" data-image="<?php echo $drawn_card_path; ?>" data-id="<?php echo $filename; ?>" data-name="<?php echo $displayName; ?>">
   <div class="tarot-card-flipper">
 
     <div class="card-face card-back">

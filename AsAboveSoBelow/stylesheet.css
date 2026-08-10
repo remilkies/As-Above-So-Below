@@ -965,6 +965,20 @@ READING CHAMBER CSS
     -webkit-text-fill-color: transparent;
 }
 
+#reading-text{
+    text-align: center;
+    font-family: "Jim Nightshade";
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    background: linear-gradient(180deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 #footer-container {
     width: 100vw;
     left: 0;
