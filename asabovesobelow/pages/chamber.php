@@ -18,6 +18,7 @@
 
 
 <!-- Reading Stage -->
+<!-- maybeeeeee consider adding some options? like there's multiple ways to do a two card tarot spread...althoughhhh you're going to have to make s specialised generateSynthesis() structure food each one soooooo do what you will with this suggestion o7-->
 <div id="reading-stage" style="display: none;">
 
     <div class="drawn-cards-display">
