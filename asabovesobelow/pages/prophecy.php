@@ -426,8 +426,8 @@ if (isset($_POST['cardA']) && isset($_POST['cardB'])) {
     // function to retrieve card data based on the card ID >:D (please end my suffering)
     // HOLY MOLY THIS SHIT IT SPECIFIC,
     // THE ORDER OF THE PARAMTERS NEEDS TO BE IN THE EXACT ORDER AS THEY ARE IN THE GETCARDDATA FUNCTION ✨PERFECTLY✨, OTHERWISE PHP WILL LOOK FOR SHIT IN THE WRONG PLACE AND YEVFHIWYAFU9IEHWEIFE
-    $cardA_data = getCardData($cardA_id, $cardA_rev, $arcana, $suits, $numerology, $rank, $cards);
-    $cardB_data = getCardData($cardB_id, $cardB_rev, $arcana, $suits, $numerology, $rank, $cards);
+    $cardA_data = getCardData($cardA_id, $cardA_rev, $arcana, $suits, $minorNumerology, $majorNumerology, $rank, $cards);
+    $cardB_data = getCardData($cardB_id, $cardB_rev, $arcana, $suits, $minorNumerology, $majorNumerology, $rank, $cards);
 
 
     $reading = generateSynthesis($cardA_data, $cardB_data);
