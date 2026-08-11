@@ -129,11 +129,11 @@ $majorNumerology = [
     '10' => [
         'name' => 'Ten',
         // EDIT THIS SOME MORE PLEASE CAUSE THE SCENTANCE CONSTRUCTION DOESN'T REALLY MAKE SENSE (PERSONALLY)
-        'meaning' => 'turning points, transition, cycles ending, and the bridge to a higher octave, carrting thet memory of the complete cycle '
+        'meaning' => "a pivotable threshold, a turning point of transformation, where a cycle reaches it's end, and transitions into a higher level of awarness"
     ],
     '21' => [
         'name' => 'Twenty-One',
-        'meaning' => 'complete intergration, successful conclusion of the journy, and total cosmic whole'
+        'meaning' => 'complete integration, successful conclusion of the journey, and total cosmic whole'
     ]
 ];
 
@@ -238,11 +238,23 @@ function reduceMajorNumerology($number, $majorNumerology){
     //     'meaning' => 'a mysterious cosmic vibration'
     // ];
 
-    if ($number < 10) {
-        return $majorNumerology[$number];
+    if (!is_numeric($number)){
+        return [
+            'name' => ucfirst($number),
+            'meaning' => 'a profound archetype of cosmic transformation'
+        ];
     }
 
-    $strNum = (string)$number;
+    $numInt = (int)$number;
+
+    if ($numInt < 10) {
+        return $majorNumerology[(string)$numInt] ?? [
+            'name' => (string)$numInt,
+            'meaning' => 'a foundational cosmic vibration'
+        ];
+    }
+
+    $strNum = (string)$numInt;
     $digit1 = $strNum[0];
     $digit2 = $strNum[1];
 
@@ -252,11 +264,11 @@ function reduceMajorNumerology($number, $majorNumerology){
     $meaning2 = $majorNumerology[$digit2]['meaning'];
     $sumMeaning = $majorNumerology[$sum]['meaning'];
 
-    $synthesisedMeaning = "the number {$digit1}, representing {$meaning1}, is preceeded by {$digit2}, pointing to {$meaning2}. The resolution of these frequencies guides you to {$sum}, which tells a jounry of {$sumMeaning}";
+    $synthesisedMeaning = "the number {$digit1}, representing {$meaning1}, is preceded by {$digit2}, pointing to {$meaning2}. The resolution of these frequencies guides you to {$sum}, which tells a journey of {$sumMeaning}";
 
-    if ($number == 10 || $number == 21) {
-        $specialMeaning = $majorNumerology[$number]['meaning'];
-        $synthesisedMeaning = ". Ultimatly, this culminates in " . $specialMeaning;
+    if ($numInt == 10 || $numInt == 21) {
+        $specialMeaning = $majorNumerology[$numInt]['meaning'];
+        $synthesisedMeaning .= ". Ultimatly, this culminates in " . $specialMeaning;
     }
 
     return [
@@ -265,7 +277,10 @@ function reduceMajorNumerology($number, $majorNumerology){
     ];
 }
 
-// i might need to account for the fact that some cards share the same numerology and stuff and edit the structuring for those cases so it's not this card indicates y while this card indicates y and instead these cards represent y
+function splitCamelCase($string) {
+    return preg_replace('/(?<!^)[A-Z]/', ' $0', $string);
+}
+
 function getCardData($cardId, $isReversed, $arcana, $suits, $minorNumerology, $majorNumerology, $rank, $cards) //REMBER TO CHANGE SHIT TO ACCOUNT FOR minorNumerology and majorNumberology CHANGES
 {
     $cardInfo = $cards[$cardId] ?? null;
@@ -283,17 +298,25 @@ function getCardData($cardId, $isReversed, $arcana, $suits, $minorNumerology, $m
 
     $parts = explode('_', $cardId);
     $cardNumOrRank = strtolower($parts[0]);
-    $suitOrName = strtolower($parts[1] ?? '');
+
+    $rawName = $parts[1] ?? '';
+
+    $suitCheck = strtolower($rawName);
+
+    // $suitOrName = strtolower($parts[1] ?? '');
     // wait for this to word properly i think that names need to match the data exactly so i need to write a function that makes it so that it doens't matter what case the words are in as long as the letters are in the same order? I THINK?
 
     //cheack for major arcana
-    if (!isset($suits[$suitOrName])) {
+    if (!isset($suits[$suitCheck])) {
 
         $majorNumData = reduceMajorNumerology($cardNumOrRank, $majorNumerology);
 
+        //camelCase or alone
+        $formattedCardName = !empty($rawNmae) ? splitCamelCase($rawName) : splitCamelCase(ucfirst($cardId));
+
         return [
             'cardId' => $cardId,
-            'cardName' => ucfirst($suitOrName), //dude i have to be soooo careful when nameing my files now T-T
+            'cardName' => $formattedCardName, //dude i have to be soooo careful when nameing my files now T-T
             'isReversed' => $isReversed,
             'cardPosition' => $isReversed ? 'Reversed' : 'Upright',
             'arcana' => 'major',
@@ -353,7 +376,7 @@ function getCardData($cardId, $isReversed, $arcana, $suits, $minorNumerology, $m
     
 
 // IF WE MAKE IT HERE, CONGRADULATION'S IT'S A MINOR, YOU'RE UNDER ARREST
-    $suitData = $suits[$suitOrName] ?? [ //THIS ISN'T WORKING. FIX IT. IT CANT ALWAYS BE AN UNKNOWN SUIT. SOMETHING HAS TO BE KNOWN
+    $suitData = $suits[$suitCheck] ?? [ //THIS ISN'T WORKING. FIX IT. IT CANT ALWAYS BE AN UNKNOWN SUIT. SOMETHING HAS TO BE KNOWN
         'name'      => 'Unknown Suit',
         'meaning'   => 'mysterious influences'
     ];
@@ -381,17 +404,21 @@ function getCardData($cardId, $isReversed, $arcana, $suits, $minorNumerology, $m
 function generateSynthesis($cardA, $cardB)
 {
 
+// i might need to account for the fact that some cards share the same numerology and stuff and edit the structuring for those cases so it's not this card indicates y while this card indicates y and instead says the duality of these cards emphasises y
+
     if ($cardA['arcana'] === 'major' && $cardB['arcana'] === 'major') {
         $arcanaParagraph = "This reading is rooted in the " . $cardA['arcanaName'] . ", highlighting " . $cardA['arcanaMeaning'] . ". The Universe is talking about your soul path. Embrace new beginnings and transformation.";
     } elseif ($cardA['arcana'] === 'minor' && $cardB['arcana'] === 'minor') {
         $arcanaParagraph = "This reading is grounded in " . $cardA['arcanaName'] . ", focusing on " . $cardA['arcanaMeaning'] . ".";
     } else {
-        $arcanaParagraph = "This reading bridges the spiritual scope of the " . $cardA['arcanaName'] . " which represents, " . $cardA['arcanaMeaning'] . ", with the grounded nature of the " . $cardB['arcanaName'] . ", which looks at" . $cardB['arcanaMeaning'] . ".";
+        $arcanaParagraph = "This reading bridges the spiritual scope of the " . $cardA['arcanaName'] . " which represents, " . $cardA['arcanaMeaning'] . ", with the grounded nature of the " . $cardB['arcanaName'] . ", which looks at " . $cardB['arcanaMeaning'] . ".";
     }
 
     $suitParagraph = "Your reading is governed by the collision of " . $cardA['suitName'] . " and " . $cardB['suitName'] . ". " .
         "This cosmic alignment forces you into a space of " . $cardA['suitMeaning'] . ", " .
         "which is actively clashing with " . $cardB['suitMeaning'] . ".";
+
+
 
     $numParagraph = "The underlying numerological current pairs the progress of the " . $cardA['numName'] . " " .
         "with the testing energy of the " . $cardB['numName'] . ". " .

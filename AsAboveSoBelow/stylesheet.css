@@ -895,6 +895,9 @@ BOTTOM CHAMBER CSS
 READING CHAMBER CSS
     =========================*/
 
+    /* #reading-stage{
+        overflow-y: scroll;
+    } */
 /* two cards */
 .drawn-cards-display {
     display: flex;
@@ -978,7 +981,7 @@ READING CHAMBER CSS
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 #footer-container {
     width: 100vw;

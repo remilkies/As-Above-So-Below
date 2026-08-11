@@ -60,11 +60,6 @@ if (!empty($remainingCards)) {
 // to get the filename for the js attribute stuff
 $filename = pathinfo($drawn_card_path, PATHINFO_FILENAME);
 
-// ace = 1, just in case
-if (strpos($filename, '1') === 0) {
-  $filename = str_ireplace('1', 'ace', $filename);
-}
-
 // Mark it as drawn so it can't be picked again
 // $_SESSION['drawn_cards'][] = $drawn_card; cheak line 56
 
@@ -72,12 +67,33 @@ if (strpos($filename, '1') === 0) {
 // DISPLAYING THE CARD NAME INSTEAD OF THE FILE NAME >:D
 // =====================================================
 
+if (!function_exists('splitCamelCase')) {
+  function splitCamelCase($string) {
+    return preg_replace('/(?<!^)[A-Z]/', ' $0', $string);
+  }
+}
+
+$knownSuits = [ 'cups', 'swords', 'wands', 'pentacles'];
 $parts = explode('_', $filename);
+
 if (count($parts) === 2) {
+  $prefix = strtolower($parts[0]);
+  $suffix = strtolower($parts[1]);
+
+  // cheak for minor arcana
+  if (in_array($suffix, $knownSuits)){
+
+// ace = 1, just in case
+$rankDisplay = ($prefix === '1') ? 'Ace' : ucfirst($parts[0]);
+
   // 3_cups = 3 of Cups (i'm not updating all the card names)
-  $displayName = ucfirst($parts[0]) . ' of ' . (ucfirst($parts[1]));
+$displayName = $rankDisplay . ' of ' . (ucfirst($parts[1]));
+  } else {
+    // major arcana stuff (split name leave the number)
+  $displayName = splitCamelCase($parts[1]);
+}
 } else {
-  $displayName = ucfirst($filename);
+  $displayName = splitCamelCase($filename);
 }
 // universal card back NEVER TOUCH THIS THERE IS GENUINLY NO REASON TO
 $card_back = "../assets/cardBack.png";
