@@ -8,7 +8,7 @@ session_start();
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="icons/rembyte.svg" />
+  <link rel="icon" type="image/svg+xml" href="../icons/moon-icon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../stylesheet.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
@@ -49,11 +49,11 @@ session_start();
             <h2 class="user-title">Welcome, <?php echo htmlspecialchars($displayName); ?></h2>
 
             <div class="dashboard-buttons">
-              <button class="dashboard-btn" id="btn-descend">Seeker Sanctum</button>
+              <button class="dashboard-btn" id="descend-btn">Seeker Sanctum</button>
               <button class="dashboard-btn">Past Prophecies</button>
             </div>
             
-            <button class="submit-btn" onclick="n">Logout</button>
+            <button class="submit-btn" id="logout-btn">Logout</button>
             </div>
 
 
@@ -68,15 +68,15 @@ session_start();
 
       </section>
 
-      <section class="chamber bottom-chamber">
+      
       <?php include 'chamber.php'; ?>
-      </section>
+
 
     </div>
   </div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-<script type="module" src="script.js"></script>
+<script type="module" src="../script.js?v=<php? echo time(); ?>"></script>
 </body>
 </html>

@@ -21,6 +21,21 @@ body {
     font-family: "Jim Nightshade", cursive;
 }
 
+h2 {
+    text-align: center;
+    font-family: 'Jaini', system-ui;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
 /* ======================= */
 /* CUSTOM CURSOR VARIABLE */
 /* ======================= */
@@ -58,8 +73,9 @@ input[type="submit"],
     font-weight: 400;
     line-height: normal;
     background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
-    background-clip: text;
     -webkit-background-clip: text;
+    background-clip: text;
+
     -webkit-text-fill-color: transparent;
     margin: 20px 0;
 }
@@ -154,7 +170,7 @@ input[type="submit"],
     }
 }
 
-#hero-section{
+#hero-section {
     position: relative;
     width: 100vw;
     height: 100vh;
@@ -172,8 +188,9 @@ input[type="submit"],
     line-height: normal;
     width: 360px;
     background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
-    background-clip: text;
+    
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 
 
@@ -221,8 +238,9 @@ input[type="submit"],
 
 .meet-fate-btn:hover h3 {
     background: linear-gradient(90deg, #D08596 0%, #F2CBD1 50%, #D08596 100%);
-    background-clip: text;
+    
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -357,16 +375,17 @@ TAROT WHEEL >:D
     INFO CSS 
     =========================*/
 
-#about-section{
+#about-section {
     position: relative;
     margin: 20em 5em 0 5em;
 }
 
-.about-row{
+.about-row {
     display: flex;
     justify-content: space-between;
 }
-.text-container{
+
+.text-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -374,7 +393,7 @@ TAROT WHEEL >:D
     gap: 2rem;
 }
 
-.about-text{
+.about-text {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -392,8 +411,9 @@ TAROT WHEEL >:D
     line-height: normal;
 
     background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
-    background-clip: text;
+    
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -406,18 +426,20 @@ TAROT WHEEL >:D
     line-height: normal;
 
     background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
-    background-clip: text;
+
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.about-img{
+.about-img {
     width: 100%;
     height: auto;
     max-width: 500px;
     border-radius: 20px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
 }
+
 /* ==========================
     LOGIN CSS 
     =========================*/
@@ -459,15 +481,17 @@ TAROT WHEEL >:D
     font-weight: 400;
     line-height: normal;
     background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
-    background-clip: text;
+
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.login-title p{
+.login-title p {
     background: url(assets/nebulaFill.png);
-    background-clip: text;
+
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -486,11 +510,12 @@ TAROT WHEEL >:D
     gap: 20px;
 }
 
-.login-field{
+.login-field {
     display: flex;
     flex-direction: column;
 
 }
+
 .login-label {
     font-family: "Jim Nightshade", cursive;
     font-size: 2.25rem;
@@ -499,12 +524,14 @@ TAROT WHEEL >:D
     line-height: normal;
 
     background: linear-gradient(180deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
-    background-clip: text;
+
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.login-control, .password-container{
+.login-control,
+.password-container {
     border-radius: 50px;
     border: 2px solid transparent;
     /* i hate myself so much for working almost entirely with gradients T-T
@@ -527,21 +554,23 @@ input::placeholder {
     outline: none;
 }
 
-.password-container{
+.password-container {
     display: flex;
     padding: 4px 10px;
     justify-content: space-between;
 }
-button{
+
+button {
     background: none;
     background-color: transparent !important;
     border: none;
 }
 
-.eye-icon{
+.eye-icon,
+.eye-slash-icon {
     width: 57px;
-height: 46.064px;
-aspect-ratio: 57.00/46.06;
+    height: 46.064px;
+    aspect-ratio: 57.00/46.06;
 }
 
 .submit-btn {
@@ -561,8 +590,9 @@ aspect-ratio: 57.00/46.06;
 .submit-btn p {
     background-image: url(assets/nebulaFill.png);
     background-size: cover;
-    background-clip: text;
+
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     text-align: center;
     font-family: "Jaini", system-ui;
@@ -581,27 +611,48 @@ aspect-ratio: 57.00/46.06;
     font-weight: 400;
 }
 
-.submit-btn p:hover{
+.submit-btn p:hover {
     background: linear-gradient(90deg, #D08596 0%, #F2CBD1 50%, #D08596 100%);
-    background-clip: text;
+
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
 /* MOBILE LOGIN */
 @media (max-width: 768px) {
     .login-form {
         width: 350px;
     }
+
     .lamp-wrapper {
         position: absolute;
         width: 200px;
         height: 158px;
     }
-    
-    .login-control {
-        padding: 10px;
+
+    .login-field-container {
+        margin-top: -6rem;
     }
+
+    .login-container {
+        margin-top: 13rem;
+    }
+
+    .login-title {
+        font-size: 3rem;
+        margin-bottom: 1em;
+        margin-top: -3rem;
+    }
+
+    .login-label {
+        font-size: 1.5rem;
+    }
+
+
+
 }
+
 /* ==========================
 DASBOARD CSS
     =========================*/
@@ -609,7 +660,7 @@ DASBOARD CSS
 .viewport {
     width: 100vw;
     height: 100vh;
-    position: relative;    
+    position: relative;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -636,24 +687,32 @@ DASBOARD CSS
     transform: translateY(-100vh);
 }
 
-.chamber{
+.chamber {
     position: relative;
     width: 100%;
-    height: auto;
+    height: 100vh;
+    height: 100dvh;
+    flex-shrink: 0;
+    /*TO KEEP THE CHAMBERS SEPERATE AND KEEP THE REALMS FROM OVERLAPPING AND SNEAKING INTO EACHOTHER'S DOMAIN*/
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: column; 
 }
 
-.chamber-header{
-    position: relative;
+.chamber-header {
+    position: absolute;
+    /*sorry for using absolute but i gotta for this crap to work and pin the corners to the absolute top*/
+    top: 0;
+    left: 0;
     display: flex;
     justify-content: space-between;
-        width: 100%;
-        height: auto;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
 
 }
+
 .corner-wrapper {
     height: 300px;
     aspect-ratio: 177 / 140;
@@ -665,26 +724,27 @@ DASBOARD CSS
     display: block;
 }
 
-#corner-left{
+#corner-left {
     top: 0;
     left: 0;
 }
 
-#corner-right{
+#corner-right {
     top: 0;
     right: 0;
     transform: scaleX(-1);
 }
 
-.chamber-content{
+.chamber-content {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top: -17em;
+    /* margin-top: -17em; */
+    width: 100%;
 }
 
-.moon-container{
+.moon-container {
     width: 400px;
     height: auto;
     aspect-ratio: 225/106;
@@ -692,7 +752,7 @@ DASBOARD CSS
 
 }
 
-.moon-window{
+.moon-window {
     width: 100%;
     height: 100%;
     display: block;
@@ -702,6 +762,8 @@ DASBOARD CSS
     display: flex;
     flex-direction: column;
     gap: 40px;
+    position: relative;
+    z-index: 100;
 }
 
 .dashboard-btn {
@@ -726,27 +788,28 @@ DASBOARD CSS
 
 }
 
-.dashboard-container{
+.dashboard-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
 
 }
 
-.user-title{
+.user-title {
     text-align: center;
-font-family: "Jaini", system-ui;
-font-size: 64px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
-background-clip: text;
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
+    font-family: "Jaini", system-ui;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.dashboard-center{
+.dashboard-center {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -754,19 +817,20 @@ background-clip: text;
     gap: 56px;
 }
 
-.dashboard-controls{
+.dashboard-controls {
     display: flex;
     align-items: center;
     flex-direction: column;
     gap: 56px;
 }
-.window-container{
+
+.window-container {
     width: 334.97px;
     height: 582.604px;
     aspect-ratio: 23/40;
 }
 
-.window img{
+.window img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -778,31 +842,59 @@ background-clip: text;
         height: 200px;
         aspect-ratio: 177 / 140;
     }
-    .chamber-content{
+
+    .chamber-content {
         gap: 40px;
     }
-    .moon-container{
+
+    .moon-container {
         width: 300px;
         height: auto;
         aspect-ratio: 225/106;
     }
-    .dashboard-container{
+
+    .dashboard-container {
         flex-direction: column;
         gap: 40px;
     }
-    .dashboard-controls{
+
+    .dashboard-controls {
         gap: 40px;
     }
-    .user-title{
+
+    .user-title {
         font-size: 48px;
     }
-    .window-container{
+
+    .window-container {
         display: none;
     }
 }
+
+/* ==========================
+BOTTOM CHAMBER CSS 
+=============================*/
+
+.chamber-container{
+    width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+    box-sizing: border-box;
+}
+#card-spread-container{
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+}
+
 /* ==========================
 READING CHAMBER CSS
     =========================*/
+
 /* two cards */
 .drawn-cards-display {
     display: flex;
@@ -835,6 +927,59 @@ READING CHAMBER CSS
     transform: rotate(192deg);
 }
 
+.reading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.reading-container h2 {
+    text-align: center;
+    font-family: 'Jaini', system-ui;
+    font-size: 4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#reading-subtitle {
+    text-align: center;
+    font-family: "Jim Nightshade";
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    background: linear-gradient(180deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#reading-text{
+    text-align: center;
+    font-family: "Jim Nightshade";
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    background: linear-gradient(180deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    overflow-y: auto;
+}
 #footer-container {
     width: 100vw;
     left: 0;

@@ -1,8 +1,60 @@
+console.log("I'M AWAKE. I'M ALIVE");
+
 // document.getElementById("enter-btn").addEventListener(click, function(){
 //     // navigate to login screen
 //     window.location.href = "login.php";
 
 // })
+
+document.addEventListener('DOMContentLoaded', () => {
+    const passwordField = document.getElementById('password');
+    const toggleIcon = document.getElementById('eye-icon');
+    const toggleBtn = document.getElementById('toggle-btn');
+
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.src = '../assets/eye-slash-icon.svg';
+
+                toggleIcon.classList.remove('eye-icon');
+                toggleIcon.classList.add('eye-slash-icon');
+
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.src = '../assets/eye-icon.svg';
+                toggleIcon.classList.remove('eye-slash-icon');
+                toggleIcon.classList.add('eye-icon');
+            }
+        });
+    }
+});
+
+
+    const stage = document.getElementById('stage');
+    const descendBtn = document.getElementById('descend-btn');
+    const ascendBtn = document.getElementById('ascend-btn');
+
+    if (descendBtn && stage) {
+        descendBtn.addEventListener('click', () => {
+            console.log('...So Below')
+            stage.classList.add('descended');
+
+            if ('vibrate' in navigator) {
+                navigator.vibrate(200); // Vibrate mobile
+            }
+
+        });
+    }
+
+    if (ascendBtn && stage) {
+        ascendBtn.addEventListener('click', () => {
+            console.log('As Above...')
+            stage.classList.remove('descended');
+        });
+    }
+
 
 //   carot card component
 document.addEventListener("DOMContentLoaded", () => {
@@ -19,37 +71,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-Document.addEventListener('DOMContentLoaded', () => {
-    const stage = document.getElementById('stage');
-    const descendBtn = document.getElementById('btn-descend');
-    const ascendBtn = document.getElementById('btn-ascend');
 
-    if (descendBtn && stage){
-        descendBtn.addEventListener('click', () => {
-            console.log('Into the gallows we go....')
-            stage.classList.add('descended');
-
-            if ('vibrate' in navigator){
-                navigator.vibrate(200); // Vibrate mobile
-            }
-            
-        });
-    }
-        
-    if (ascendBtn && stage){
-            ascendBtn.addEventListener('click', () => {
-        stage.classList.remove('descended');
-    });
-    }
-
-});
 
 let selectedCards = [];
 
 document.querySelectorAll('.spread-card').forEach(card => {
     card.addEventListener('click', (e) => {
         // 2 already pickrd stop or when flipped
-        if (selectedCards.length >= 2 || this.classList.contains('flipped')) return;
+        if (selectedCards.length >= 2 || card.classList.contains('is-flipped')) return;
 
         const cardId = card.dataset.id;
         const cardName = card.dataset.name;
@@ -80,20 +109,23 @@ function revealReading(cards) {
     const imgLeft = document.getElementById('visual-card-left');
     const imgRight = document.getElementById('visual-card-right');
 
-
-    imgLeft.src = `/cards/${cardA.name}.png`;
-    imgRight.src = `/cards/${cardB.name}.png`;
+// using filename aka id for the images
+    imgLeft.src = `../assets/cards/${cardA.id}.png`;
+    imgRight.src = `../assets/cards/${cardB.id}.png`;
 
     if (cardA.reversed) imgLeft.classList.add('reversed');
     if (cardB.reversed) imgRight.classList.add('reversed');
 
+    // aaaand name for the html display side
     const nameA = cardA.reversed ? `${cardA.name} (Reversed)` : cardA.name;
     const nameB = cardB.reversed ? `${cardB.name} (Reversed)` : cardB.name;
     document.getElementById('reading-subtitle').innerText = `${nameA} | ${nameB}`;
 
     const formData = new FormData();
     formData.append('cardA', cardA.id);
+    formData.append('cardA_reversed', cardA.reversed);
     formData.append('cardB', cardB.id);
+    formData.append('cardB_reversed', cardB.reversed);
 
     // AJAX SO MY TRANSITIONS STAY INTACT MUTHAFAQUAAAA
     fetch('prophecy.php', {
@@ -107,27 +139,4 @@ function revealReading(cards) {
 
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const passwordField = document.getElementById('password');
-    const toggleIcon = document.getElementById('eye-icon');
-    const toggleBtn = document.getElementById('toggle-btn');
 
-    if (toggleBtn) {
-        toggleBtn.addEventListener('click', () => {
-
-            if (passwordField.type === 'password') {
-                passwordField.type = 'text';
-                toggleIcon.src = 'assets/eye-slash-icon.svg';
-
-                toggleIcon.classList.remove('eye-icon');
-                toggleIcon.classList.add('eye-slash-icon');
-
-            } else {
-                passwordField.type = 'password';
-                toggleIcon.src = 'assets/eye-icon.svg';
-                toggleIcon.classList.remove('eye-slash-icon');
-                toggleIcon.classList.add('eye-icon');
-            }
-        });
-    }
-});
