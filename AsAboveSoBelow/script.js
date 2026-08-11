@@ -83,7 +83,7 @@ document.querySelectorAll('.spread-card').forEach(card => {
         const cardId = card.dataset.id;
         const cardName = card.dataset.name;
 
-        const isReversed = Math.random() < 0.5; //maybe make it random instead of 50 50 i dunno
+        const isReversed = Math.random(); 
 
         selectedCards.push({
             id: cardId,

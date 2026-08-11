@@ -895,9 +895,9 @@ BOTTOM CHAMBER CSS
 READING CHAMBER CSS
     =========================*/
 
-    /* #reading-stage{
+    #reading-stage{
         overflow-y: scroll;
-    } */
+    }
 /* two cards */
 .drawn-cards-display {
     display: flex;
