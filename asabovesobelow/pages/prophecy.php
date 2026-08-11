@@ -22,7 +22,7 @@ $suits = [
     'cups' => [
         'name' => 'Cups',
         'element' => 'Water',
-        'meaning' => 'navigating the deep waters of emotion, relationships, and intuitive connections'
+        'meaning' => 'navigating the deep waters of your emotions, relationships, and intuitive connections'
     ],
     'swords' => [
         'name' => 'Swords',
@@ -191,7 +191,7 @@ function getCardData($cardId, $isReversed, $arcana, $suits, $numerology, $rank, 
             'arcanaMeaning' => $arcana['major']['meaning'],
             'suitName' => 'The Universe',
             'suitMeaning' => 'the grand narrative of life and transformative spiritual lessons',
-            'numName' => 'The Archetype',
+            'numName' => ucfirst($cardId),
             'numMeaning' => 'universal truth and the collective unconcious',
             'cardMeaning' => $uniqueMeaning
         ];
@@ -238,12 +238,12 @@ function getCardData($cardId, $isReversed, $arcana, $suits, $numerology, $rank, 
     //Minor Arcana lookups
         //minofr arcana 
         $parts = explode('_', $cardId);
-        $cardRank = $parts[0];
-        $cardSuit = $parts[1];
+        $cardRank = strtolower($parts[0]);
+        $cardSuit = strtolower($parts[1]);
         // wait for this to word properly i think that names need to match the data exactly so i need to write a function that makes it so that it doens't matter what case the words are in as long as the letters are in the same order? I THINK?
 
     
-    $suitData = $suits[$cardSuit] ?? [
+    $suitData = $suits[$cardSuit] ?? [//THIS ISN'T WORKING. FIX IT. IT CANT ALWAYS BE AN UNKNOWN SUIT. SOMETHING HAS TO BE KNOWN
         'name'      => 'Unknown Suit',
         'meaning'   => 'mysterious influences'
     ];
@@ -272,7 +272,7 @@ function generateSynthesis($cardA, $cardB)
 {
 
     if ($cardA['arcana'] === 'major' && $cardB['arcana'] === 'major') {
-        $arcanaParagraph = "This reading is rooted in the " . $cardA['arcanaName'] . ", highlighting " . $cardA['arcanaMeaning'] . ". The Universe is talking about your soul path. Embrance new beginnings and transformation.";
+        $arcanaParagraph = "This reading is rooted in the " . $cardA['arcanaName'] . ", highlighting " . $cardA['arcanaMeaning'] . ". The Universe is talking about your soul path. Embrace new beginnings and transformation.";
     } elseif ($cardA['arcana'] === 'minor' && $cardB['arcana'] === 'minor'){
         $arcanaParagraph = "This reading is grounded in " . $cardA['arcanaName'] . ", focusing on " . $cardA['arcanaMeaning'] . ".";
     } else {
@@ -287,7 +287,7 @@ function generateSynthesis($cardA, $cardB)
         "with the testing energy of the " . $cardB['numName'] . ". " .
         "The universe indicates that " . $cardA['numMeaning'] . " is currently being disrupted by " . $cardB['numMeaning'] . ".";
 
-    $prophecyParagraph = "Ultimately, these energies manifest as a dual truth: you are experiencing the " . $cardA['cardMeaning'] . ", of the " . $cardA['cardName'] . ($cardA['isReversed'] ? "and it's reversal" : '') . "yet you must prepare for the " . $cardB['cardMeaning'] . " brought by the " . ($cardA['isReversed'] ? "reversed " : '') . $cardA['cardName'] . ". The path forward requires the balance of both.";
+    $prophecyParagraph = "Ultimately, these energies manifest as a dual truth: you are experiencing the " . $cardA['cardMeaning'] . ", of the " . $cardA['cardName'] . ($cardA['isReversed'] ? " and its reversal" : '') . " yet you must prepare for the " . $cardB['cardMeaning'] . " brought by the " . ($cardB['isReversed'] ? "reversed " : '') . $cardB['cardName'] . ". The path forward requires the balance of both.";
 
     return [
         'arcana'   => $arcanaParagraph,
