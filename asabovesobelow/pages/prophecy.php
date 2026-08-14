@@ -167,6 +167,9 @@ $cards = [
         'cardMeaning' => "if it all falls apart,consider that maybe it wasn't that well built to begin with. Let go when the tower finally falls, in the rubble you will find your freedom",
         'cardMeaningReversed' => 'averting disaster at the last moment, or an internal fear of inevitable change.'
     ],
+    'justice'=> [
+        'cardMeaning' => 'a cosmic audit, asking, “Are your choices matching your values?” See things as they actually are now, and trust that truth has a longer arc than luck'
+    ],
     '1_cups' => [
         'suit' => 'cups',
         'rank' => '1',

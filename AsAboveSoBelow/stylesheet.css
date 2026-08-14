@@ -188,7 +188,7 @@ input[type="submit"],
     line-height: normal;
     width: 360px;
     background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
-    
+
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -238,7 +238,7 @@ input[type="submit"],
 
 .meet-fate-btn:hover h3 {
     background: linear-gradient(90deg, #D08596 0%, #F2CBD1 50%, #D08596 100%);
-    
+
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -411,7 +411,7 @@ TAROT WHEEL >:D
     line-height: normal;
 
     background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
-    
+
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -697,7 +697,7 @@ DASBOARD CSS
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column; 
+    flex-direction: column;
 }
 
 .chamber-header {
@@ -875,7 +875,7 @@ DASBOARD CSS
 BOTTOM CHAMBER CSS 
 =============================*/
 
-.chamber-container{
+.chamber-container {
     width: 100%;
     height: 100%;
     max-height: 100vh;
@@ -885,19 +885,184 @@ BOTTOM CHAMBER CSS
     padding: 2em;
     box-sizing: border-box;
 }
-#card-spread-container{
+
+#card-spread-container {
     height: 100%;
     width: 100%;
     justify-content: center;
+}
+
+.card-indicators {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.indicator-slot {
+    width: 70px;
+    height: 110px;
+    border: 2px dashed #CF8394;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.indicator-slot.marked {
+    border-style: solid;
+    border-color: #F4CFD5;
+    box-shadow: 0 0 12px rgba(220, 193, 192, 0.6);
+}
+
+.slot-label {
+    font-family: 'Jim Nightshade', cursive;
+    color: #CF8394;
+    font-size: 0.9rem;
+}
+
+.slot-preview img {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.chamber-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.question-text {
+    font-family: 'Jim Nightshade', cursive;
+    font-size: 1.8rem;
+    color: #E5C1C0;
+    text-align: center;
+}
+
+/* ==================================================
+EXIT, SHUFFLE, SPIN-OUT ANIMATIONS CSS (HAVE MERCY)
+    ==================================================*/
+
+.card-exit-anim {
+    animation: slideExit 0.8s cubic-bezier(0.5, 0, 0.2, 1) forwards;
+}
+
+@keyframes slidesExit {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-120px) scale(0.5);
+        opacity: 0;
+    }
+}
+
+/* curlcle shuffle (my hands are freezing T-T */
+#card-spread-container.shuffling {
+    animation: circularShuffle 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes circularShuffle {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(180deg) scale(0.85);
+    }
+
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+/* ✨GRAND EXIT✨ */
+.spin-ou-exit {
+    animation: spinOutwards 1.2s ease-in forwards;
+}
+
+@keyframes spinOutwards {
+    0% {
+        transform: rotate(0deg) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(720deg) scale(0);
+        opacity: 0;
+    }
+}
+
+#loading-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    height: 80vh;
+}
+
+.loading-cards-container{
+    display: flex;
+gap: 2rem;
+}
+
+.loading-card{
+    width: 120px;
+    height: 190px;
+}
+
+.loading-bar-container{
+    width: 300pc;
+    height: 12px;
+    border: 2px solid #CF8394;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #111;
+}
+
+.loading-bar-fill{
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #D08596 0%, #F2CBD1 50%, #D08596 100%);
+    transition: width 3.5s linear;
+}
+
+.throbber-wrapper{
+    width: 50px;
+    height: 50px;
+}
+
+.throbber-spinner{
+    width: 100%;
+    height: 100%;
+    animation: spinThrobber 2s linear infinite;
+}
+
+@keyframes spinThrobber{
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* ==========================
 READING CHAMBER CSS
     =========================*/
 
-    #reading-stage{
-        overflow-y: scroll;
-    }
+#reading-stage {
+    overflow-y: scroll;
+}
+
 /* two cards */
 .drawn-cards-display {
     display: flex;
@@ -968,7 +1133,7 @@ READING CHAMBER CSS
     -webkit-text-fill-color: transparent;
 }
 
-#reading-text{
+#reading-text {
     text-align: center;
     font-family: "Jim Nightshade";
     font-size: 1.5rem;
@@ -983,6 +1148,7 @@ READING CHAMBER CSS
     -webkit-text-fill-color: transparent;
     overflow-y: scroll;
 }
+
 #footer-container {
     width: 100vw;
     left: 0;
