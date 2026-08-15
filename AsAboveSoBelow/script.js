@@ -323,7 +323,7 @@ function revealReading(cards) {
     })
         .then(response => {
             console.log("🌙 The Oracle has responded <3");
-            response.text();
+            return response.text();
         })
         .then(html => {
             document.getElementById('reading-text').innerHTML = html;
