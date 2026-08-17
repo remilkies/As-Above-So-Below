@@ -134,12 +134,12 @@ CREATE TABLE readings (
     FOREIGN KEY (card_b_id) REFERENCES cards(id)
 );
 
-SET GLOBAL event_scheduler = ON; -- shoutout mySQL task schedulaer (if it works (please work))
--- UGHHHHHHHHHHHHHHHHHHHHHHHHHHError: Event Scheduler: An error occurred when initializing system tables. Disabling the Event Scheduler
+-- SET GLOBAL event_scheduler = ON; -- shoutout mySQL task schedulaer (if it works (please work))
+-- -- UGHHHHHHHHHHHHHHHHHHHHHHHHHHError: Event Scheduler: An error occurred when initializing system tables. Disabling the Event Scheduler
 
--- auto grimreaper for old readings
-CREATE EVENT purge_ancient_readings
-ON SCHEDULE EVERY 1 DAY
-DO
-    DELETE FROM readings
-    WHERE created_at < NOW() - INTERVAL 7 DAY;
+-- -- auto grimreaper for old readings
+-- CREATE EVENT purge_ancient_readings
+-- ON SCHEDULE EVERY 1 DAY
+-- DO
+--     DELETE FROM readings
+--     WHERE created_at < NOW() - INTERVAL 7 DAY;

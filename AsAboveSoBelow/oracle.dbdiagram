@@ -1,0 +1,214 @@
+{
+  "version": "2.0.0",
+  "darkMode": true,
+  "gridEnabling": true,
+  "currentViewName": null,
+  "defaultView": {
+    "detailLevel": "All",
+    "tablePositions": [
+      {
+        "name": "users",
+        "schemaName": "public",
+        "x": 1053.0833114136694,
+        "y": 258.48408552881006
+      },
+      {
+        "name": "arcana",
+        "schemaName": "public",
+        "x": 232,
+        "y": 296
+      },
+      {
+        "name": "suits",
+        "schemaName": "public",
+        "x": 281.0859358210902,
+        "y": -91.7949779794601
+      },
+      {
+        "name": "minor_numerology",
+        "schemaName": "public",
+        "x": 848,
+        "y": 473.0084386881854
+      },
+      {
+        "name": "major_numerology",
+        "schemaName": "public",
+        "x": 560,
+        "y": 474.8758046879898
+      },
+      {
+        "name": "ranks",
+        "schemaName": "public",
+        "x": 281.0859358210902,
+        "y": 123.52490992612002
+      },
+      {
+        "name": "elements",
+        "schemaName": "public",
+        "x": 281.0859358210902,
+        "y": 475.8842433761747
+      },
+      {
+        "name": "cards",
+        "schemaName": "public",
+        "x": 628.8952569489298,
+        "y": 105.75025365444742
+      },
+      {
+        "name": "readings",
+        "schemaName": "public",
+        "x": 1053.0833114136694,
+        "y": -83.39468640840403
+      }
+    ],
+    "tableGroupCollapseStates": [],
+    "stickyNoteLayouts": [],
+    "referencePaths": [
+      {
+        "firstFieldNames": [
+          "arcana_id"
+        ],
+        "firstTableName": "cards",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "arcana",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": [
+          {
+            "x": 513.361238232789,
+            "y": 281.7502536544474
+          },
+          {
+            "x": 513.361238232789,
+            "y": 344.784923566967
+          }
+        ]
+      },
+      {
+        "firstFieldNames": [
+          "suit_id"
+        ],
+        "firstTableName": "cards",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "suits",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "rank_id"
+        ],
+        "firstTableName": "cards",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "ranks",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "user_id"
+        ],
+        "firstTableName": "readings",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "users",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "card_a_id"
+        ],
+        "firstTableName": "readings",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "cards",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "card_b_id"
+        ],
+        "firstTableName": "readings",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "cards",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "element_id"
+        ],
+        "firstTableName": "cards",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "elements",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "element_id"
+        ],
+        "firstTableName": "suits",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "suits",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "element_id"
+        ],
+        "firstTableName": "suits",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "elements",
+        "secondSchemaName": "public",
+        "secondRelation": "1",
+        "checkPoints": []
+      }
+    ]
+  },
+  "views": {}
+}
