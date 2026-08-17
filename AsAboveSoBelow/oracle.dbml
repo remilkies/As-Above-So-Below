@@ -23,26 +23,35 @@ Table suits {
 Ref: suits.element_id - elements.id
 
 Table minor_numerology {
-  id int pk
-  name int
+id int [pk]
+name varchar
   meaning text
 }
 
 Table major_numerology {
-  id int pk
-  name int
+  id int [pk]
+  name varchar
   meaning text
 }
 
+//Table numerology {
+//id int [pk]
+//arcana_id varchar
+//name varchar [not null]
+//meaning text
+//}
+
+//Ref:  numerology.arcana_id > arcana.id
+
 Table ranks {
-  id varchar pk
+  id varchar [pk]
   name varchar [not null]
   meaning text
 }
 
 Table elements {
-  id varchar(5) pk
-  name varchar
+  id varchar(5) [pk]
+  name varchar [not null]
   meaning text
 }
 
@@ -61,7 +70,7 @@ Table cards {
   Ref: cards.suit_id > suits.id
   Ref: cards.rank_id > ranks.id
   Ref: cards.element_id > elements.id
-
+//Ref: cards.numerology_id > numerology.id
 
 Table readings {
 id int [pk, increment]

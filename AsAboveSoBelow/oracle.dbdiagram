@@ -59,6 +59,12 @@
         "schemaName": "public",
         "x": 1053.0833114136694,
         "y": -83.39468640840403
+      },
+      {
+        "name": "numerology",
+        "schemaName": "public",
+        "x": 232,
+        "y": 653.8842433761747
       }
     ],
     "tableGroupCollapseStates": [],
