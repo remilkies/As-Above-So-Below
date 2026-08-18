@@ -23,9 +23,10 @@ function getCardData($pdo, $cardId, $isReversed)
         c.card_meaning,
         c.card_meaning_reversed,
         c.arcana_id,
-        a.name AS arcanaMeaning,
+        a.name AS arcanaName,
+        a.meaning AS arcanaMeaning,
         s.name AS suitName,
-        s.element AS suitElement,
+        s.element_id AS suitElement,
         s.meaning AS suitMeaning
     FROM cards c
     LEFT JOIN arcana a ON c.arcana_id = a.id
@@ -96,7 +97,7 @@ function getCardData($pdo, $cardId, $isReversed)
             $rankOrNumMeaning = $numData['meaning'];
         }
     } else {
-        $rankStmt = $pdo->prepare("SELECT name, meaning FROM card_ranks WHERE id = :id"); 
+        $rankStmt = $pdo->prepare("SELECT name, meaning FROM ranks WHERE id = :id"); 
         $rankStmt->execute(['id' => $cardNumOrRank]);
         $rankData = $rankStmt->fetch();
         if ($rankData) {
@@ -114,7 +115,7 @@ function getCardData($pdo, $cardId, $isReversed)
         'arcanaName'    => $cardInfo['arcanaName'],
         'arcanaMeaning' => $cardInfo['arcanaMeaning'],
         'suitName'      => $cardInfo['suitName'],
-        'suitMeaning'   => $cardId['suitMeaning'],
+        'suitMeaning'   => $cardInfo['suitMeaning'],
         'numName'       => $rankOrNumName,
         'numMeaning'    => $rankOrNumMeaning,
         'cardMeaning'   => $uniqueMeaning
