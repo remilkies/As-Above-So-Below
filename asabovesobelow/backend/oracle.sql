@@ -35,7 +35,8 @@ CREATE TABLE elements (
     id VARCHAR(5) PRIMARY KEY,
     name VARCHAR(5) NOT NULL,
     meaning TEXT NOT NULL
-)
+);
+
 
 CREATE TABLE cards (
     id VARCHAR(50) PRIMARY KEY,
@@ -43,6 +44,7 @@ CREATE TABLE cards (
     rank_id VARCHAR(20) NULL,
     numerology_id INT NULL,
     arcana_id VARCHAR(10) DEFAULT 'minor',
+    element_id VARCHAR(5),
     card_meaning TEXT NOT NULL,
     card_meaning_reversed TEXT NULL,
     FOREIGN KEY (suit_id) REFERENCES suits(id),
@@ -97,19 +99,20 @@ INSERT INTO ranks (id, name, meaning) VALUES
 ('queen', 'Queen', 'internal mastery, emotional wisdom, nurturing presence, and deep self-assurance'),
 ('king', 'King', 'external mastery, authority, strategic vision, and command over their realm');
 
--- ✨ Specific Cards ✨
-INSERT INTO cards (id, suit_id, rank_id, arcana_id, card_meaning, card_meaning_reversed) VALUES
-('5_swords', 'swords', '5', 'minor', 'a hollow victory won at a high cost, urging you to choose your battles wisely', NULL),
-('tower', NULL, NULL, 'major', 'if it all falls apart,consider that maybe it wasn''t that well built to begin with. Let go when the tower finally falls, in the rubble you will find your freedom', 'averting disaster at the last moment, or an internal fear of inevitable change.'),
-('justice', NULL, NULL, 'major', 'a cosmic audit, asking, “Are your choices matching your values?” See things as they actually are now, and trust that truth has a longer arc than luck', NULL),
-('1_cups', 'cups', '1', 'minor', 'a joyful celebration of community, mutual support, and shared victory', NULL),
-('2_cups', 'cups', '2', 'minor', 'a joyful celebration of community, mutual support, and shared victory', NULL),
-('3_cups', 'cups', '3', 'minor', 'a joyful celebration of community, mutual support, and shared victory', NULL),
-('4_cups', 'cups', '4', 'minor', 'a joyful celebration of community, mutual support, and shared victory', NULL),
-('5_cups', 'cups', '5', 'minor', 'a joyful celebration of community, mutual support, and shared victory', NULL),
-('6_cups', 'cups', '6', 'minor', 'a joyful celebration of community, mutual support, and shared victory', NULL),
-('7_cups', 'cups', '7', 'minor', 'a joyful celebration of community, mutual support, and shared victory', NULL);
 
+
+-- ✨ Specific Cards ✨
+INSERT INTO cards (id, suit_id, rank_id, numerology_id, arcana_id, card_meaning, card_meaning_reversed) VALUES
+('5_swords', 'swords', NULL, 5, 'minor', 'a hollow victory won at a high cost, urging you to choose your battles wisely', NULL),
+('tower', NULL, NULL, 16, 'major', 'if it all falls apart, consider that maybe it wasn''t that well built to begin with. Let go when the tower finally falls, in the rubble you will find your freedom', 'averting disaster at the last moment, or an internal fear of inevitable change.'),
+('justice', NULL, NULL, 11, 'major', 'a cosmic audit, asking, “Are your choices matching your values?” See things as they actually are now, and trust that truth has a longer arc than luck', NULL),
+('1_cups', 'cups', NULL, 1, 'minor', 'a flood of raw emotion, new love, and an overwhelming overflow of intuitive potential', NULL),
+('2_cups', 'cups', NULL, 2, 'minor', 'a sacred partnership, deep mutual connection, and the harmonizing of two aligned souls', NULL),
+('3_cups', 'cups', NULL, 3, 'minor', 'a joyful celebration of community, genuine friendship, shared victory, and emotional expression', NULL),
+('4_cups', 'cups', NULL, 4, 'minor', 'emotional apathy and uninspired contemplation, fixating on what is missing while ignoring new offerings', NULL),
+('5_cups', 'cups', NULL, 5, 'minor', 'grief and regret over spilled energy, forgetting that while some cups are empty, others still stand full', NULL),
+('6_cups', 'cups', NULL, 6, 'minor', 'sweet nostalgia, innocent memories, and returning to the roots of simple, uncomplicating joy', NULL),
+('7_cups', 'cups', NULL, 7, 'minor', 'dazzling illusions, endless daydreams, and the paralysis of having too many tempting choices', NULL);
 -- ===============================
 -- REALM OF MORTALS AND MEMEORIES
 -- ===============================
