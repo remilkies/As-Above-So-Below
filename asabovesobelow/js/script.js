@@ -317,11 +317,15 @@ function revealReading(cards) {
     console.log("🌙 Sending a whisper to the backend Oracle...")
 
     // AJAX SO MY TRANSITIONS STAY INTACT MUTHAFAQUAAAA
-    fetch('prophecy.php', {
+    fetch('../backend/prophecy.php', {
         method: 'POST',
         body: formData
     })
         .then(response => {
+
+            if (!response.ok){
+                throw new Error(`Oracle error status: ${response.status}`); //i swear 90% of my time coding is spent wrinting error logs to debug T-T
+            }
             console.log("🌙 The Oracle has responded <3");
             return response.text();
         })
@@ -330,7 +334,8 @@ function revealReading(cards) {
             console.log("🌙 The ritual is complete. The prophecy is rendered.")
         })
         .catch(err => {
-            console.log("🔮 Fetch ritual interrupted T-T", err);
+            console.log("🔮 Fetch ritual interrupted. Oracle unreachable", err);
+            document.getElementById('reading-text').innerHTML = "<p class='oracle-error'>The universe is silent. Cheak database connection</p>";
         })
 
 }

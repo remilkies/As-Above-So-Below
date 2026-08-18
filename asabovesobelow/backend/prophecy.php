@@ -6,7 +6,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // PDO CONNECTION
 
-require_once 'oracle.php';
+require_once __DIR__ . '/oracle.php';
 // NO MORE BUNCHA HARDCODED LEGACY CODE, NOW MYSQL COMES TO THE RESCUE (even though i just had to write everything i already wrote into the code base so i just did double and a half more work BUT YAYYY MYSQL) >:S
 
 function getCardData($pdo, $cardId, $isReversed)
