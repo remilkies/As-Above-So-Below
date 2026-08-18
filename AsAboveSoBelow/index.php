@@ -69,7 +69,7 @@
     <div class="wheel-card" style="--i: <?php echo $i; ?>; --total: <?php echo $total_cards; ?>;">
       <div class="tarot-card-loader">
 
-        <?php include 'TarotCard.php'; ?>
+        <?php include 'components/TarotCard.php'; ?>
       </div>
     </div>
 

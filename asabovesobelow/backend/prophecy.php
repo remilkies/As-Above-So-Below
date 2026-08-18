@@ -174,6 +174,5 @@ if (isset($_POST['cardA']) && isset($_POST['cardB'])) {
     echo "<p>" . $reading['suits'] . "</p>";
     echo "<p>" . $reading['numerology'] . "</p>";
     echo "<p>" . $reading['prophecy'] . "</p>";
-
     exit;
 }

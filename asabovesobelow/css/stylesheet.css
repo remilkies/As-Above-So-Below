@@ -6,12 +6,12 @@ body {
     padding: 0;
     min-height: 100vh;
     overflow-x: hidden;
-    cursor: url('assets/cursor.svg') 0 0, pointer !important;
+    cursor: url('../assets/cursor.svg') 0 0, pointer !important;
 }
 
 body {
     background-color: #111111 !important;
-    background-image: url('assets/background.svg');
+    background-image: url('../assets/background.svg');
     background-repeat: repeat-y;
     background-position: top center;
     background-size: 100% auto;
@@ -46,7 +46,7 @@ button,
 input[type="button"],
 input[type="submit"],
 [role="button"] {
-    cursor: url('assets/cursor.svg') 0 0, pointer !important;
+    cursor: url('../assets/cursor.svg') 0 0, pointer !important;
 }
 
 .header-container {
@@ -203,12 +203,12 @@ input[type="submit"],
     padding: 0 15px;
     border-radius: 25.5px;
     background: linear-gradient(270deg, #D08596 0%, #F2CBD1 50%, #D08596 100%);
-    color: url('assets/nebulaFill.png');
+    color: url('../assets/nebulaFill.png');
 }
 
 .meet-fate-btn:hover {
 
-    background-image: url('assets/nebulaFill.png');
+    background-image: url('../assets/nebulaFill.png');
     background-size: cover;
     background-repeat: repeat;
 
@@ -225,7 +225,7 @@ input[type="submit"],
 
     /* this has been the worst expirience of my life O_O */
 
-    background-image: url('assets/nebulaFill.png');
+    background-image: url('../assets/nebulaFill.png');
     background-size: cover;
     background-repeat: repeat;
 
@@ -474,7 +474,7 @@ TAROT WHEEL >:D
 
 .border-wrapper {
     height: 100vh;
-    background-image: url(assets/dashedBorder.svg);
+    background-image: url(../assets/dashedBorder.svg);
     background-attachment: fixed;
     background-position: center;
     background-size: contain;
@@ -509,7 +509,7 @@ TAROT WHEEL >:D
 }
 
 .login-title p {
-    background: url(assets/nebulaFill.png);
+    background: url(../assets/nebulaFill.png);
 
     -webkit-background-clip: text;
     background-clip: text;
@@ -609,7 +609,7 @@ button {
 }
 
 .submit-btn p {
-    background-image: url(assets/nebulaFill.png);
+    background-image: url(../assets/nebulaFill.png);
     background-size: cover;
 
     -webkit-background-clip: text;
@@ -623,7 +623,7 @@ button {
 }
 
 .submit-btn:hover {
-    background-image: url(assets/nebulaFill.png);
+    background-image: url(../assets/nebulaFill.png);
     background-size: cover;
     text-align: center;
     font-family: "Jaini", system-ui;

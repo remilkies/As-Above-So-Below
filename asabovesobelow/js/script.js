@@ -326,7 +326,7 @@ function revealReading(cards) {
             if (!response.ok){
                 throw new Error(`Oracle error status: ${response.status}`); //i swear 90% of my time coding is spent wrinting error logs to debug T-T
             }
-            console.log("🌙 The Oracle has responded <3");
+            console.log("🔮 The Oracle has responded <3");
             return response.text();
         })
         .then(html => {

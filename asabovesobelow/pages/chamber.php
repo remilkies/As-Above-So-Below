@@ -21,7 +21,7 @@
         <div id="card-spread-container">
             <?php
             for ($i = 0; $i < 15; $i++) {
-                include '../TarotCard.php';
+                include '../components/TarotCard.php';
             }
             ?>
         </div>
