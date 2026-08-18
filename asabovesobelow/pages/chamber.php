@@ -44,7 +44,7 @@
                         <img src="../assets/cardBack.png" alt="Card Back">
                     </div>
                     <div class="card-face card-front">
-                        <img id="loading-img-1" src="" alt="" alt="Card 1">
+                        <img id="loading-img-1" src="" alt="Card 1">
                     </div>
                 </div>
             </div>
@@ -52,11 +52,11 @@
             <div class="tarot-card-container loading-card" id="loading-card-2">
                 <div class="tarot-card-flipper">
                     <div class="card-face card-back">
-                        <img src="../assets/cardBack.png" id="loading-img-2" src="" alit="Card 2"/>
+                        <img src="../assets/cardBack.png" id="loading-img-2" alt="Card 2"/>
                     </div>
 
                     <div class="card-face card-front">
-                        <img src="loading-img-2" src="" alt="Card 2" />
+                        <img id="loading-img-2" src="" alt="Card 2" />
                     </div>
 
                 </div>

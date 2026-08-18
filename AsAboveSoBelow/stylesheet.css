@@ -974,7 +974,7 @@ EXIT, SHUFFLE, SPIN-OUT ANIMATIONS CSS (HAVE MERCY)
     animation: slideExit 0.8s cubic-bezier(0.5, 0, 0.2, 1) forwards;
 }
 
-@keyframes slidesExit {
+@keyframes slideExit {
     0% {
         transform: translateY(0) scale(1);
         opacity: 1;
@@ -1006,7 +1006,7 @@ EXIT, SHUFFLE, SPIN-OUT ANIMATIONS CSS (HAVE MERCY)
 }
 
 /* ✨GRAND EXIT✨ */
-.spin-ou-exit {
+.spin-out-exit {
     animation: spinOutwards 1.2s ease-in forwards;
 }
 
@@ -1042,7 +1042,7 @@ EXIT, SHUFFLE, SPIN-OUT ANIMATIONS CSS (HAVE MERCY)
 }
 
 .loading-bar-container {
-    width: 300pc;
+    width: 300px;
     height: 12px;
     border: 2px solid #CF8394;
     border-radius: 10px;
