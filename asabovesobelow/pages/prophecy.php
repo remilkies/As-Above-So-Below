@@ -1,10 +1,10 @@
 <?php
 
-(session_status() === PHP_SESSION_NONE) {
+if (session_status() === PHP_SESSION_NONE) {
     session_start();
-}
+};
 
-// PDO CONNECTION SHIT
+// PDO CONNECTION
 
 require_once 'db.php';
 // NO MORE BUNCHA HARDCODED LEGACY CODE, NOW MYSQL COMES TO THE RESCUE (even though i just had to write everything i already wrote into the code base so i just did double and a half more work BUT YAYYY MYSQL) >:S
@@ -63,8 +63,8 @@ function getCardData($pdo, $cardId, $isReversed)
     // we treat these cards with the respect and ATTENTION like the grand cosmic archetypes they are >:D
     if ($cardInfo['arcana_id'] === 'major' || empty($rawName)) {
         $formattedCardName = !empty($rawName)
-            ? uncwords(preg_replace('/(?<!^)[A-Z]/', ' $0', $rawName))
-            : uncwords(str_replace('_', ' ', $cardId));
+            ? ucwords(preg_replace('/(?<!^)[A-Z]/', ' $0', $rawName))
+            : ucwords(str_replace('_', ' ', $cardId));
 
             return [
                 'cardId'        => $cardId,
@@ -166,7 +166,7 @@ if (isset($_POST['cardA']) && isset($_POST['cardB'])) {
 
     //FETCH DATA USING CLEAN SQL PDO FUCNTION INSTEAD OF MASSIVE ARRAYS
     $cardA_data = getCardData($pdo, $cardA_id, $cardA_rev);
-    $cardB_data = getCardData($pdc, $cardB_id, $cardB_rev);
+    $cardB_data = getCardData($pdo, $cardB_id, $cardB_rev);
 
     $reading = generateSynthesis($cardA_data, $cardB_data);
 

@@ -170,6 +170,9 @@ input[type="submit"],
     }
 }
 
+/* ============================= */
+/* HOME PAGE/LANDING PAGE */
+/* ============================= */
 #hero-section {
     position: relative;
     width: 100vw;
@@ -179,7 +182,7 @@ input[type="submit"],
     align-items: center;
 }
 
-.wheel-title {
+.tarot-wheel-container .wheel-title {
     text-align: center;
     font-family: "Jim Nightshade", cursive;
     font-size: 40px;
@@ -247,8 +250,21 @@ input[type="submit"],
 
 /* --- 3D FLIP MECHANIC STUFF --- */
 .tarot-card-container {
-    width: 100%;
-    height: 100%;
+    /* width: 100%;
+    height: 100%; */
+    /* dev note: we need to fixe the base size in order to ba able to apply the dynamic scaling later >:D */
+    width: 139.87px;
+    height: 234.61px;
+    aspect-ratio: 31/52;
+
+    /* - scales the card iside so it fits perfectly WITH NO CROPPING */
+    /* using independant 'scale' property means it wont overwite my ✨beeautiful 'transform' animations✨ */
+    scale: min( /*cqw/h = conatiner width/height*/
+        calc(100cqw / 139.87),
+        calc(100cqh / 234.61)
+    );
+
+    /* and now the tarot loader is a measureable box */
     perspective: 1000px;
     animation: cardEntry 0.5s ease-out;
 }
@@ -321,6 +337,11 @@ TAROT WHEEL >:D
 .tarot-card-loader {
     width: 100%;
     height: 100%;
+    container-type: size;
+    /*MAGIC KEY TO SCALING THE CARDS HOWEVER MUCH I WANNA >:D*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .tarot-wheel-container {
@@ -671,7 +692,7 @@ DASBOARD CSS
     height: 200vh;
     display: flex;
     flex-direction: column;
-    /* Heavy, slow drop-and-settle easing */
+    /* Heavyyyyy, slow drop-and-settle easing */
     transition: transform 1.4s cubic-bezier(0.7, 0, 0.2, 1);
     will-change: transform;
 }
@@ -994,6 +1015,7 @@ EXIT, SHUFFLE, SPIN-OUT ANIMATIONS CSS (HAVE MERCY)
         transform: rotate(0deg) scale(1);
         opacity: 1;
     }
+
     100% {
         transform: rotate(720deg) scale(0);
         opacity: 0;
@@ -1009,17 +1031,17 @@ EXIT, SHUFFLE, SPIN-OUT ANIMATIONS CSS (HAVE MERCY)
     height: 80vh;
 }
 
-.loading-cards-container{
+.loading-cards-container {
     display: flex;
-gap: 2rem;
+    gap: 2rem;
 }
 
-.loading-card{
+.loading-card {
     width: 120px;
     height: 190px;
 }
 
-.loading-bar-container{
+.loading-bar-container {
     width: 300pc;
     height: 12px;
     border: 2px solid #CF8394;
@@ -1028,28 +1050,29 @@ gap: 2rem;
     background: #111;
 }
 
-.loading-bar-fill{
+.loading-bar-fill {
     width: 0%;
     height: 100%;
     background: linear-gradient(90deg, #D08596 0%, #F2CBD1 50%, #D08596 100%);
     transition: width 3.5s linear;
 }
 
-.throbber-wrapper{
+.throbber-wrapper {
     width: 50px;
     height: 50px;
 }
 
-.throbber-spinner{
+.throbber-spinner {
     width: 100%;
     height: 100%;
     animation: spinThrobber 2s linear infinite;
 }
 
-@keyframes spinThrobber{
+@keyframes spinThrobber {
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }
