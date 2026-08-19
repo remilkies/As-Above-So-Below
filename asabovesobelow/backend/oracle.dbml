@@ -61,7 +61,7 @@ Table cards {
   rank_id varchar
   numerology_id int
   arcana_id varchar
-  element_id varchar
+//  element_id varchar
   card_meaning text [not null]
   card_meaning_reversed text
   }
@@ -69,7 +69,7 @@ Table cards {
   Ref: cards.arcana_id > arcana.id
   Ref: cards.suit_id > suits.id
   Ref: cards.rank_id > ranks.id
-  Ref: cards.element_id > elements.id
+//  Ref: cards.element_id > elements.id
 //Ref: cards.numerology_id > numerology.id
 
 Table readings {

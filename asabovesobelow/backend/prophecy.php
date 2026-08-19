@@ -130,7 +130,7 @@ function generateSynthesis($cardA, $cardB)
     if ($cardA['arcana'] === 'major' && $cardB['arcana'] === 'major') {
         $arcanaParagraph = "This reading is rooted in the " . $cardA['arcanaName'] . ", highlighting " . $cardA['arcanaMeaning'] . ". The Universe is talking about your soul path. Embrace new beginnings and transformation.";
     } elseif ($cardA['arcana'] === 'minor' && $cardB['arcana'] === 'minor') {
-        $arcanaParagraph = "This reading is grounded in " . $cardA['arcanaName'] . ", focusing on " . $cardA['arcanaMeaning'] . ".";
+        $arcanaParagraph = "This reading is grounded in " . $cardA['arcanaName'] . ", focusing on " . $cardA['arcanaMeaning'] . ". You're not at a fated crossroads. You're in the middle of everyday life, making the small decisions that quietly add up to the person you're becoming. That's where most of the real work happens.";
     } else {
         $arcanaParagraph = "This reading bridges the spiritual scope of the " . $cardA['arcanaName'] . " which represents, " . $cardA['arcanaMeaning'] . ", with the grounded nature of the " . $cardB['arcanaName'] . ", which looks at " . $cardB['arcanaMeaning'] . ".";
     }

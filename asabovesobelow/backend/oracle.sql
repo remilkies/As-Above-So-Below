@@ -54,8 +54,9 @@ CREATE TABLE cards (
 
 -- Arcana Data
 INSERT INTO arcana (id, name, meaning) VALUES
-('major', 'Major Arcana', 'major milestones and the grand narrative of life, it''s spiritual lessons, and transformative experiences'),
-('minor', 'Minor Arcana', 'the day-to-day experiences, challenges, and opportunities that shape our journey');
+('major', 'Major Arcana', 'major milestones, turning-point moments life-reshaping crossroads and the grand narrative of life- the archetypal forces and their spiritual lessons ending in transformative experiences'),
+('minor', 'Minor Arcana', "the day-to-day experiences, challenges, and opportunities that shape our journey. Passing moods, workplace frictions, relationship conversations, and quiet internal shifts that don't feel dramatic but end up defining everything.")
+ON DUPLICATE KEY UPDATE meaning = VALUES(meaning);
 
 --  Suits Data
 INSERT INTO suits (id, name, element, meaning) VALUES
@@ -63,6 +64,8 @@ INSERT INTO suits (id, name, element, meaning) VALUES
 ('swords', 'Swords', 'Air', 'the sharp edge of intellect, communication, and mental conflict'),
 ('wands', 'Wands', 'Fire', 'the blazing fires of passion, creative inspiration, and bold willpower'),
 ('pentacles', 'Pentacles', 'Earth', 'the grounded roots of material abundance, practical foundations, and physical reality');
+
+
 
 --  Minor Numerology
 INSERT INTO minor_numerology (id, name, meaning) VALUES
@@ -94,26 +97,28 @@ INSERT INTO major_numerology (id, name, meaning) VALUES
 
 --  Card Ranks
 INSERT INTO ranks (id, name, meaning) VALUES
-('page', 'Page', 'curiosity, new messages, exploration, and the fresh spark of learning'),
-('knight', 'Knight', 'action, momentum, and the pursuit of a specific vision or goal'),
-('queen', 'Queen', 'internal mastery, emotional wisdom, nurturing presence, and deep self-assurance'),
-('king', 'King', 'external mastery, authority, strategic vision, and command over their realm');
+('page', 'Page', "exploration, and the fresh spark of learning. Pages carry messages and bring the energy of encountering something for the first time - curious, open, unfiltered, and not yet skilled enough to know what they don't know, they sit at the boundary between discovery and expression."),
+('knight', 'Knight', "action, momentum. Knights have taken their new power out into the world and they're in pursuit of a specific vision or goal -- bold, committed, sometimes reckless, always in motion. Knights represent the stage where you've moved past discovery into action, but haven't yet learned restraint."),
+('queen', 'Queen', "receptive mastery, emotional wisdom, nurturing presence, and deep self-assurance. Fully integrated their suit's energy from the inside, Queens don't need to prove anything or pursue anything. She holds the power, sustains it, and lets it work through her."),
+('king', 'King', "external mastery, authority. Kings fully integrate their suit's energy and send it out into the world, aligning with strategic vision, and command over their realm")
+ON DUPLICATE KEY UPDATE meaning = VALUES(meaning);
 
 
 
 -- ✨ Specific Cards ✨
+-- ✨ Specific Cards ✨
 INSERT INTO cards (id, suit_id, rank_id, numerology_id, arcana_id, card_meaning, card_meaning_reversed) VALUES
-('5_swords', 'swords', NULL, 5, 'minor', 'a hollow victory won at a high cost, urging you to choose your battles wisely', NULL),
-('tower', NULL, NULL, 16, 'major', 'if it all falls apart, consider that maybe it wasn''t that well built to begin with. Let go when the tower finally falls, in the rubble you will find your freedom', 'averting disaster at the last moment, or an internal fear of inevitable change.'),
-('justice', NULL, NULL, 11, 'major', 'a cosmic audit, asking, “Are your choices matching your values?” See things as they actually are now, and trust that truth has a longer arc than luck', NULL),
-('1_cups', 'cups', NULL, 1, 'minor', 'a flood of raw emotion, new love, and an overwhelming overflow of intuitive potential', NULL),
-('2_cups', 'cups', NULL, 2, 'minor', 'a sacred partnership, deep mutual connection, and the harmonizing of two aligned souls', NULL),
-('3_cups', 'cups', NULL, 3, 'minor', 'a joyful celebration of community, genuine friendship, shared victory, and emotional expression', NULL),
-('4_cups', 'cups', NULL, 4, 'minor', 'emotional apathy and uninspired contemplation, fixating on what is missing while ignoring new offerings', NULL),
-('5_cups', 'cups', NULL, 5, 'minor', 'grief and regret over spilled energy, forgetting that while some cups are empty, others still stand full', NULL),
-('6_cups', 'cups', NULL, 6, 'minor', 'sweet nostalgia, innocent memories, and returning to the roots of simple, uncomplicating joy', NULL),
-('7_cups', 'cups', NULL, 7, 'minor', 'dazzling illusions, endless daydreams, and the paralysis of having too many tempting choices', NULL);
--- ===============================
+('5_Swords', 'swords', NULL, 5, 'minor', 'a hollow victory won at a high cost, urging you to choose your battles wisely', NULL),
+('16_TheTower', NULL, NULL, 16, 'major', 'if it all falls apart, consider that maybe it wasn''t that well built to begin with. Let go when the tower finally falls, in the rubble you will find your freedom', 'averting disaster at the last moment, or an internal fear of inevitable change.'),
+('11_Justice', NULL, NULL, 11, 'major', 'a cosmic audit, asking, “Are your choices matching your values?” See things as they actually are now, and trust that truth has a longer arc than luck', NULL),
+('1_Cups', 'cups', NULL, 1, 'minor', 'a flood of raw emotion, new love, and an overwhelming overflow of intuitive potential', NULL),
+('2_Cups', 'cups', NULL, 2, 'minor', 'a sacred partnership, deep mutual connection, and the harmonizing of two aligned souls', NULL),
+('3_Cups', 'cups', NULL, 3, 'minor', 'a joyful celebration of community, genuine friendship, shared victory, and emotional expression', NULL),
+('4_Cups', 'cups', NULL, 4, 'minor', 'emotional apathy and uninspired contemplation, fixating on what is missing while ignoring new offerings', NULL),
+('5_Cups', 'cups', NULL, 5, 'minor', 'grief and regret over spilled energy, forgetting that while some cups are empty, others still stand full', NULL),
+('6_Cups', 'cups', NULL, 6, 'minor', 'sweet nostalgia, innocent memories, and returning to the roots of simple, uncomplicating joy', NULL),
+('7_Cups', 'cups', NULL, 7, 'minor', 'dazzling illusions, endless daydreams, and the paralysis of having too many tempting choices', NULL)
+On DUPLICATE KEY UPDATE id = VALUES(id);
 -- REALM OF MORTALS AND MEMEORIES
 -- ===============================
 CREATE TABLE users (

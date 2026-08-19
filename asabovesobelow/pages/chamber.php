@@ -15,6 +15,8 @@
                 <div class="slot-preview" id="slot-2-preview"></div>
             </div>
         </div>
+        
+        <h3 id="current-question" class="question-text">Card 1: What should I embrace?</h3>
 
         <!-- active deck spread (my lawd have mercy on my overambitios soul) -->
 
