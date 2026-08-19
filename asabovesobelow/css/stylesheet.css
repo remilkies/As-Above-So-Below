@@ -924,61 +924,63 @@ BOTTOM CHAMBER CSS
 /* ============================ */
 #card-spread-container {
     position: relative;
-    height: 320px;
+    height: 360px;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: flex-end;
     margin-top: 1rem;
+    overflow: visible; 
 }
 
 #card-spread-container .tarot-card-container {
     position: absolute;
     bottom: 30px;
-    transform-origin: 50% 170%; /*origin of the arc pivit point below their base to form the arc*/
+    /*origin of the arc pivit point below their base to form the arc*/
+    transform-origin: 50% 270%;  /* last number controls the width*/
     transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) z-index 0.2s ease;
 }
 
 /* fan arc rotation calculations for 15 cards (i need to find if there a DRY method for this T-T) */
 #card-spread-container .tarot-card-container:nth-child(1) { 
-    --angle: rotate(-35deg);
+    --angle: rotate(-56deg);
     transform: var(--angle);
     z-index: 1;
 }
 
 
 #card-spread-container .tarot-card-container:nth-child(2) {
-    --angle: rotate(-30deg);
+    --angle: rotate(-48deg);
     transform: var(--angle);
     z-index: 2;
 }
 
 #card-spread-container .tarot-card-container:nth-child(3) {
-    --angle: rotate(-25deg);
+    --angle: rotate(-40deg);
     transform: var(--angle);
     z-index: 3;
 }
 
 #card-spread-container .tarot-card-container:nth-child(4){
-    --angle: rotate(-20deg);
+    --angle: rotate(-32deg);
     transform: var(--angle);
     z-index: 4;
 }
 
 #card-spread-container .tarot-card-container:nth-child(5) {
-    --angle: rotate(15deg);
+    --angle: rotate(-24deg);
     transform: var(--angle);
     z-index: 5;
 }
 
 #card-spread-container .tarot-card-container:nth-child(6) {
-    --angle: rotate(10deg);
+    --angle: rotate(-16deg);
     transform: var(--angle);
     z-index: 6;
 }
 
 #card-spread-container .tarot-card-container:nth-child(7) {
-    --angle: rotate(-5deg);
+    --angle: rotate(-8deg);
     transform: var(--angle);
     z-index: 7;
 }
@@ -990,51 +992,54 @@ BOTTOM CHAMBER CSS
 }
 
 #card-spread-container .tarot-card-container:nth-child(9) {
-    --angle: rotate(5deg);
+    --angle: rotate(8deg);
     transform: var(--angle);
     z-index: 9;
 }
 
 #card-spread-container .tarot-card-container:nth-child(10) {
-    --angle: rotate(10deg);
+    --angle: rotate(16deg);
     transform: var(--angle);
     z-index: 10;
 }
 
 #card-spread-container .tarot-card-container:nth-child(11) {
-    --angle: rotate(15deg);
+    --angle: rotate(24deg);
     transform: var(--angle);
     z-index: 11;
 }
 
 #card-spread-container .tarot-card-container:nth-child(12) {
-    --angle: rotate(20deg);
+    --angle: rotate(32deg);
     transform: var(--angle);
     z-index: 12;
 }
 
 #card-spread-container .tarot-card-container:nth-child(13) {
-    --angle: rotate(25deg);
+    --angle: rotate(40deg);
     transform: var(--angle);
     z-index: 13;
 }
 
 #card-spread-container .tarot-card-container:nth-child(14) {
-    --angle: rotate(30deg);
+    --angle: rotate(48deg);
     transform: var(--angle);
     z-index: 14;
 }
 
 #card-spread-container .tarot-card-container:nth-child(15) {
-    --angle: rotate(35deg);
+    --angle: rotate(56deg);
     transform: var(--angle);
     z-index: 15;
 }
 
 #card-spread-container .tarot-card-container:hover {
     z-index: 50 !important;
-    transform: var(--angle) translateY(-30px) scale(1.1) !important;
+    transform: var(--angle) translateY(-35px) scale(1.1) !important;
 }
+
+
+
 
 .card-indicators {
     display: flex;
@@ -1093,7 +1098,7 @@ BOTTOM CHAMBER CSS
 EXIT, SHUFFLE, SPIN-OUT ANIMATIONS CSS (HAVE MERCY)
     ==================================================*/
 
-.card-exit-anim {
+/* .card-exit-anim {
     animation: slideExit 0.8s cubic-bezier(0.5, 0, 0.2, 1) forwards;
 }
 
@@ -1110,7 +1115,7 @@ EXIT, SHUFFLE, SPIN-OUT ANIMATIONS CSS (HAVE MERCY)
 }
 
 /* curlcle shuffle (my hands are freezing T-T */
-#card-spread-container.shuffling {
+/*#card-spread-container.shuffling {
     animation: circularShuffle 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -1129,7 +1134,7 @@ EXIT, SHUFFLE, SPIN-OUT ANIMATIONS CSS (HAVE MERCY)
 }
 
 /* ✨GRAND EXIT✨ */
-.spin-out-exit {
+/*.spin-out-exit {
     animation: spinOutwards 1.2s ease-in forwards;
 }
 
@@ -1142,6 +1147,46 @@ EXIT, SHUFFLE, SPIN-OUT ANIMATIONS CSS (HAVE MERCY)
     100% {
         transform: rotate(720deg) scale(0);
         opacity: 0;
+    }
+} */
+
+
+/* =================================================== */
+/* SHUFFLE ANIMATIONS VERSION 2 */
+/* =================================================== */
+
+#card-spread-container.is-collapsed .tarot-card-container{
+    transform: rotate(0deg) translateY(0) !important;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#card-spread-container.is-shuffling .tarot-card-container:nth-child(even) {
+    animation: riffleEven 0.3s ease-in-out infinite;
+}
+
+#card-spread-container.is-shuffling .tarot-card-container:nth-child(odd) {
+    animation: riffleOdd 0.3s ease-in-out infinite;
+}
+
+@keyframes riffleEven {
+    0%, 100% {
+        transform: rotate(0deg) translateY(0);
+        z-index: 10;
+    }
+    50% {
+        transform: rotate(0deg) translateY(-50px);
+        z-index: 30;
+    }
+}
+
+@keyframes riffleOdd {
+    0%, 100% {
+        transform: rotate(0deg) translateY(0);
+        z-index: 10;
+    }
+    50% {
+        transform: rotate(0deg) translateY(50px);
+        z-index: 30;
     }
 }
 

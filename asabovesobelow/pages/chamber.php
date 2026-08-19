@@ -4,6 +4,7 @@
         <h2 class="chamber-title">The Chamber of Enlightenment</h2>
         <!-- dynamic card and php logic can live here -->
 
+        <!-- card drawing stage -->
         <div class="card-indicators">
             <div class="indicator-slot" id="slot-1">
                 <span class="slot-label">Card 1</span>
@@ -15,7 +16,7 @@
                 <div class="slot-preview" id="slot-2-preview"></div>
             </div>
         </div>
-        
+
         <h3 id="current-question" class="question-text">Card 1: What should I embrace?</h3>
 
         <!-- active deck spread (my lawd have mercy on my overambitios soul) -->

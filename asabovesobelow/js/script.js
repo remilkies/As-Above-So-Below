@@ -131,16 +131,16 @@ function initTarotFlow() {
             if (isAnimating) {
                 console.log("🌙 Transition in progress...Pacience Mortal");
                 return;
-            } 
-        if (selectedCards.length >= 2) {
-            console.log("🌙 Your fate has been drawn. No more cards can be chosen");
-            return;
-        } 
-        if (card.classList.contains('picked')) {
-            console.log("🌙 Energies cannot be invoked twice");
-            return;
-            //lowkey shoutout react for teeaching me how to work with states
-        }
+            }
+            if (selectedCards.length >= 2) {
+                console.log("🌙 Your fate has been drawn. No more cards can be chosen");
+                return;
+            }
+            if (card.classList.contains('picked')) {
+                console.log("🌙 Energies cannot be invoked twice");
+                return;
+                //lowkey shoutout react for teeaching me how to work with states
+            }
 
             isAnimating = true; //LOCK THE DOOR, NO MORE CLICKING
             console.log("🌙  A rift opens! Drawing a card from the void...");
@@ -196,58 +196,67 @@ function initTarotFlow() {
 
     if (shuffleBtn) {
         shuffleBtn.addEventListener('click', () => {
-            if (isAnimating){
+            if (isAnimating) {
                 console.log("🌙 Do not disrupt the current ritual >:(")
                 return;
-            } 
+            }
             isAnimating = true;
             console.log("🌙 Deck cleanse in progress...shuffling remaining threads of fate.")
 
-            spreadContainer.classList.add('shuffling');
+
+            spreadContainer.classList.add('is-collapsed');
 
             setTimeout(() => {
+                spreadContainer.classList.add('is-shuffling');
 
-                // array fo id's already picked
-                const pickedIds = selectedCards.map(c => c.id);
+                setTimeout(() => {
+                    // array fo id's already picked
+                    const pickedIds = selectedCards.map(c => c.id);
 
-                // GIMME ALL THE CARDS EXCPET THE ONEC WITH ID'S IN MY PICKEDIDS LIST
-                const unpickedCards = Array.from(document.querySelectorAll('.spread-card'))
-                    .filter(c => !pickedIds.includes(c.dataset.id));
+                    // GIMME ALL THE CARDS EXCPET THE ONEC WITH ID'S IN MY PICKEDIDS LIST
+                    const unpickedCards = Array.from(document.querySelectorAll('.spread-card'))
+                        .filter(c => !pickedIds.includes(c.dataset.id));
 
-                // loops though reamining unpicked cards and blidnly spwaps the abount
-                unpickedCards.forEach(cardEl => {
-                    const randomTarget = unpickedCards[Math.floor(Math.random() * unpickedCards.length)];
+                    // loops though reamining unpicked cards and blidnly spwaps the abount
+                    unpickedCards.forEach(cardEl => {
+                        const randomTarget = unpickedCards[Math.floor(Math.random() * unpickedCards.length)];
 
-                    //card a data temp storage
-                    const tempId = cardEl.dataset.id;
-                    const tempName = cardEl.dataset.name;
-                    const tempImg = cardEl.dataset.image;
+                        //card a data temp storage
+                        const tempId = cardEl.dataset.id;
+                        const tempName = cardEl.dataset.name;
+                        const tempImg = cardEl.dataset.image;
 
-                    //overwite card a with card b data >:D
-                    cardEl.dataset.id = randomTarget.dataset.id;
-                    cardEl.dataset.name = randomTarget.dataset.name;
-                    cardEl.dataset.image = randomTarget.dataset.image;
-                    cardEl.querySelector('.card-front img').src = randomTarget.dataset.image;
+                        //overwite card a with card b data >:D
+                        cardEl.dataset.id = randomTarget.dataset.id;
+                        cardEl.dataset.name = randomTarget.dataset.name;
+                        cardEl.dataset.image = randomTarget.dataset.image;
+                        cardEl.querySelector('.card-front img').src = randomTarget.dataset.image;
 
-                    // carb with cad A's temperory data
-                    randomTarget.dataset.id = tempId;
-                    randomTarget.dataset.name = tempName;
-                    randomTarget.dataset.image = tempImg;
-                    randomTarget.querySelector('.card-front img').src = tempImg;
-                });
+                        // carb with cad A's temperory data
+                        randomTarget.dataset.id = tempId;
+                        randomTarget.dataset.name = tempName;
+                        randomTarget.dataset.image = tempImg;
+                        randomTarget.querySelector('.card-front img').src = tempImg;
+                    });
 
-                //stop spinn, unlock clickity clickity
-                spreadContainer.classList.remove('shuffling');
-                isAnimating = false;
-                console.log("🌙 The energies have settled. The deck is renewed.")
-            }, 1200);
+                    //stop spinn, unlock clickity clickity
+                    spreadContainer.classList.remove('is-shuffling');
+                    spreadContainer.classList.remove('is-collapsed');
+
+                    setTimeout(() => {
+                        isAnimating = false;
+                        console.log("🌙 The energies have settled. The deck is renewed.")
+                    }, 400);
+
+                }, 800); //shuffles
+            }, 400) //wait to collapse
         });
     }
 
     // GRAND EXIT AND LOADING......................
     function triggerGrandExitSequence(cardsData) {
         console.log("🌙Initiating Grand Banishment ritual...")
-        const chamberContainer = document.getElementById('chamber-container');
+        const chamberContainer = document.querySelector('.chamber-container');
 
         if (chamberContainer) chamberContainer.classList.add('spin-out-exit');
 
@@ -291,7 +300,7 @@ function revealReading(cards) {
     const cardB = cards[1];
 
     const readingStage = document.getElementById('reading-stage');
-    if (readingStage) readingStage.style.display = 'block';
+    if (readingStage) readingStage.style.display = 'flex';
 
     const imgLeft = document.getElementById('visual-card-left');
     const imgRight = document.getElementById('visual-card-right');
@@ -323,7 +332,7 @@ function revealReading(cards) {
     })
         .then(response => {
 
-            if (!response.ok){
+            if (!response.ok) {
                 throw new Error(`Oracle error status: ${response.status}`); //i swear 90% of my time coding is spent wrinting error logs to debug T-T
             }
             console.log("🔮 The Oracle has responded <3");
