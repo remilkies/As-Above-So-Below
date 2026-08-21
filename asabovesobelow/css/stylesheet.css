@@ -1035,7 +1035,7 @@ BOTTOM CHAMBER CSS
 
 #card-spread-container .tarot-card-container:hover {
     z-index: 50 !important;
-    transform: var(--angle) translateY(-35px) scale(1.1) !important;
+    transform: var(--angle) translateY(-5px) scale(1.1) !important;
 }
 
 

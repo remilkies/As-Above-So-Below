@@ -6,12 +6,15 @@ CREATE TABLE arcana (
     meaning TEXT NOT NULL
 );
 
-CREATE TABLE suits (
+
+ALTER TABLE suits (
     id VARCHAR(20) PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
-    element VARCHAR(50),
-    meaning TEXT NOT NULL
-);
+    element_id VARCHAR(5),
+    meaning TEXT NOT NULL,
+    FOREIGN KEY (element_id) REFERENCES elements(id)
+)
+
 
 CREATE TABLE minor_numerology (
     id INT PRIMARY KEY,
@@ -59,13 +62,17 @@ INSERT INTO arcana (id, name, meaning) VALUES
 ON DUPLICATE KEY UPDATE meaning = VALUES(meaning);
 
 --  Suits Data
-INSERT INTO suits (id, name, element, meaning) VALUES
-('cups', 'Cups', 'Water', 'navigating the deep waters of your emotions, relationships, and intuitive connections'),
+INSERT INTO suits (id, name, element_id, meaning) VALUES
+('cups', 'Cups', 'Water', "navigating the deep waters of your emotions, relationships, and intuitive connections. Cups ask what's happening in the world beneath the surface - the emotional currents that determine wether anything you build will actully satisfy you."),
 ('swords', 'Swords', 'Air', 'the sharp edge of intellect, communication, and mental conflict'),
 ('wands', 'Wands', 'Fire', 'the blazing fires of passion, creative inspiration, and bold willpower'),
 ('pentacles', 'Pentacles', 'Earth', 'the grounded roots of material abundance, practical foundations, and physical reality');
 
-
+INSERT INTO elements (id, name, meaning) VALUES
+('Water', 'Water', "represents emotions, feelings, intuition and the subconcious. Water flows into every available space, takes the shape of whatever contains it, and finds every crack. You can't push it into a shape it doesn't want to hold. Butit's always moving, always seeking its own level." ),
+('Air', 'Air', "represents thought, logic and communication. Air has no substance of its own. You can't shape it, hold it or see it. But it carries sound, transmits ideas, and makes speech possible. Every word you ever spoke traveled through air to reach another preson's mind. The Suit of Swords works through this element: invisible, fast constantly in motion and capable of cuttring through anything it touches. A sharp mind is one of the greatest gifts a person can have. The capacity for discrimination, for telling truth from comfortable fiction and seeing what's actully happening instead of what you wish were happening, makes concious choice possible."),
+('Fire', 'Fire', "represents willpower, intuition and inspiration. Fire is the only element that isn't a substance. Water is something you can hold. Earth is something you can stand on. Air surrounds you whether you notice it or not. But fire is a process - it only exists while it's consuming something else. Take away its fuel and it vanishes. Feed it and it grows beyond your control. What happens when raw creative force enters your life and what does it cost to keep it burning?"),
+('Earth', 'Earth', "represents recources, finances, health, manifestation and material matters") -- ADD MORE TO THIS LATER
 
 --  Minor Numerology
 INSERT INTO minor_numerology (id, name, meaning) VALUES
@@ -105,7 +112,7 @@ ON DUPLICATE KEY UPDATE meaning = VALUES(meaning);
 
 
 
--- ✨ Specific Cards ✨
+
 -- ✨ Specific Cards ✨
 INSERT INTO cards (id, suit_id, rank_id, numerology_id, arcana_id, card_meaning, card_meaning_reversed) VALUES
 ('5_Swords', 'swords', NULL, 5, 'minor', 'a hollow victory won at a high cost, urging you to choose your battles wisely', NULL),
