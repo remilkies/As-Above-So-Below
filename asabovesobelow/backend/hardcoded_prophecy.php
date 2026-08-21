@@ -41,7 +41,7 @@ $suits = [
     ]
 ];
 // i understand why people use ai...this is the worst most tedious thing i've ever lived through 
-$numerology = [
+$minorNumerology = [
     '1' => [
         'name' => 'Ace (One)',
         'meaning' => 'new beginnings, pure potential, raw energy, and fresh opportunities'
@@ -83,6 +83,59 @@ $numerology = [
         'meaning' => 'completion, the end of a cycle, absolute fulfillment, and making way for the new'
     ]
 ];
+//part[1] = numerology | part[2] . ' ' . part[3] (specifically for cards like Hanged Man, High Priestess)
+//although they we CAN have part[1] = numerology | part[2] . ' ' . part[3]  . part[4] for  The Hanged Man
+$majorNumerology = [
+    '0' => [
+        'name'     => 'Zero',
+        'meaning'  => 'infinite potential, pure spirit, divine zero-point, and new beginnings'
+    ],
+    '1' => [
+        'name'      => 'One',
+        'meaning'   => 'focused will, concious creation, action, and the power to manifest reality'
+    ],
+    '2' => [
+        'name'      => 'Two',
+        'meaning'   => 'duality, intuition, subconcious wisdom, and the veil between seen and unseen'
+    ],
+    '3' => [
+        'name'     => 'Three',
+        'meaning'  => 'growth, creative abundance, and expression'
+    ],
+    '4' => [
+        'name'    => 'Four',
+        'meaning' => 'structure, stability, foundation, authority, and earthly order'
+    ],
+    '5' => [
+        'name' => 'Five',
+        'meaning' => 'major life changes, spiritual lessons, institutional rules, or dynamic change'
+    ],
+    '6' => [
+        'name' => 'Six',
+        'meaning' => 'harmony, choice, alignment of opposing forces, and cooperation'
+    ],
+    '7' => [
+        'name' => 'Seven',
+        'meaning' => 'spiritual and mental triumph, determination, steering through opposition'
+    ],
+    '8' => [
+        'name' => 'Eight',
+        'meaning' => 'inner power, mastery, cause and effect, equalibrium, and karmic balance'
+    ],
+    '9' => [
+        'name' => 'Nine',
+        'meaning' => 'inner wisdom, attainment, introspection, and the closure'
+    ],
+    '10' => [
+        'name' => 'Ten',
+        // EDIT THIS SOME MORE PLEASE CAUSE THE SCENTANCE CONSTRUCTION DOESN'T REALLY MAKE SENSE (PERSONALLY)
+        'meaning' => "a pivotable threshold, a turning point of transformation, where a cycle reaches it's end, and transitions into a higher level of awarness"
+    ],
+    '21' => [
+        'name' => 'Twenty-One',
+        'meaning' => 'complete integration, successful conclusion of the journey, and total cosmic whole'
+    ]
+];
 
 $rank = [
     'page' => [
@@ -113,6 +166,9 @@ $cards = [
     'tower' => [
         'cardMeaning' => "if it all falls apart,consider that maybe it wasn't that well built to begin with. Let go when the tower finally falls, in the rubble you will find your freedom",
         'cardMeaningReversed' => 'averting disaster at the last moment, or an internal fear of inevitable change.'
+    ],
+    'justice'=> [
+        'cardMeaning' => 'a cosmic audit, asking, “Are your choices matching your values?” See things as they actually are now, and trust that truth has a longer arc than luck'
     ],
     '1_cups' => [
         'suit' => 'cups',
@@ -163,14 +219,78 @@ $cards = [
 
 <?php
 
-// i might need to account for the fact that some cards share the same numerology and stuff and edit the structuring for those cases so it's not this card indicates y while this card indicates y and instead these cards represent y
-function getCardData($cardId, $isReversed, $arcana, $suits, $numerology, $rank, $cards)
+function reduceMajorNumerology($number, $majorNumerology){
+
+    // if (isset($majorNumerology[$number])) {
+    //  return $majorNumerology[$number];
+    // }
+
+    // $reduced = $number;
+    // while ($reduced > 9 && !isset($majorNumerology[$reduced])) {
+    //     $sum = 0;
+
+    //     foreach (str_split((string)$reduced) as $digit) {
+    //         $sum += (int)$digit;
+    //     }
+    //     $reduced = $sum;
+    // }
+
+    // return $majorNumerology[$reduced] ?? [
+
+    //     'name' => 'Unknown Frequesncy',
+    //     'meaning' => 'a mysterious cosmic vibration'
+    // ];
+
+    if (!is_numeric($number)){
+        return [
+            'name' => ucfirst($number),
+            'meaning' => 'a profound archetype of cosmic transformation'
+        ];
+    }
+
+    $numInt = (int)$number;
+
+    if ($numInt < 10) {
+        return $majorNumerology[(string)$numInt] ?? [
+            'name' => (string)$numInt,
+            'meaning' => 'a foundational cosmic vibration'
+        ];
+    }
+
+    $strNum = (string)$numInt;
+    $digit1 = $strNum[0];
+    $digit2 = $strNum[1];
+
+    $sum = (int)$digit1 + (int)$digit2;
+
+    $meaning1 = $majorNumerology[$digit1]['meaning'];
+    $meaning2 = $majorNumerology[$digit2]['meaning'];
+    $sumMeaning = $majorNumerology[$sum]['meaning'];
+
+    $synthesisedMeaning = "the number {$digit1}, representing {$meaning1}, is preceded by {$digit2}, pointing to {$meaning2}. The resolution of these frequencies guides you to {$sum}, which tells a journey of {$sumMeaning}";
+
+    if ($numInt == 10 || $numInt == 21) {
+        $specialMeaning = $majorNumerology[$numInt]['meaning'];
+        $synthesisedMeaning .= ". Ultimatly, this culminates in " . $specialMeaning;
+    }
+
+    return [
+        'name' => $number,
+        'meaning' => $synthesisedMeaning
+    ];
+}
+
+function splitCamelCase($string) {
+    return preg_replace('/(?<!^)[A-Z]/', ' $0', $string);
+}
+
+function getCardData($cardId, $isReversed, $arcana, $suits, $minorNumerology, $majorNumerology, $rank, $cards) //REMBER TO CHANGE SHIT TO ACCOUNT FOR minorNumerology and majorNumberology CHANGES
 {
     $cardInfo = $cards[$cardId] ?? null;
     $defaultMeaning = 'a unique path unfolding, shaped by the energies of the universe but shrouded in mystery.';
 
-    if ($cardInfo){
-        if ($isReversed){
+    if ($cardInfo) {
+        if ($isReversed) {
             $uniqueMeaning = $cardInfo['cardMeaningReversed'] ?? 'an inverted energy, suggesting an internal blockage of ' . $cardInfo['cardMeaning'];
         } else {
             $uniqueMeaning = $cardInfo['cardMeaning'] ?? $defaultMeaning;
@@ -179,11 +299,27 @@ function getCardData($cardId, $isReversed, $arcana, $suits, $numerology, $rank, 
         $uniqueMeaning = $defaultMeaning;
     }
 
+    $parts = explode('_', $cardId);
+    $cardNumOrRank = strtolower($parts[0]);
+
+    $rawName = $parts[1] ?? '';
+
+    $suitCheck = strtolower($rawName);
+
+    // $suitOrName = strtolower($parts[1] ?? '');
+    // wait for this to word properly i think that names need to match the data exactly so i need to write a function that makes it so that it doens't matter what case the words are in as long as the letters are in the same order? I THINK?
+
     //cheack for major arcana
-    if (strpos($cardId, '_') === false){
+    if (!isset($suits[$suitCheck])) {
+
+        $majorNumData = reduceMajorNumerology($cardNumOrRank, $majorNumerology);
+
+        //camelCase or alone
+        $formattedCardName = !empty($rawNmae) ? splitCamelCase($rawName) : splitCamelCase(ucfirst($cardId));
+
         return [
             'cardId' => $cardId,
-            'cardName' => ucfirst($cardId), //dude i have to be soooo careful when nameing my files now T-T
+            'cardName' => $formattedCardName, //dude i have to be soooo careful when nameing my files now T-T
             'isReversed' => $isReversed,
             'cardPosition' => $isReversed ? 'Reversed' : 'Upright',
             'arcana' => 'major',
@@ -191,8 +327,8 @@ function getCardData($cardId, $isReversed, $arcana, $suits, $numerology, $rank, 
             'arcanaMeaning' => $arcana['major']['meaning'],
             'suitName' => 'The Universe',
             'suitMeaning' => 'the grand narrative of life and transformative spiritual lessons',
-            'numName' => ucfirst($cardId),
-            'numMeaning' => 'universal truth and the collective unconcious',
+            'numName' => $majorNumData['name'],
+            'numMeaning' => $majorNumData['meaning'],
             'cardMeaning' => $uniqueMeaning
         ];
     }
@@ -236,20 +372,20 @@ function getCardData($cardId, $isReversed, $arcana, $suits, $numerology, $rank, 
     // }
 
     //Minor Arcana lookups
-        //minofr arcana 
-        $parts = explode('_', $cardId);
-        $cardRank = strtolower($parts[0]);
-        $cardSuit = strtolower($parts[1]);
-        // wait for this to word properly i think that names need to match the data exactly so i need to write a function that makes it so that it doens't matter what case the words are in as long as the letters are in the same order? I THINK?
-
+    //minofr arcana 
+    // $parts = explode('_', $cardId);
+    // $cardRank = strtolower($parts[0]);
+    // $cardSuit = strtolower($parts[1]);
     
-    $suitData = $suits[$cardSuit] ?? [//THIS ISN'T WORKING. FIX IT. IT CANT ALWAYS BE AN UNKNOWN SUIT. SOMETHING HAS TO BE KNOWN
+
+// IF WE MAKE IT HERE, CONGRADULATION'S IT'S A MINOR, YOU'RE UNDER ARREST
+    $suitData = $suits[$suitCheck] ?? [ //THIS ISN'T WORKING. FIX IT. IT CANT ALWAYS BE AN UNKNOWN SUIT. SOMETHING HAS TO BE KNOWN
         'name'      => 'Unknown Suit',
         'meaning'   => 'mysterious influences'
     ];
     // look in numerology if it's a number or rank if it's a face card
-    $rankOrNum = isset($numerology[$cardRank]) ? $numerology[$cardRank] : ($rank[$cardRank] ?? [
-        'name'      => 'Unknown Rank', 
+    $rankOrNum = isset($minorNumerology[$cardNumOrRank]) ? $minorNumerology[$cardNumOrRank] : ($rank[$cardNumOrRank] ?? [
+        'name'      => 'Unknown Rank',
         'meaning'   => 'shifting paths, an undefined role in the cosmic play'
     ]);
 
@@ -271,17 +407,21 @@ function getCardData($cardId, $isReversed, $arcana, $suits, $numerology, $rank, 
 function generateSynthesis($cardA, $cardB)
 {
 
+// i might need to account for the fact that some cards share the same numerology and stuff and edit the structuring for those cases so it's not this card indicates y while this card indicates y and instead says the duality of these cards emphasises y
+
     if ($cardA['arcana'] === 'major' && $cardB['arcana'] === 'major') {
         $arcanaParagraph = "This reading is rooted in the " . $cardA['arcanaName'] . ", highlighting " . $cardA['arcanaMeaning'] . ". The Universe is talking about your soul path. Embrace new beginnings and transformation.";
-    } elseif ($cardA['arcana'] === 'minor' && $cardB['arcana'] === 'minor'){
+    } elseif ($cardA['arcana'] === 'minor' && $cardB['arcana'] === 'minor') {
         $arcanaParagraph = "This reading is grounded in " . $cardA['arcanaName'] . ", focusing on " . $cardA['arcanaMeaning'] . ".";
     } else {
-        $arcanaParagraph = "This reading bridges the spiritual scope of the " . $cardA['arcanaName'] . " which represents, " . $cardA['arcanaMeaning'] . ", with the grounded nature of the " . $cardB['arcanaName'] . ", which looks at" . $cardB['arcanaMeaning'] . ".";
+        $arcanaParagraph = "This reading bridges the spiritual scope of the " . $cardA['arcanaName'] . " which represents, " . $cardA['arcanaMeaning'] . ", with the grounded nature of the " . $cardB['arcanaName'] . ", which looks at " . $cardB['arcanaMeaning'] . ".";
     }
 
     $suitParagraph = "Your reading is governed by the collision of " . $cardA['suitName'] . " and " . $cardB['suitName'] . ". " .
         "This cosmic alignment forces you into a space of " . $cardA['suitMeaning'] . ", " .
         "which is actively clashing with " . $cardB['suitMeaning'] . ".";
+
+
 
     $numParagraph = "The underlying numerological current pairs the progress of the " . $cardA['numName'] . " " .
         "with the testing energy of the " . $cardB['numName'] . ". " .
@@ -316,8 +456,8 @@ if (isset($_POST['cardA']) && isset($_POST['cardB'])) {
     // function to retrieve card data based on the card ID >:D (please end my suffering)
     // HOLY MOLY THIS SHIT IT SPECIFIC,
     // THE ORDER OF THE PARAMTERS NEEDS TO BE IN THE EXACT ORDER AS THEY ARE IN THE GETCARDDATA FUNCTION ✨PERFECTLY✨, OTHERWISE PHP WILL LOOK FOR SHIT IN THE WRONG PLACE AND YEVFHIWYAFU9IEHWEIFE
-    $cardA_data = getCardData($cardA_id, $cardA_rev, $arcana, $suits, $numerology, $rank, $cards);
-    $cardB_data = getCardData($cardB_id, $cardB_rev, $arcana, $suits, $numerology, $rank, $cards);
+    $cardA_data = getCardData($cardA_id, $cardA_rev, $arcana, $suits, $minorNumerology, $majorNumerology, $rank, $cards);
+    $cardB_data = getCardData($cardB_id, $cardB_rev, $arcana, $suits, $minorNumerology, $majorNumerology, $rank, $cards);
 
 
     $reading = generateSynthesis($cardA_data, $cardB_data);

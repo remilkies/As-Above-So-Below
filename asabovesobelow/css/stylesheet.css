@@ -6,12 +6,12 @@ body {
     padding: 0;
     min-height: 100vh;
     overflow-x: hidden;
-    cursor: url('assets/cursor.svg') 0 0, pointer !important;
+    cursor: url('../assets/cursor.svg') 0 0, pointer !important;
 }
 
 body {
     background-color: #111111 !important;
-    background-image: url('assets/background.svg');
+    background-image: url('../assets/background.svg');
     background-repeat: repeat-y;
     background-position: top center;
     background-size: 100% auto;
@@ -46,7 +46,7 @@ button,
 input[type="button"],
 input[type="submit"],
 [role="button"] {
-    cursor: url('assets/cursor.svg') 0 0, pointer !important;
+    cursor: url('../assets/cursor.svg') 0 0, pointer !important;
 }
 
 .header-container {
@@ -170,6 +170,9 @@ input[type="submit"],
     }
 }
 
+/* ============================= */
+/* HOME PAGE/LANDING PAGE */
+/* ============================= */
 #hero-section {
     position: relative;
     width: 100vw;
@@ -179,7 +182,7 @@ input[type="submit"],
     align-items: center;
 }
 
-.wheel-title {
+.tarot-wheel-container .wheel-title {
     text-align: center;
     font-family: "Jim Nightshade", cursive;
     font-size: 40px;
@@ -188,7 +191,7 @@ input[type="submit"],
     line-height: normal;
     width: 360px;
     background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
-    
+
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -200,12 +203,12 @@ input[type="submit"],
     padding: 0 15px;
     border-radius: 25.5px;
     background: linear-gradient(270deg, #D08596 0%, #F2CBD1 50%, #D08596 100%);
-    color: url('assets/nebulaFill.png');
+    color: url('../assets/nebulaFill.png');
 }
 
 .meet-fate-btn:hover {
 
-    background-image: url('assets/nebulaFill.png');
+    background-image: url('../assets/nebulaFill.png');
     background-size: cover;
     background-repeat: repeat;
 
@@ -222,7 +225,7 @@ input[type="submit"],
 
     /* this has been the worst expirience of my life O_O */
 
-    background-image: url('assets/nebulaFill.png');
+    background-image: url('../assets/nebulaFill.png');
     background-size: cover;
     background-repeat: repeat;
 
@@ -238,7 +241,7 @@ input[type="submit"],
 
 .meet-fate-btn:hover h3 {
     background: linear-gradient(90deg, #D08596 0%, #F2CBD1 50%, #D08596 100%);
-    
+
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -247,8 +250,21 @@ input[type="submit"],
 
 /* --- 3D FLIP MECHANIC STUFF --- */
 .tarot-card-container {
-    width: 100%;
-    height: 100%;
+    /* width: 100%;
+    height: 100%; */
+    /* dev note: we need to fixe the base size in order to ba able to apply the dynamic scaling later >:D */
+    width: 139.87px;
+    height: 234.61px;
+    aspect-ratio: 31/52;
+
+    /* - scales the card iside so it fits perfectly WITH NO CROPPING */
+    /* using independant 'scale' property means it wont overwite my ✨beeautiful 'transform' animations✨ */
+    scale: min( /*cqw/h = conatiner width/height*/
+        calc(100cqw / 139.87),
+        calc(100cqh / 234.61)
+    );
+
+    /* and now the tarot loader is a measureable box */
     perspective: 1000px;
     animation: cardEntry 0.5s ease-out;
 }
@@ -321,6 +337,11 @@ TAROT WHEEL >:D
 .tarot-card-loader {
     width: 100%;
     height: 100%;
+    container-type: size;
+    /*MAGIC KEY TO SCALING THE CARDS HOWEVER MUCH I WANNA >:D*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .tarot-wheel-container {
@@ -411,7 +432,7 @@ TAROT WHEEL >:D
     line-height: normal;
 
     background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
-    
+
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -453,7 +474,7 @@ TAROT WHEEL >:D
 
 .border-wrapper {
     height: 100vh;
-    background-image: url(assets/dashedBorder.svg);
+    background-image: url(../assets/dashedBorder.svg);
     background-attachment: fixed;
     background-position: center;
     background-size: contain;
@@ -488,7 +509,7 @@ TAROT WHEEL >:D
 }
 
 .login-title p {
-    background: url(assets/nebulaFill.png);
+    background: url(../assets/nebulaFill.png);
 
     -webkit-background-clip: text;
     background-clip: text;
@@ -588,7 +609,7 @@ button {
 }
 
 .submit-btn p {
-    background-image: url(assets/nebulaFill.png);
+    background-image: url(../assets/nebulaFill.png);
     background-size: cover;
 
     -webkit-background-clip: text;
@@ -602,7 +623,7 @@ button {
 }
 
 .submit-btn:hover {
-    background-image: url(assets/nebulaFill.png);
+    background-image: url(../assets/nebulaFill.png);
     background-size: cover;
     text-align: center;
     font-family: "Jaini", system-ui;
@@ -671,7 +692,7 @@ DASBOARD CSS
     height: 200vh;
     display: flex;
     flex-direction: column;
-    /* Heavy, slow drop-and-settle easing */
+    /* Heavyyyyy, slow drop-and-settle easing */
     transition: transform 1.4s cubic-bezier(0.7, 0, 0.2, 1);
     will-change: transform;
 }
@@ -697,12 +718,12 @@ DASBOARD CSS
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column; 
+    flex-direction: column;
 }
 
 .chamber-header {
     position: absolute;
-    /*sorry for using absolute but i gotta for this crap to work and pin the corners to the absolute top*/
+    /*sorry for using absolute but i gotta for this to work and pin the corners to the absolute top*/
     top: 0;
     left: 0;
     display: flex;
@@ -874,26 +895,366 @@ DASBOARD CSS
 /* ==========================
 BOTTOM CHAMBER CSS 
 =============================*/
+.bottom-chamber {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+}
 
-.chamber-container{
+.chamber-container,
+#loading-stage,
+#reading-stage {
+    position: absolute; /*i'm sorry*/
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    max-height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     padding: 2em;
     box-sizing: border-box;
 }
-#card-spread-container{
-    height: 100%;
+
+/* =========================== */
+/* TAROT READING SPREAD CONFIG */
+/* ============================ */
+#card-spread-container {
+    position: relative;
+    height: 360px;
     width: 100%;
+    display: flex;
     justify-content: center;
+    align-items: flex-end;
+    margin-top: 1rem;
+    overflow: visible; 
+}
+
+#card-spread-container .tarot-card-container {
+    position: absolute;
+    bottom: 30px;
+    /*origin of the arc pivit point below their base to form the arc*/
+    transform-origin: 50% 270%;  /* last number controls the width*/
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) z-index 0.2s ease;
+}
+
+/* fan arc rotation calculations for 15 cards (i need to find if there a DRY method for this T-T) */
+#card-spread-container .tarot-card-container:nth-child(1) { 
+    --angle: rotate(-56deg);
+    transform: var(--angle);
+    z-index: 1;
+}
+
+
+#card-spread-container .tarot-card-container:nth-child(2) {
+    --angle: rotate(-48deg);
+    transform: var(--angle);
+    z-index: 2;
+}
+
+#card-spread-container .tarot-card-container:nth-child(3) {
+    --angle: rotate(-40deg);
+    transform: var(--angle);
+    z-index: 3;
+}
+
+#card-spread-container .tarot-card-container:nth-child(4){
+    --angle: rotate(-32deg);
+    transform: var(--angle);
+    z-index: 4;
+}
+
+#card-spread-container .tarot-card-container:nth-child(5) {
+    --angle: rotate(-24deg);
+    transform: var(--angle);
+    z-index: 5;
+}
+
+#card-spread-container .tarot-card-container:nth-child(6) {
+    --angle: rotate(-16deg);
+    transform: var(--angle);
+    z-index: 6;
+}
+
+#card-spread-container .tarot-card-container:nth-child(7) {
+    --angle: rotate(-8deg);
+    transform: var(--angle);
+    z-index: 7;
+}
+
+#card-spread-container .tarot-card-container:nth-child(8) {
+    --angle: rotate(0deg);
+    transform: var(--angle);
+    z-index: 8;
+}
+
+#card-spread-container .tarot-card-container:nth-child(9) {
+    --angle: rotate(8deg);
+    transform: var(--angle);
+    z-index: 9;
+}
+
+#card-spread-container .tarot-card-container:nth-child(10) {
+    --angle: rotate(16deg);
+    transform: var(--angle);
+    z-index: 10;
+}
+
+#card-spread-container .tarot-card-container:nth-child(11) {
+    --angle: rotate(24deg);
+    transform: var(--angle);
+    z-index: 11;
+}
+
+#card-spread-container .tarot-card-container:nth-child(12) {
+    --angle: rotate(32deg);
+    transform: var(--angle);
+    z-index: 12;
+}
+
+#card-spread-container .tarot-card-container:nth-child(13) {
+    --angle: rotate(40deg);
+    transform: var(--angle);
+    z-index: 13;
+}
+
+#card-spread-container .tarot-card-container:nth-child(14) {
+    --angle: rotate(48deg);
+    transform: var(--angle);
+    z-index: 14;
+}
+
+#card-spread-container .tarot-card-container:nth-child(15) {
+    --angle: rotate(56deg);
+    transform: var(--angle);
+    z-index: 15;
+}
+
+#card-spread-container .tarot-card-container:hover {
+    z-index: 50 !important;
+    transform: var(--angle) translateY(-5px) scale(1.1) !important;
+}
+
+
+
+
+.card-indicators {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.indicator-slot {
+    width: 70px;
+    height: 110px;
+    border: 2px dashed #CF8394;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.indicator-slot.marked {
+    border-style: solid;
+    border-color: #F4CFD5;
+    box-shadow: 0 0 12px rgba(220, 193, 192, 0.6);
+}
+
+.slot-label {
+    font-family: 'Jim Nightshade', cursive;
+    color: #CF8394;
+    font-size: 0.9rem;
+}
+
+.slot-preview img {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.chamber-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.question-text {
+    font-family: 'Jim Nightshade', cursive;
+    font-size: 1.8rem;
+    color: #E5C1C0;
+    text-align: center;
+}
+
+/* ==================================================
+EXIT, SHUFFLE, SPIN-OUT ANIMATIONS CSS (HAVE MERCY)
+    ==================================================*/
+
+/* .card-exit-anim {
+    animation: slideExit 0.8s cubic-bezier(0.5, 0, 0.2, 1) forwards;
+}
+
+@keyframes slideExit {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-120px) scale(0.5);
+        opacity: 0;
+    }
+}
+
+/* curlcle shuffle (my hands are freezing T-T */
+/*#card-spread-container.shuffling {
+    animation: circularShuffle 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes circularShuffle {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(180deg) scale(0.85);
+    }
+
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+/* ✨GRAND EXIT✨ */
+/*.spin-out-exit {
+    animation: spinOutwards 1.2s ease-in forwards;
+}
+
+@keyframes spinOutwards {
+    0% {
+        transform: rotate(0deg) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: rotate(720deg) scale(0);
+        opacity: 0;
+    }
+} */
+
+
+/* =================================================== */
+/* SHUFFLE ANIMATIONS VERSION 2 */
+/* =================================================== */
+
+#card-spread-container.is-collapsed .tarot-card-container{
+    transform: rotate(0deg) translateY(0) !important;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#card-spread-container.is-shuffling .tarot-card-container:nth-child(even) {
+    animation: riffleEven 0.3s ease-in-out infinite;
+}
+
+#card-spread-container.is-shuffling .tarot-card-container:nth-child(odd) {
+    animation: riffleOdd 0.3s ease-in-out infinite;
+}
+
+@keyframes riffleEven {
+    0%, 100% {
+        transform: rotate(0deg) translateY(0);
+        z-index: 10;
+    }
+    50% {
+        transform: rotate(0deg) translateY(-50px);
+        z-index: 30;
+    }
+}
+
+@keyframes riffleOdd {
+    0%, 100% {
+        transform: rotate(0deg) translateY(0);
+        z-index: 10;
+    }
+    50% {
+        transform: rotate(0deg) translateY(50px);
+        z-index: 30;
+    }
+}
+
+#loading-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    height: 80vh;
+}
+
+.loading-cards-container {
+    display: flex;
+    gap: 2rem;
+}
+
+.loading-card {
+    width: 120px;
+    height: 190px;
+}
+
+.loading-bar-container {
+    width: 300px;
+    height: 12px;
+    border: 2px solid #CF8394;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #111;
+}
+
+.loading-bar-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #D08596 0%, #F2CBD1 50%, #D08596 100%);
+    transition: width 3.5s linear;
+}
+
+.throbber-wrapper {
+    width: 50px;
+    height: 50px;
+}
+
+.throbber-spinner {
+    width: 100%;
+    height: 100%;
+    animation: spinThrobber 2s linear infinite;
+}
+
+@keyframes spinThrobber {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* ==========================
 READING CHAMBER CSS
     =========================*/
+
+#reading-stage {
+    overflow-y: auto;
+    justify-content: flex-start;
+    padding-top: 4rem;
+}
 
 /* two cards */
 .drawn-cards-display {
@@ -965,7 +1326,7 @@ READING CHAMBER CSS
     -webkit-text-fill-color: transparent;
 }
 
-#reading-text{
+#reading-text {
     text-align: center;
     font-family: "Jim Nightshade";
     font-size: 1.5rem;
@@ -978,8 +1339,9 @@ READING CHAMBER CSS
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    overflow-y: auto;
+    overflow-y: scroll;
 }
+
 #footer-container {
     width: 100vw;
     left: 0;

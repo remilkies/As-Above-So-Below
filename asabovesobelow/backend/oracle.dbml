@@ -1,0 +1,90 @@
+
+Table users {
+  id int [pk, increment]
+  username varchar [unique, not null]
+  display_name varchar
+  password_hash varchar [not null]
+  created_at timestamp [default: `now()`]
+}
+
+Table arcana {
+  id varchar(5) [pk]
+  name varchar(12) [not null]
+  meaning text
+}
+
+Table suits {
+  id varchar(10) [pk]
+  name varchar(10) [not null]
+  element_id varchar(5)
+  meaning text
+}
+
+Ref: suits.element_id - elements.id
+
+Table minor_numerology {
+id int [pk]
+name varchar
+  meaning text
+}
+
+Table major_numerology {
+  id int [pk]
+  name varchar
+  meaning text
+}
+
+//Table numerology {
+//id int [pk]
+//arcana_id varchar
+//name varchar [not null]
+//meaning text
+//}
+
+//Ref:  numerology.arcana_id > arcana.id
+
+Table ranks {
+  id varchar [pk]
+  name varchar [not null]
+  meaning text
+}
+
+Table elements {
+  id varchar(5) [pk]
+  name varchar [not null]
+  meaning text
+}
+
+Table cards {
+  id varchar [pk]
+  suit_id varchar
+  rank_id varchar
+  numerology_id int
+  arcana_id varchar
+//  element_id varchar
+  card_meaning text [not null]
+  card_meaning_reversed text
+  }
+
+  Ref: cards.arcana_id > arcana.id
+  Ref: cards.suit_id > suits.id
+  Ref: cards.rank_id > ranks.id
+//  Ref: cards.element_id > elements.id
+//Ref: cards.numerology_id > numerology.id
+
+Table readings {
+id int [pk, increment]
+user_id int [not null]
+card_a_id varchar [not null]
+card_a_reversed bool [default: false]
+card_b_id varchar [not null]
+card_b_reversed bool [default: false]
+created_at timestamp [default: `now()`]
+}
+
+Ref: readings.user_id > users.id
+Ref: readings.card_a_id < cards.id
+Ref: readings.card_b_id < cards.id
+
+
+
