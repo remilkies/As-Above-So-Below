@@ -1,6 +1,12 @@
 <section class="chamber bottom-chamber">
+
+
+
     <div class="chamber-container">
-        <button id="ascend-btn" class="dashboard-btn">Ascend</button>
+        <div class="bottom-chamber-header">
+            <img src="/assets/trippleMoon.svg" alt="Maiden Mother Crone" class="header-icon">
+            <button id="ascend-btn" class="aasb-btn">Ascend</button>
+        </div>
         <h2 class="chamber-title">The Chamber of Enlightenment</h2>
         <!-- dynamic card and php logic can live here -->
 
@@ -30,13 +36,16 @@
         </div>
 
         <div class="chamber-controls">
-            <button id="shuffle-btn" class="dashboard-btn">Shuffle Deck</button>
-            <h3 id="current-question" class="question-text">Card 1: What should I embrace?</h3>
+            <button id="shuffle-btn" class="aasb-btn">Shuffle Deck</button>
         </div>
     </div>
 
     <!-- loading stage -->
     <div id="loading-stage" style="display: none;">
+        <div class="bottom-chamber-header">
+            <img src="/assets/trippleMoon.svg" alt="Maiden Mother Crone" class="header-icon">
+            <button id="ascend-btn" class="aasb-btn">Ascend</button>
+        </div>
         <h2 class="loading-title">Synthesising Reading...</h2>
 
         <!-- here we go, may this work on the first try (deck animation) -->
@@ -55,7 +64,7 @@
             <div class="tarot-card-container loading-card" id="loading-card-2">
                 <div class="tarot-card-flipper">
                     <div class="card-face card-back">
-                        <img src="../assets/cardBack.png" id="loading-img-2" alt="Card 2"/>
+                        <img src="../assets/cardBack.png" id="loading-img-2" alt="Card 2" />
                     </div>
 
                     <div class="card-face card-front">
@@ -81,7 +90,11 @@
     <!-- Reading Stage -->
     <!-- maybeeeeee consider adding some options? like there's multiple ways to do a two card tarot spread...althoughhhh you're going to have to make s specialised generateSynthesis() structure food each one soooooo do what you will with this suggestion o7-->
     <div id="reading-stage" style="display: none;">
-<!-- YOUU CANT ASCEND ANYMORE T-T -->
+        <div class="bottom-chamber-header">
+            <img src="/assets/trippleMoon.svg" alt="Maiden Mother Crone" class="header-icon">
+            <button id="ascend-btn" class="aasb-btn">Ascend</button>
+        </div>
+        <!-- YOUU CANT ASCEND ANYMORE T-T -->
         <div class="drawn-cards-display">
             <img id="visual-card-left" class="drawn-card card-left" src="" alt="Card 1">
             <img id="visual-card-right" class="drawn-card card-right" src="" alt="Card 2">

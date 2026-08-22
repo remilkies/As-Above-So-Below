@@ -34,9 +34,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
+
     const stage = document.getElementById('stage');
     const descendBtn = document.getElementById('descend-btn');
     const ascendBtn = document.getElementById('ascend-btn');
+    const savedBtn = document.getElementById('saved-btn');
+    const returnDashBtn = document.getElementById('return-dash-btn');
 
     if (descendBtn && stage) {
         descendBtn.addEventListener('click', () => {
@@ -55,6 +58,20 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('As Above... ')
             stage.classList.remove('descended');
         });
+    }
+
+    if (savedBtn && stage) {
+        savedBtn.addEventListener('click', () => {
+            console.log('Entering Inner Sanctum...')
+            stage.classList.add('sanctum');
+        })
+    }
+
+    if (returnDashBtn && stage) {
+        returnDashBtn.addEventListener('click', () => {
+            console.log('Leaving Inner Sanctum...');
+            stage.classList.remove('sanctum');
+        })
     }
 
     initTarotFlow();

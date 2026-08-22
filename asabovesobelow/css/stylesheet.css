@@ -259,10 +259,10 @@ input[type="submit"],
 
     /* - scales the card iside so it fits perfectly WITH NO CROPPING */
     /* using independant 'scale' property means it wont overwite my ✨beeautiful 'transform' animations✨ */
-    scale: min( /*cqw/h = conatiner width/height*/
-        calc(100cqw / 139.87),
-        calc(100cqh / 234.61)
-    );
+    scale: min(
+            /*cqw/h = conatiner width/height*/
+            calc(100cqw / 139.87),
+            calc(100cqh / 234.61));
 
     /* and now the tarot loader is a measureable box */
     perspective: 1000px;
@@ -687,11 +687,16 @@ DASBOARD CSS
     overflow: hidden;
 }
 
+/* ======================= */
+/* 2D REALM MAP (CSS GRID) */
+/* ======================= */
 #stage {
-    width: 100%;
+    width: 200vw;
     height: 200vh;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    /* left-right | top-bottom */
+    grid-template-columns: 100vw 100vw;
+    grid-template-rows: 100vh 100vh;
     /* Heavyyyyy, slow drop-and-settle easing */
     transition: transform 1.4s cubic-bezier(0.7, 0, 0.2, 1);
     will-change: transform;
@@ -701,6 +706,20 @@ DASBOARD CSS
     width: 100vw;
     height: 100vh;
     flex-shrink: 0;
+}
+
+.top-chamber {
+    grid-column: 1;
+    grid-row: 1;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+}
+
+#stage.sanctum {
+    transform: translateX(-100vw);
 }
 
 /* State Trigger */
@@ -722,7 +741,7 @@ DASBOARD CSS
 }
 
 .chamber-header {
-    position: absolute;
+    position: relative;
     /*sorry for using absolute but i gotta for this to work and pin the corners to the absolute top*/
     top: 0;
     left: 0;
@@ -731,6 +750,7 @@ DASBOARD CSS
     width: 100%;
     height: auto;
     pointer-events: none;
+    z-index: -1;
 
 }
 
@@ -788,6 +808,36 @@ DASBOARD CSS
 }
 
 .dashboard-btn {
+    border-radius: 50px;
+    border: 4px solid transparent;
+    /* i hate myself so much for working almost entirely with gradients T-T
+    - inner element background color (clipped to padding-box)
+    - gradient border colours (extends to border-box 
+    */
+    background: linear-gradient(#111111, #111111) padding-box,
+        linear-gradient(270deg, #D08596 0%, #F2CBD1 50%, #D08596 100%) border-box;
+    /* figers crossed this works, i could just google the answer genuinly but whatever I'm subborn */
+    color: #CF8394 !important;
+    padding: 10px 60px;
+    padding-top: 4px;
+}
+
+.dashboard-btn span {
+    text-align: center;
+
+    font-family: "Jaini", system-ui;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    background: linear-gradient(180deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.aasb-btn {
     border-radius: 50px;
     border: 5px solid transparent;
     /* i hate myself so much for working almost entirely with gradients T-T
@@ -857,6 +907,7 @@ DASBOARD CSS
     object-fit: cover;
 }
 
+
 /* DO NOT TOUCH ANY BOF THIS, IT IS PERFECT RIGHT NOW SO NO TOUCHY TOUCHY */
 @media (max-width: 768px) {
     .corner-wrapper {
@@ -896,6 +947,8 @@ DASBOARD CSS
 BOTTOM CHAMBER CSS 
 =============================*/
 .bottom-chamber {
+    grid-column: 1;
+    grid-row: 2;
     position: relative;
     width: 100%;
     height: 100vh;
@@ -906,9 +959,10 @@ BOTTOM CHAMBER CSS
 .chamber-container,
 #loading-stage,
 #reading-stage {
-    position: absolute; /*i'm sorry*/
+    position: absolute;
+    /*i'm sorry*/
     top: 0;
-    left: 0;
+    left: 0 !important;
     width: 100%;
     height: 100%;
     display: flex;
@@ -917,6 +971,40 @@ BOTTOM CHAMBER CSS
     align-items: center;
     padding: 2em;
     box-sizing: border-box;
+}
+
+.header-icon {
+    width: 237.001px;
+    height: 163.319px;
+    aspect-ratio: 119/82;
+}
+
+.header-title h1 {
+    text-align: center;
+    font-family: "Jaini", system-ui;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    background: linear-gradient(180deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header-title h3 {
+    text-align: center;
+    font-family: "Jim Nightshade", cursive;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    background: linear-gradient(180deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* =========================== */
@@ -930,19 +1018,20 @@ BOTTOM CHAMBER CSS
     justify-content: center;
     align-items: flex-end;
     margin-top: 1rem;
-    overflow: visible; 
+    overflow: visible;
 }
 
 #card-spread-container .tarot-card-container {
     position: absolute;
     bottom: 30px;
     /*origin of the arc pivit point below their base to form the arc*/
-    transform-origin: 50% 270%;  /* last number controls the width*/
+    transform-origin: 50% 270%;
+    /* last number controls the width*/
     transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) z-index 0.2s ease;
 }
 
 /* fan arc rotation calculations for 15 cards (i need to find if there a DRY method for this T-T) */
-#card-spread-container .tarot-card-container:nth-child(1) { 
+#card-spread-container .tarot-card-container:nth-child(1) {
     --angle: rotate(-56deg);
     transform: var(--angle);
     z-index: 1;
@@ -961,7 +1050,7 @@ BOTTOM CHAMBER CSS
     z-index: 3;
 }
 
-#card-spread-container .tarot-card-container:nth-child(4){
+#card-spread-container .tarot-card-container:nth-child(4) {
     --angle: rotate(-32deg);
     transform: var(--angle);
     z-index: 4;
@@ -1035,7 +1124,7 @@ BOTTOM CHAMBER CSS
 
 #card-spread-container .tarot-card-container:hover {
     z-index: 50 !important;
-    transform: var(--angle) translateY(-5px) scale(1.1) !important;
+    transform: var(--angle) translateY(-1px) scale(1.1) !important;
 }
 
 
@@ -1049,7 +1138,7 @@ BOTTOM CHAMBER CSS
 
 .indicator-slot {
     width: 70px;
-    height: 110px;
+    aspect-ratio: 31/52;
     border: 2px dashed #CF8394;
     border-radius: 8px;
     display: flex;
@@ -1070,6 +1159,10 @@ BOTTOM CHAMBER CSS
     font-family: 'Jim Nightshade', cursive;
     color: #CF8394;
     font-size: 0.9rem;
+}
+
+.indicator-slot.marked .slot-label {
+    display: none;
 }
 
 .slot-preview img {
@@ -1155,37 +1248,44 @@ EXIT, SHUFFLE, SPIN-OUT ANIMATIONS CSS (HAVE MERCY)
 /* SHUFFLE ANIMATIONS VERSION 2 */
 /* =================================================== */
 
-#card-spread-container.is-collapsed .tarot-card-container{
-    transform: rotate(0deg) translateY(0) !important;
+#card-spread-container.is-collapsed .tarot-card-container {
+    transform: rotate(0deg) !important;
+    transform: translateY(0);
     transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-#card-spread-container.is-shuffling .tarot-card-container:nth-child(even) {
-    animation: riffleEven 0.3s ease-in-out infinite;
+#card-spread-container.is-shuffling:nth-child(even) {
+    animation: riffleEven 5s ease-in-out infinite;
 }
 
-#card-spread-container.is-shuffling .tarot-card-container:nth-child(odd) {
-    animation: riffleOdd 0.3s ease-in-out infinite;
+#card-spread-container.is-shuffling:nth-child(odd) {
+    animation: riffleOdd 5s ease-in-out infinite;
 }
 
 @keyframes riffleEven {
-    0%, 100% {
-        transform: rotate(0deg) translateY(0);
+
+    0%,
+    100% {
+        transform: rotate(0deg) translateX(0);
         z-index: 10;
     }
+
     50% {
-        transform: rotate(0deg) translateY(-50px);
+        transform: rotate(0deg) translateX(-50px);
         z-index: 30;
     }
 }
 
 @keyframes riffleOdd {
-    0%, 100% {
-        transform: rotate(0deg) translateY(0);
+
+    0%,
+    100% {
+        transform: rotate(0deg) translateX(0);
         z-index: 10;
     }
+
     50% {
-        transform: rotate(0deg) translateY(50px);
+        transform: rotate(0deg) translateX(50px);
         z-index: 30;
     }
 }
@@ -1340,6 +1440,111 @@ READING CHAMBER CSS
     background-clip: text;
     -webkit-text-fill-color: transparent;
     overflow-y: scroll;
+}
+
+/* ====================================== */
+/* SIDE INNER SANCTUM (WE GOT THIS maybe) */
+/* ====================================== */
+
+.sanctum-chamber {
+    grid-column: 2;
+    grid-row: 1;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    padding: 2em;
+    box-sizing: border-box;
+}
+
+#return-dash-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.sanctum-layout {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding-top: 5rem;
+    gap: 5rem;
+}
+
+.sanctum-preview {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.sanctum-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+}
+
+.sanctum-content .user-title {
+    text-align: left;
+    font-size: 56px;
+}
+
+#sanctum-subtitle {
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.reading-feed {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-right: 1rem;
+}
+
+.reading-entry {
+    border-bottom: 1px solid rgba(207, 131, 148, 0.3);
+    padding-bottom: 1rem;
+}
+
+.reading-date {
+    text-align: center;
+    font-family: "Jaini", system-ui;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    background: linear-gradient(180deg, #CF8394 30.95%, #F4CFD5 63.1%, #CF8394 95.24%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.reading-cards {
+    text-align: center;
+    font-family: "Jim Nightshade";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    background: linear-gradient(180deg, #CF8394 15.56%, #F4CFD5 48.89%, #CF8394 82.22%);
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.reading-preview{
+    color: #F4CFD5;
+text-align: center;
+font-family: "Jim Nightshade", cursive;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
 }
 
 #footer-container {
