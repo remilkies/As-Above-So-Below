@@ -75,6 +75,62 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     initTarotFlow();
+
+    // ==================================
+    // SAVED READINGS CAROUSEL :D
+    // ==================================
+    const carousel = document.getElementById('reading-carousel');
+    if (!carousel) return;
+
+    const entries = Array.from(carousel.querySelectorAll('.sanctum-entry'));
+    let currentIndex = 0 //most recnt enrty on def
+
+
+    function updateCarousel(activeIndex) {
+        entries.forEach((entry, index) => {
+
+            const offset = index - activeIndex;
+
+
+
+            if (offset === 0) {
+                entry.classList.add('active');
+                entry.style.transform = `translateX(0) scale(1.05) translateZ(50px)`;
+                entry.style.opacity = '1';
+                entry.style.zIndex = '10';
+            } else {
+                // side entries: pushed left/right back and rotate
+                const direction = offset > 0 ? 1 : -1;
+                const translateX = 380 * offset; //gap
+                const translateZ = -200 * Math.abs(offset); //depth
+                const rotateY = -40 * direction; //wheel angle
+
+                entry.style.transform = `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg)`;
+
+                // back cards fade
+                entry.style.opacity = Math.abs(offset) > 2 ? '0' : '0.5';
+                entry.style.zIndex = 10 - Math.abs(offset);
+                // now that i think about it i could've poached bootsrap but it's not as customisable i think T-T
+            }
+        });
+    }
+
+    updateCarousel(currentIndex);
+
+    //click handler
+    entries.forEach((entry, index) => {
+        entry.addEventListener('click', (e) => {
+
+            if (index !== currentIndex) {//click card spinnn wheel
+                currentIndex = index;
+                updateCarousel(currentIndex);
+            } else if (e.target.classList.contains('view-reading-btn')) {
+                const readingId = entry.dataset.id;
+                console.log('🔮 Summoning full reading for: ', readingId);
+                // transition trigger to full reading view o7
+            }
+        })
+    })
 });
 
 
@@ -366,4 +422,10 @@ function revealReading(cards) {
 
 }
 
+// ==================================
+// SAVED READINGS CAROUSEL :D
+// ==================================
 
+document.addEventListener('DOMContentLoaded', () => {
+
+})
