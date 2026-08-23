@@ -89,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateCarousel(activeIndex) {
         entries.forEach((entry, index) => {
 
+
             const offset = index - activeIndex;
 
 
@@ -99,9 +100,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 entry.style.opacity = '1';
                 entry.style.zIndex = '10';
             } else {
+                entry.classList.remove('active');
                 // side entries: pushed left/right back and rotate
                 const direction = offset > 0 ? 1 : -1;
-                const translateX = 380 * offset; //gap
+                const translateX = 15 * offset; //gap
                 const translateZ = -200 * Math.abs(offset); //depth
                 const rotateY = -40 * direction; //wheel angle
 

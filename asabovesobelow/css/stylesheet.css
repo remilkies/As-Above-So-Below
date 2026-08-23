@@ -1463,11 +1463,12 @@ READING CHAMBER CSS
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    font-size: 1rem;
 }
 
 .desktop-carousel {
     width: 100%;
-    height: 60vh;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1480,12 +1481,11 @@ READING CHAMBER CSS
 .sanctum-feed {
     display: flex;
     align-items: center;
-    gap: 3rem;
+    gap: 1rem;
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sanctum-entry {
-    position: absolute;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -1523,6 +1523,7 @@ READING CHAMBER CSS
     padding: 2rem 3rem;
     box-shadow: 0 0 20px rgba(242, 203, 209, 0.2);
     z-index: 10;
+    justify-content: center;
 
 }
 
@@ -1548,8 +1549,34 @@ READING CHAMBER CSS
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* justify-content: center; */
 }
 
+.sanctum-date{
+    text-align: center;
+font-family: "Jaini", system-ui;
+font-size: 32px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+
+background: linear-gradient(180deg, #CF8394 30.95%, #F4CFD5 63.1%, #CF8394 95.24%);
+
+-webkit-background-clip: text;
+background-clip: text;
+-webkit-text-fill-color: transparent;
+
+}
+
+.reading-preview{
+    color: #F4CFD5;
+text-align: center;
+font-family: "Jim Nightshade",cursive;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
 .view-reading-btn {
     opacity: 0;
     pointer-events: none;
@@ -1561,6 +1588,8 @@ READING CHAMBER CSS
 .sanctum-entry.active .view-reading-btn {
     opacity: 1;
     pointer-events: auto;
+    display: flex;
+    justify-content: center !important;
 }
 
 @media (max-width: 768px) {
