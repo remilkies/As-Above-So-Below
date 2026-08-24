@@ -96,18 +96,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (offset === 0) {
                 entry.classList.add('active');
-                entry.style.transform = `translateX(0) scale(1.05) translateZ(50px)`;
+                entry.style.transform = `translate(-50%, -50%) scale(1.05) translateZ(50px)`;
                 entry.style.opacity = '1';
                 entry.style.zIndex = '10';
             } else {
                 entry.classList.remove('active');
                 // side entries: pushed left/right back and rotate
                 const direction = offset > 0 ? 1 : -1;
-                const translateX = 15 * offset; //gap
-                const translateZ = -200 * Math.abs(offset); //depth
-                const rotateY = -40 * direction; //wheel angle
+                const translateX = 550 * offset; //gap
+                const translateZ = -250 * Math.abs(offset); //depth
+                const rotateY = -35 * direction; //wheel angle
 
-                entry.style.transform = `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg)`;
+                entry.style.transform = `translate(-50%, -50%) translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg)`;
 
                 // back cards fade
                 entry.style.opacity = Math.abs(offset) > 2 ? '0' : '0.5';

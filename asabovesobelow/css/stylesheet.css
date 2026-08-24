@@ -29,7 +29,7 @@ h2 {
     font-weight: 400;
     line-height: normal;
 
-    background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
+    background: linear-gradient(180deg, #CF8394 17.31%, #F4CFD5 51.92%, #CF8394 83.17%);
     -webkit-background-clip: text;
     background-clip: text;
 
@@ -72,7 +72,7 @@ input[type="submit"],
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
+    background: linear-gradient(180deg, #CF8394 17.31%, #F4CFD5 51.92%, #CF8394 83.17%);
     -webkit-background-clip: text;
     background-clip: text;
 
@@ -121,7 +121,7 @@ input[type="submit"],
 
     background: radial-gradient(circle at center,
             #CF8394 17.31%,
-            #E5C1C0 51.92%,
+            #F4CFD5 51.92%,
             #CF8394 83.17%,
             rgba(207, 131, 148, 0) 100%);
 
@@ -190,7 +190,7 @@ input[type="submit"],
     font-weight: 400;
     line-height: normal;
     width: 360px;
-    background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
+    background: linear-gradient(180deg, #CF8394 17.31%, #F4CFD5 51.92%, #CF8394 83.17%);
 
     -webkit-background-clip: text;
     background-clip: text;
@@ -202,7 +202,7 @@ input[type="submit"],
 .meet-fate-btn {
     padding: 0 15px;
     border-radius: 25.5px;
-    background: linear-gradient(270deg, #D08596 0%, #F2CBD1 50%, #D08596 100%);
+    background: linear-gradient(270deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
     color: url('../assets/nebulaFill.png');
 }
 
@@ -240,7 +240,7 @@ input[type="submit"],
 
 
 .meet-fate-btn:hover h3 {
-    background: linear-gradient(90deg, #D08596 0%, #F2CBD1 50%, #D08596 100%);
+    background: linear-gradient(90deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
 
     -webkit-background-clip: text;
     background-clip: text;
@@ -431,7 +431,7 @@ TAROT WHEEL >:D
     font-weight: 400;
     line-height: normal;
 
-    background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
+    background: linear-gradient(180deg, #CF8394 17.31%, #F4CFD5 51.92%, #CF8394 83.17%);
 
     -webkit-background-clip: text;
     background-clip: text;
@@ -446,7 +446,7 @@ TAROT WHEEL >:D
     font-weight: 400;
     line-height: normal;
 
-    background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
+    background: linear-gradient(180deg, #CF8394 17.31%, #F4CFD5 51.92%, #CF8394 83.17%);
 
     -webkit-background-clip: text;
     background-clip: text;
@@ -501,7 +501,7 @@ TAROT WHEEL >:D
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
+    background: linear-gradient(180deg, #CF8394 17.31%, #F4CFD5 51.92%, #CF8394 83.17%);
 
     -webkit-background-clip: text;
     background-clip: text;
@@ -560,7 +560,7 @@ TAROT WHEEL >:D
     - gradient border colours (extends to border-box 
     */
     background: linear-gradient(#111111, #111111) padding-box,
-        linear-gradient(270deg, #D08596 0%, #F2CBD1 50%, #D08596 100%) border-box;
+        linear-gradient(270deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%) border-box;
     /* figers crossed this works, i could just google the answer genuinly but whatever I'm subborn */
     color: #CF8394 !important;
     padding: 15px;
@@ -596,7 +596,7 @@ button {
 
 .submit-btn {
     border-radius: 50px;
-    background: linear-gradient(270deg, #D08596 0%, #F2CBD1 50%, #D08596 100%);
+    background: linear-gradient(270deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
     text-align: center;
     font-family: "Jaini", system-ui;
     font-size: 2.25rem;
@@ -633,7 +633,7 @@ button {
 }
 
 .submit-btn p:hover {
-    background: linear-gradient(90deg, #D08596 0%, #F2CBD1 50%, #D08596 100%);
+    background: linear-gradient(90deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
 
     -webkit-background-clip: text;
     background-clip: text;
@@ -741,7 +741,7 @@ DASBOARD CSS
 }
 
 .chamber-header {
-    position: relative;
+    position: absolute;
     /*sorry for using absolute but i gotta for this to work and pin the corners to the absolute top*/
     top: 0;
     left: 0;
@@ -815,7 +815,7 @@ DASBOARD CSS
     - gradient border colours (extends to border-box 
     */
     background: linear-gradient(#111111, #111111) padding-box,
-        linear-gradient(270deg, #D08596 0%, #F2CBD1 50%, #D08596 100%) border-box;
+        linear-gradient(270deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%) border-box;
     /* figers crossed this works, i could just google the answer genuinly but whatever I'm subborn */
     color: #CF8394 !important;
     padding: 10px 60px;
@@ -845,7 +845,7 @@ DASBOARD CSS
         - gradient border colours (extends to border-box 
         */
     background: linear-gradient(#ffffff00, #ffffff00) padding-box,
-        linear-gradient(270deg, #D08596 0%, #F2CBD1 50%, #D08596 100%) border-box;
+        linear-gradient(270deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%) border-box;
     /* figers crossed this works, i could just google the answer genuinly but whatever I'm subborn */
 
     text-align: center;
@@ -873,7 +873,7 @@ DASBOARD CSS
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
+    background: linear-gradient(180deg, #CF8394 17.31%, #F4CFD5 51.92%, #CF8394 83.17%);
 
     -webkit-background-clip: text;
     background-clip: text;
@@ -1183,7 +1183,7 @@ BOTTOM CHAMBER CSS
 .question-text {
     font-family: 'Jim Nightshade', cursive;
     font-size: 1.8rem;
-    color: #E5C1C0;
+    color: #F4CFD5;
     text-align: center;
 }
 
@@ -1321,7 +1321,7 @@ EXIT, SHUFFLE, SPIN-OUT ANIMATIONS CSS (HAVE MERCY)
 .loading-bar-fill {
     width: 0%;
     height: 100%;
-    background: linear-gradient(90deg, #D08596 0%, #F2CBD1 50%, #D08596 100%);
+    background: linear-gradient(90deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
     transition: width 3.5s linear;
 }
 
@@ -1404,7 +1404,7 @@ READING CHAMBER CSS
     font-weight: 400;
     line-height: normal;
 
-    background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
+    background: linear-gradient(180deg, #CF8394 17.31%, #F4CFD5 51.92%, #CF8394 83.17%);
 
     -webkit-background-clip: text;
     background-clip: text;
@@ -1469,6 +1469,7 @@ READING CHAMBER CSS
 .desktop-carousel {
     width: 100%;
     height: 100%;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1479,13 +1480,22 @@ READING CHAMBER CSS
 }
 
 .sanctum-feed {
+    position: relative;
+    width: 100%;
+    height: 100%;
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 1rem;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    /* gap: 1rem; */
+    /* transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); */
 }
 
 .sanctum-entry {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -1518,8 +1528,11 @@ READING CHAMBER CSS
     transform: scale(1);
     border: 3px solid transparent;
 
-    background: rgba(17, 17, 17, 0.8) padding-box,
-        linear-gradient(270deg, #D08596 0%, #f2cbd1 50%, #D08596 100%) border-box;
+    background: 
+        linear-gradient(rgba(17, 17, 17, 0.9), rgba(17, 17, 17, 0.9)) padding-box,
+        linear-gradient(270deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%) border-box;
+
+
     padding: 2rem 3rem;
     box-shadow: 0 0 20px rgba(242, 203, 209, 0.2);
     z-index: 10;
@@ -1566,6 +1579,20 @@ background: linear-gradient(180deg, #CF8394 30.95%, #F4CFD5 63.1%, #CF8394 95.24
 background-clip: text;
 -webkit-text-fill-color: transparent;
 
+}
+
+.sanctum-cards-title {
+    text-align: center;
+font-family: "Jim Nightshade", cursive;
+font-size: 24px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+
+background: linear-gradient(180deg, #CF8394 15.56%, #F4CFD5 48.89%, #CF8394 82.22%);
+-webkit-background-clip: text;
+background-clip: text;
+-webkit-text-fill-color: transparent;
 }
 
 .reading-preview{
