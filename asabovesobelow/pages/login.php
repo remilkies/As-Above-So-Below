@@ -1,11 +1,84 @@
 <?php
 session_start();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['username'])) {
-  $_SESSION['username'] = $_POST['username'];
-  header('Location: dashboard.php');
-  exit;
+require_once __DIR__ . '/../backend/oracle.php';
+
+$error_message = '';
+$active_tab = 'login';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $action = $_POST['action'] ?? 'login';
+
+  try {
+
+    if ($action === 'login' && !empty($_POST['username']) && !empty($_POST['password'])) {
+      $active_tab = 'login';
+      $username = trim($_POST['username']);
+      $password = $_POST['password'];
+
+      $stmt = $pdo->prepare("SELECT id, username, display_name, password_hash FROM users WHERE username = :username");
+      $stmt->execute(['username' => $username]);
+      $user = $stmt->fetch();
+
+      if ($user && password_verify($password, $user['password_hash'])) {
+
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['display_name'] = $user['display_name'];
+
+        header('Location: dashboard.php');
+        exit;
+      } else {
+        $error_message = "The Oracle does not recognise the uninitiated.";
+      }
+    }
+
+
+    // ================================
+    // REGISTRATION RITUAL 
+    // ================================
+
+    if ($action === 'register' && !empty($_POST['username']) && !empty($_POST['display_name']) && !empty($_POST['password'])) {
+      $active_tab = 'register';
+      $username = trim($_POST['username']);
+      $displayName = trim($_POST['display_name']);
+      $password = $_POST['password'];
+
+
+      $cheakStmt = $pdo->prepare("SELECT id FROM users WHERE username = :username");
+      $cheakStmt->execute(['username' => $username]);
+
+      if ($cheakStmt->rowCount() > 0) {
+        $error_message = "That username is already bound to anouther seeker...";
+      } else {
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $insertStmt = $pdo->prepare("
+          INSERT INTO users (username, display_name, password_hash)
+          VALUES (:username, :display_name, :password)
+          ");
+
+        $insertStmt->execute([
+          'username' => $username,
+          'display_name' => $displayName,
+          'password' => $hashedPassword
+        ]);
+
+        // AUTO LOGIN BECUASE WE CARE ABOUT USER JOURNEY AND MAKING LIFE EASY FOR THEM TO USE >:D
+        $_SESSION['user_id'] = $pdo->lastInsertId();
+        $_SESSION['username'] = $username;
+        $_SESSION['display_name'] = $displayName;
+
+
+        header('Location: dashboard.php');
+        exit;
+      }
+    }
+  } catch (\PDOException $e) {
+    error_log("🔮 Initiation failed: " . $e->getMessage());
+    $error_message = "You seek the Oracle but the Oracle doesn't seek you. Try again.";
+  }
 }
+
 ?>
 
 <!doctype html>
@@ -44,8 +117,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['username'])) {
       <img src="../assets/trippleMoon.svg" alt="Logo" class="moon-logo">
 
       <div class="login-form">
-        <h2 class="login-title">Login</h2>
 
+      <!-- register.login tab -->
+       <div class="auth-tabs">
+        <button type="button" class="tab-btn <?php echo $active_tab === 'login' ? 'active' : ''; ?>" id="tab-login">Login</button>
+        <!-- bottomboarder be gradieint like inderline the thing and maybe add a littler indicator when you hover over it...think about that -->
+         <button type="button" class="tab-btn <?php echo $active_tab === 'register' ? 'active' : ''; ?>" id="tab-rigister">Register</button>
+       </div>
+        <h2 class="login-title">Login</h2>
+        <?php echo $error_message ?>
         <form action="login.php" method="post" class="login-field-container">
           <div class="login-field">
             <label for="username" class="login-label">Username</label>

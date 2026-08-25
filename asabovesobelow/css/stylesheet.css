@@ -1442,6 +1442,36 @@ READING CHAMBER CSS
     overflow-y: scroll;
 }
 
+.chamber-toast{
+    position: absolute;
+    top: 15vh;
+    border: 3px solid transparent;
+    background: 
+        linear-gradient(#111111, #111111) padding-box,
+        linear-gradient(270deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%) border-box;
+    box-shadow: 0 0 20px rgba(242, 203, 209, 0.2);
+
+    transform: translateY(20px);
+    transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+    z-index: 1000;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    text-align: start;
+    font-family: 'Jaini', system-ui;
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+}
+
+.chamber-toast.show{
+    transform: translate(0);
+}
+
 /* ====================================== */
 /* SIDE INNER SANCTUM (WE GOT THIS maybe) */
 /* ====================================== */

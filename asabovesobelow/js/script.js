@@ -416,6 +416,28 @@ function revealReading(cards) {
         .then(html => {
             document.getElementById('reading-text').innerHTML = html;
             console.log("🌙 The ritual is complete. The prophecy is rendered.")
+
+            console.log("🌙 Auto-binding prophecy to the oracle...")
+
+            fetch('../backend/save_reading.php', {
+                method: 'POST',
+                body: formData 
+            })
+            .then(res => {
+                if (!res.ok) throw new Error("🔮 Oracle refused the binding");
+                return res.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    console.log("🌙 Auto-save sucessful")
+
+                    const toast =document.getElementById('save-toast');
+                    toast.classList.add('show');
+
+                    setTimeout(() => toast.classList.remove('show'), 5000);
+                }
+            })
+            .catch(err => console.log("🔮 Auto-save ritual interrupted: ", err));
         })
         .catch(err => {
             console.log("🔮 Fetch ritual interrupted. Oracle unreachable", err);
@@ -424,10 +446,3 @@ function revealReading(cards) {
 
 }
 
-// ==================================
-// SAVED READINGS CAROUSEL :D
-// ==================================
-
-document.addEventListener('DOMContentLoaded', () => {
-
-})

@@ -88,9 +88,10 @@
 
 
     <!-- Reading Stage -->
-    <!-- maybeeeeee consider adding some options? like there's multiple ways to do a two card tarot spread...althoughhhh you're going to have to make s specialised generateSynthesis() structure food each one soooooo do what you will with this suggestion o7-->
+    
 
-    <!-- ADD A LITTLE TOAST THAT SAYS READING SAVED
+    <!-- ADD A LITTLE TOAST THAT SAYS 
+     🌙 READING SAVED 
      go to the inner sanctum to view past readings -->
     <div id="reading-stage" style="display: none;">
         <div class="bottom-chamber-header">
@@ -107,11 +108,11 @@
             <h2>Your Prophecy</h2>
             <h3 id="reading-subtitle"></h3>
 
-            <div id="reading-text">
+            <div id="reading-text"></div>
 
-            </div>
         </div>
 
+        <div id="save-toast" class="chamber-toast"></div>
 
     </div>
 </section>
