@@ -58,30 +58,10 @@ input[type="submit"],
 
 }
 
-.title-container {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.title {
-    font-family: "Jaini", system-ui;
-    text-align: center;
-    font-size: 64px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    background: linear-gradient(180deg, #CF8394 17.31%, #F4CFD5 51.92%, #CF8394 83.17%);
-    -webkit-background-clip: text;
-    background-clip: text;
-
-    -webkit-text-fill-color: transparent;
-    margin: 20px 0;
-}
 
 
 .lamp-wrapper {
-
+    position: relative;
     width: 314.335px;
     height: 248.632px;
     aspect-ratio: 177 / 140;
@@ -107,7 +87,7 @@ input[type="submit"],
     transform: scaleX(-1);
 }
 
-.glow {
+/* .glow {
     position: absolute;
     z-index: -1;
 
@@ -130,9 +110,9 @@ input[type="submit"],
     mix-blend-mode: screen;
     pointer-events: none;
     animation: flickerGlow 9s ease-in-out infinite;
-}
+} */
 
-@keyframes flickerGlow {
+/* @keyframes flickerGlow {
 
     0%,
     100% {
@@ -169,6 +149,93 @@ input[type="submit"],
         opacity: 0.98;
         transform: translate(-50%, -50%) scale(1.02);
     }
+}
+ */
+
+ .glow {
+    position: absolute;
+    z-index: -1;
+
+
+    top: 86%;
+    left: 65%;
+
+    width: 300px;
+    height: 150px;
+    transform: translate(-50%, -50%);
+    
+    /* ⚠️ PARENT HANDLES THE BLUR: stops CSS from scissor-chopping our fuzzy edges */
+    filter: blur(10px); 
+    mix-blend-mode: screen;
+    pointer-events: none;
+    animation: trueFlicker 4.3s infinite; /* flickery street lamp aesthetic go brrr */
+}
+
+.glow::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%; 
+
+    /* X is horizontal (0% = left edge, 100% = right edge)
+Y is vertical (0% = top edge, 100% = bottom edge) */
+    clip-path: polygon(36% 0, 63% 0, 70% 100%, 30% 100%);
+    
+
+    background: linear-gradient(
+        to bottom, 
+        rgba(207, 131, 148, 0.85) 0%, 
+        rgba(207, 131, 148, 0.186) 45%,
+        rgba(207, 131, 148, 0) 100%
+    );
+
+    /*feathering left/right cause you can't be trusted around razor sharp things -_- */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%);
+}
+
+ @keyframes trueFlicker {
+
+    0%, 9%, 13%, 49%, 54%, 95%, 100% {
+        opacity: 0.9;
+        
+        transform: translate(-50%, -50%); 
+    }
+
+    10% { opacity: 0.3; transform: translate(-50%, -50%); }
+    11% { opacity: 0.8; transform: translate(-50%, -50%); }
+    12% { opacity: 0.2; transform: translate(-50%, -50%); }
+
+    50% { opacity: 0.5; transform: translate(-50%, -50%); }
+    51% { opacity: 0.9; transform: translate(-50%, -50%); }
+    52% { opacity: 0.4; transform: translate(-50%, -50%); }
+    53% { opacity: 0.8; transform: translate(-50%, -50%); }
+
+
+    96% { opacity: 0.6; transform: translate(-50%, -50%); }
+    97% { opacity: 0.9; transform: translate(-50%, -50%); }
+}
+
+.title-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.title {
+    font-family: "Jaini", system-ui;
+    text-align: center;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    background: linear-gradient(180deg, #CF8394 17.31%, #F4CFD5 51.92%, #CF8394 83.17%);
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+    margin: 20px 0;
 }
 
 /* ============================= */
@@ -472,15 +539,15 @@ TAROT WHEEL >:D
 .moon-logo {
     width: 179px;
     height: auto;
-    position: absolute;
-    transform: translateY(-270px);
+    
+    margin-bottom: 20px;
 }
 
 .border-wrapper {
     height: 100vh;
     background-image: url(../assets/dashedBorder.svg);
-    background-attachment: fixed;
-    background-position: center;
+    /* background-attachment: fixed; */
+    background-position: center center;
     background-size: contain;
     background-repeat: no-repeat;
     display: flex;
@@ -523,28 +590,55 @@ TAROT WHEEL >:D
 .auth-tabs {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: 3rem; 
     margin-bottom: 1.5rem;
 }
 .tab-btn{
     background: none;
     border: none;
-    font-size: 1.3rem;
-    transition: color 0.3s ease;
+    font-size: 1.4rem; 
+    color: #CF8394; 
+    position: relative;
+    padding-bottom: 12px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
 }
-.tab-btn.active{
-    color: #F4CFD5;
-    border-bottom: 2px solid transparent;
 
-    background: linear-gradient(180deg, #CF8394 17.31%, #F4CFD5 51.92%, #CF8394 83.17%) border-box;
+
+.tab-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0; 
+    height: 2px;
+    background: linear-gradient(270deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
+    transition: width 0.3s ease; 
+    border-radius: 50px;
+}
+
+.tab-btn:hover {
+    color: #F4CFD5;
+}
+
+.tab-btn:hover::after {
+    width: 40%;
+}
+
+.tab-btn.active {
+    color: #F4CFD5;
+    text-shadow: 0 0 8px rgba(244, 207, 213, 0.3); 
+}
+
+.tab-btn.active::after {
+    width: 100%; /* Full width when active */
 }
 
 .login-form {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    gap: 40px;
-    width: 450px;
+    max-width: 450px;
 }
 
 .login-field-container {
@@ -566,7 +660,7 @@ TAROT WHEEL >:D
 
 .login-label {
     font-family: "Jim Nightshade", cursive;
-    font-size: 2.25rem;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -678,8 +772,7 @@ button {
     }
 
     .lamp-wrapper {
-        position: absolute;
-        width: 200px;
+        width: auto;
         height: 158px;
     }
 
@@ -687,12 +780,6 @@ button {
         background: none;
     }
 
-
-
-
-    .login-container{
-        
-    }
     .login-field-container {
         margin-top: -6rem;
     }
@@ -719,11 +806,6 @@ button {
         width: 350px;
     }
 
-    .lamp-wrapper {
-        position: absolute;
-        width: auto;
-        height: 125px;
-    }
 
     .glow {
         width: 60px;

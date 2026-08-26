@@ -149,6 +149,14 @@ CREATE TABLE readings (
     FOREIGN KEY (card_b_id) REFERENCES cards(id)
 );
 
+INSERT INTO users (username, display_name, password_hash) 
+VALUES ('seeker', 'Mystic Seeker', '$2y$10$e0MYzXyjpJS7Pd0RVvHwHe1aQ1N.Yq.8Zq3X1N.Yq.8Zq3X1N.Yq');
+
+INSERT INTO readings (user_id, card_a_id, card_a_reversed, card_b_id, card_b_reversed, created_at) VALUES
+(1, '16_TheTower', 0, '1_Cups', 0, NOW()),                                 
+(1, '2_Cups', 0, '5_Swords', 1, NOW() - INTERVAL 1 DAY),                   
+(1, '3_Cups', 0, '7_Cups', 0, NOW() - INTERVAL 2 DAY);
+
 -- SET GLOBAL event_scheduler = ON; -- shoutout mySQL task schedulaer (if it works (please work))
 -- -- UGHHHHHHHHHHHHHHHHHHHHHHHHHHError: Event Scheduler: An error occurred when initializing system tables. Disabling the Event Scheduler
 

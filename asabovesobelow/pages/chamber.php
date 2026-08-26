@@ -44,7 +44,7 @@
     <div id="loading-stage" style="display: none;">
         <div class="bottom-chamber-header">
             <img src="/assets/trippleMoon.svg" alt="Maiden Mother Crone" class="header-icon">
-            <>The tripple monn is a reminder that we are all three. <br> You are the dreamer, the nurtuer, and the wise one. <br> honor every phase of yourself, as the moon honours every phase of life </p>  <!-- <3 -->
+            <p>The tripple monn is a reminder that we are all three. <br> You are the dreamer, the nurtuer, and the wise one. <br> honor every phase of yourself, as the moon honours every phase of life </p>  <!-- <3 -->
             <button id="ascend-btn" class="aasb-btn">Ascend</button>
         </div>
         <h2 class="loading-title">Synthesising Reading...</h2>
@@ -65,7 +65,7 @@
             <div class="tarot-card-container loading-card" id="loading-card-2">
                 <div class="tarot-card-flipper">
                     <div class="card-face card-back">
-                        <img src="../assets/cardBack.png" id="loading-img-2" alt="Card 2" />
+                        <img src="../assets/cardBack.png" alt="Card 2" />
                     </div>
 
                     <div class="card-face card-front">
@@ -88,12 +88,8 @@
 
 
 
-    <!-- Reading Stage -->
-    
 
-    <!-- ADD A LITTLE TOAST THAT SAYS 
-     🌙 READING SAVED 
-     go to the inner sanctum to view past readings -->
+
     <div id="reading-stage" style="display: none;">
         <div class="bottom-chamber-header">
             <img src="/assets/trippleMoon.svg" alt="Maiden Mother Crone" class="header-icon">
