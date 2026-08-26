@@ -116,7 +116,7 @@ ON DUPLICATE KEY UPDATE meaning = VALUES(meaning);
 -- ✨ Specific Cards ✨
 INSERT INTO cards (id, suit_id, rank_id, numerology_id, arcana_id, card_meaning, card_meaning_reversed) VALUES
 ('5_Swords', 'swords', NULL, 5, 'minor', 'a hollow victory won at a high cost, urging you to choose your battles wisely', NULL),
-('16_TheTower', NULL, NULL, 16, 'major', 'if it all falls apart, consider that maybe it wasn''t that well built to begin with. Let go when the tower finally falls, in the rubble you will find your freedom', 'averting disaster at the last moment, or an internal fear of inevitable change.'),
+('16_TheTower', NULL, NULL, 16, 'major', "if it all falls apart, consider that maybe it wasn''t that well built to begin with. Seekers fear this card because of it's connotation of destruction, but it's truth is you cannot destory that which never existed. The lightning strike may look like a violent toppeling of a sound structure but this structure is no longer sound, it no longer serves you anymore. False or not, destruction may hurt, it may be uncomfrotable but the tower won't alow you to be comfortable on unstable land in a reality that never was. This is you're awakening, once the dust clears you'll have the clarity to see beyond your beliefs and what you percieved as the end was actully the begining. Let go when the tower finally falls, in the rubble you will find your freedom-- Don't forget to yell JENGA", 'averting disaster at the last moment, or an internal fear of inevitable change.'),
 ('11_Justice', NULL, NULL, 11, 'major', 'a cosmic audit, asking, “Are your choices matching your values?” See things as they actually are now, and trust that truth has a longer arc than luck', NULL),
 ('1_Cups', 'cups', NULL, 1, 'minor', 'a flood of raw emotion, new love, and an overwhelming overflow of intuitive potential', NULL),
 ('2_Cups', 'cups', NULL, 2, 'minor', 'a sacred partnership, deep mutual connection, and the harmonizing of two aligned souls', NULL),
@@ -125,7 +125,7 @@ INSERT INTO cards (id, suit_id, rank_id, numerology_id, arcana_id, card_meaning,
 ('5_Cups', 'cups', NULL, 5, 'minor', 'grief and regret over spilled energy, forgetting that while some cups are empty, others still stand full', NULL),
 ('6_Cups', 'cups', NULL, 6, 'minor', 'sweet nostalgia, innocent memories, and returning to the roots of simple, uncomplicating joy', NULL),
 ('7_Cups', 'cups', NULL, 7, 'minor', 'dazzling illusions, endless daydreams, and the paralysis of having too many tempting choices', NULL)
-On DUPLICATE KEY UPDATE id = VALUES(id);
+ON DUPLICATE KEY UPDATE card_meaning = VALUES(card_meaning);
 -- REALM OF MORTALS AND MEMEORIES
 -- ===============================
 CREATE TABLE users (

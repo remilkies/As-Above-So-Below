@@ -52,10 +52,9 @@ input[type="submit"],
 .header-container {
     position: relative;
     width: 100vw;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-areas: "stack";
+    z-index: -1;
 
 }
 
@@ -82,29 +81,31 @@ input[type="submit"],
 
 
 .lamp-wrapper {
-    position: absolute;
+
     width: 314.335px;
     height: 248.632px;
     aspect-ratio: 177 / 140;
+
+    grid-area: stack;
 }
 
 .lamp {
     width: 100%;
     height: 100%;
     display: block;
+    
 }
 
 #left-lamp {
-    top: 0;
-    left: 0;
+    justify-self: start;
+    align-self: start;
 }
 
 #right-lamp {
-    top: 0;
-    right: 0;
+ justify-self: end;
+ align-self: start;
     transform: scaleX(-1);
 }
-
 
 .glow {
     position: absolute;
@@ -346,12 +347,15 @@ TAROT WHEEL >:D
 
 .tarot-wheel-container {
     position: relative;
-    width: auto;
+    width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
+
+    /* background-image: url(../assets/dashedBorder.svg); */
+
 }
 
 .wheel-center-content {
@@ -376,7 +380,7 @@ TAROT WHEEL >:D
     /* Calculate angle: (360deg / total cards) * current index */
     /* Rotate to angle, then translate up to form radius */
     transform:
-        rotate(calc((360deg / var(--total)) * var(--i))) translateY(-360px);
+        rotate(calc((360deg / var(--total)) * var(--i))) translateY(-230px);
     /* Adjust circle radius */
 
     transform-origin: center center;
@@ -387,7 +391,7 @@ TAROT WHEEL >:D
 .wheel-card:hover {
     z-index: 20;
     transform:
-        rotate(calc((360deg / var(--total)) * var(--i))) translateY(-390px)
+        rotate(calc((360deg / var(--total)) * var(--i))) translateY(-250px)
         /* scale(1.08) */
     ;
 }
@@ -516,6 +520,25 @@ TAROT WHEEL >:D
     -webkit-text-fill-color: transparent;
 }
 
+.auth-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+.tab-btn{
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    transition: color 0.3s ease;
+}
+.tab-btn.active{
+    color: #F4CFD5;
+    border-bottom: 2px solid transparent;
+
+    background: linear-gradient(180deg, #CF8394 17.31%, #F4CFD5 51.92%, #CF8394 83.17%) border-box;
+}
+
 .login-form {
     display: flex;
     justify-content: center;
@@ -535,6 +558,10 @@ TAROT WHEEL >:D
     display: flex;
     flex-direction: column;
 
+}
+
+.login-field.hidden{
+    display: none !important;
 }
 
 .login-label {
@@ -606,6 +633,7 @@ button {
     width: 214px;
     height: 53px;
     padding-bottom: 55px;
+    margin: 0 auto;
 }
 
 .submit-btn p {
@@ -640,7 +668,10 @@ button {
     -webkit-text-fill-color: transparent;
 }
 
-/* MOBILE LOGIN */
+/* =========================================
+   MOBILE RESPONSIVENESS 
+   ========================================= */
+
 @media (max-width: 768px) {
     .login-form {
         width: 350px;
@@ -652,12 +683,18 @@ button {
         height: 158px;
     }
 
-    .login-field-container {
-        margin-top: -6rem;
+    .border-wrapper{
+        background: none;
     }
 
-    .login-container {
-        margin-top: 13rem;
+
+
+
+    .login-container{
+        
+    }
+    .login-field-container {
+        margin-top: -6rem;
     }
 
     .login-title {
@@ -670,8 +707,58 @@ button {
         font-size: 1.5rem;
     }
 
+    .submit-btn {
+
+        margin: 0 auto;
+    }
+
+}
+
+@media (max-width: 414px) {
+    .login-form {
+        width: 350px;
+    }
+
+    .lamp-wrapper {
+        position: absolute;
+        width: auto;
+        height: 125px;
+    }
+
+    .glow {
+        width: 60px;
+        height: 75px;
+
+    }
 
 
+.login-container{
+    padding: 0 !important;
+}
+    .login-form {
+        width: 100%; 
+        padding: 0 25px; 
+        box-sizing: border-box; /*  padding doesn't add to  width */
+    }
+
+    .login-title {
+
+        font-size: 3rem;
+    }
+
+    .login-label {
+
+        font-size: 1.8rem;
+    }
+
+    .submit-btn {
+
+        margin: 0 auto;
+    }
+    
+    .submit-btn p {
+        font-size: 1.8rem; 
+    }
 }
 
 /* ==========================
@@ -941,6 +1028,14 @@ DASBOARD CSS
     .window-container {
         display: none;
     }
+}
+
+@media (max-width: 414px) {
+    .corner-wrapper {
+        height: 150px;
+        aspect-ratio: 177 / 140;
+    }
+
 }
 
 /* ==========================

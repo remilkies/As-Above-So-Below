@@ -90,13 +90,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../css/stylesheet.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <title>as-above--so-below</title>
+  <title>The Crossroads</title>
 </head>
 
 <body>
 
 
-  <header>
+
     <!-- MAYBE MAKE THIS A REUSABLE COMPONENET SO WE CAN GLOBALLY ANCHOR IT ON EVERY PAGE?? -->
     <div class="header-container">
 
@@ -111,22 +111,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="glow"></div>
       </div>
     </div>
-  </header>
+
   <div class="border-wrapper">
     <div class="login-container">
       <img src="../assets/trippleMoon.svg" alt="Logo" class="moon-logo">
 
       <div class="login-form">
 
-      <!-- register.login tab -->
-       <div class="auth-tabs">
-        <button type="button" class="tab-btn <?php echo $active_tab === 'login' ? 'active' : ''; ?>" id="tab-login">Login</button>
-        <!-- bottomboarder be gradieint like inderline the thing and maybe add a littler indicator when you hover over it...think about that -->
-         <button type="button" class="tab-btn <?php echo $active_tab === 'register' ? 'active' : ''; ?>" id="tab-rigister">Register</button>
-       </div>
-        <h2 class="login-title">Login</h2>
-        <?php echo $error_message ?>
-        <form action="login.php" method="post" class="login-field-container">
+        <!-- register.login tab -->
+        <div class="auth-tabs">
+          <button type="button" class="tab-btn <?php echo $active_tab === 'login' ? 'active' : ''; ?>" id="tab-login">Login</button>
+          <!-- bottomboarder be gradieint like inderline the thing and maybe add a littler indicator when you hover over it...think about that -->
+          <button type="button" class="tab-btn <?php echo $active_tab === 'register' ? 'active' : ''; ?>" id="tab-register">Register</button>
+        </div>
+
+        <?php if (!empty($error_message)): ?>
+        <p style="color: #CF8394; text-align: center; font-family: 'Jim Nightshade', cursive; font-size: 1.1rem;">
+          <?php echo htmlspecialchars($error_message); ?>
+        </p>
+        <?php endif; ?>
+
+        <h2 class="login-title" id="form-title"><?php echo $active_tab === 'login' ? 'Login' : 'Initiation'; ?></h2>
+        <?php echo $error_message; ?>
+        <form action="login.php" method="post" class="login-field-container" id="auth-form">
+          <input type="hidden" name="action" id="form-action" value="<?php echo $active_tab; ?>">
+
+          <div class="login-field <?php echo $active_tab === 'login'? 'hidden' : ''; ?>" id="display-name">
+            <label for="display_name" class="login-label">Display Name</label>
+            <input type="text" class="login-control" id="display_name" name="display_name">
+          </div>
+
           <div class="login-field">
             <label for="username" class="login-label">Username</label>
             <input type="text" class="login-control" id="username" name="username" required>
@@ -146,8 +160,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </div>
 
 
-          <button type="submit" class="submit-btn">
-            <p>Login</p>
+          <button type="submit" class="submit-btn" id="submit-btn">
+            <p id="submit-text"><?php echo $active_tab === 'login' ? 'Login' : 'Register'; ?></p>
           </button>
         </form>
 

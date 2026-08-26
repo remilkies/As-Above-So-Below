@@ -44,6 +44,7 @@
     <div id="loading-stage" style="display: none;">
         <div class="bottom-chamber-header">
             <img src="/assets/trippleMoon.svg" alt="Maiden Mother Crone" class="header-icon">
+            <>The tripple monn is a reminder that we are all three. <br> You are the dreamer, the nurtuer, and the wise one. <br> honor every phase of yourself, as the moon honours every phase of life </p>  <!-- <3 -->
             <button id="ascend-btn" class="aasb-btn">Ascend</button>
         </div>
         <h2 class="loading-title">Synthesising Reading...</h2>

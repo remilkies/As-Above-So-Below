@@ -5,7 +5,7 @@
             ←Return to Dashboard
         </button>
         <div class="header-text">
-            <h1 class="user-title"><?php echo htmlspecialchars($displayName); ?> Inner Sanctum</h1>
+            <h1 class="user-title"><?php echo htmlspecialchars($displayName) . "'s"; ?> Inner Sanctum</h1>
             <h3 id="sanctum-subtitle">Past Prophecies</h3>
         </div>
     </div>

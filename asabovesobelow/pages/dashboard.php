@@ -1,6 +1,6 @@
 <?php
 session_start();
-$displayName = $_SESSION['username'] ?? 'Seeker';
+$displayName = $_SESSION['display_name'] ?? 'Seeker';
 ?>
 
 <!doctype html>

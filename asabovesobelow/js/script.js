@@ -33,7 +33,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const tabLogin = document.getElementById('tab-login');
+    const tabRegister = document.getElementById('tab-register');
+    const displayName = document.getElementById('display-name');
+    const displayNameInput = document.getElementById('display_name');
+    const formAction = document.getElementById('form-action');
+    const submitText = document.getElementById('submit-text');
 
+    if (tabLogin){
+    tabLogin.addEventListener('click', () => {
+        tabLogin.classList.add('active');
+        tabRegister.classList.remove('active');
+        displayName.classList.add('hidden');
+        displayNameInput.removeAttribute('required');
+        formAction.value = 'login';
+        submitText.textContent = 'Login';
+        if (formTitle) formTitle.textContent = 'Login'
+    });
+    }
+    if (tabRegister){
+    tabRegister.addEventListener('click', () => {
+        tabRegister.classList.add('active');
+        tabLogin.classList.remove('active');
+        displayName.classList.remove('hidden');
+        displayNameInput.setAttribute('required', 'required');
+        formAction.value = 'register';
+        submitText.textContent = 'Register';
+        if (formTitle) formTitle.textContent = 'Initiation';
+    });
+}
 
     const stage = document.getElementById('stage');
     const descendBtn = document.getElementById('descend-btn');
