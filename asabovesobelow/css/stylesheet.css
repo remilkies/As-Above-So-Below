@@ -29,7 +29,7 @@ h2 {
     font-weight: 400;
     line-height: normal;
 
-    background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
+    background: linear-gradient(180deg, #CF8394 17.31%, #F4CFD5 51.92%, #CF8394 83.17%);
     -webkit-background-clip: text;
     background-clip: text;
 
@@ -52,61 +52,42 @@ input[type="submit"],
 .header-container {
     position: relative;
     width: 100vw;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-areas: "stack";
+    z-index: -1;
 
 }
 
-.title-container {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.title {
-    font-family: "Jaini", system-ui;
-    text-align: center;
-    font-size: 64px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
-    -webkit-background-clip: text;
-    background-clip: text;
-
-    -webkit-text-fill-color: transparent;
-    margin: 20px 0;
-}
 
 
 .lamp-wrapper {
-    position: absolute;
+    position: relative;
     width: 314.335px;
     height: 248.632px;
     aspect-ratio: 177 / 140;
+
+    grid-area: stack;
 }
 
 .lamp {
     width: 100%;
     height: 100%;
     display: block;
+
 }
 
 #left-lamp {
-    top: 0;
-    left: 0;
+    justify-self: start;
+    align-self: start;
 }
 
 #right-lamp {
-    top: 0;
-    right: 0;
+    justify-self: end;
+    align-self: start;
     transform: scaleX(-1);
 }
 
-
-.glow {
+/* .glow {
     position: absolute;
     z-index: -1;
 
@@ -121,7 +102,7 @@ input[type="submit"],
 
     background: radial-gradient(circle at center,
             #CF8394 17.31%,
-            #E5C1C0 51.92%,
+            #F4CFD5 51.92%,
             #CF8394 83.17%,
             rgba(207, 131, 148, 0) 100%);
 
@@ -129,9 +110,9 @@ input[type="submit"],
     mix-blend-mode: screen;
     pointer-events: none;
     animation: flickerGlow 9s ease-in-out infinite;
-}
+} */
 
-@keyframes flickerGlow {
+/* @keyframes flickerGlow {
 
     0%,
     100% {
@@ -169,6 +150,132 @@ input[type="submit"],
         transform: translate(-50%, -50%) scale(1.02);
     }
 }
+ */
+
+.glow {
+    position: absolute;
+    z-index: -1;
+
+
+    top: 86%;
+    left: 65%;
+
+    width: 300px;
+    height: 150px;
+    transform: translate(-50%, -50%);
+
+    /* ⚠️ PARENT HANDLES THE BLUR: stops CSS from scissor-chopping our fuzzy edges */
+    filter: blur(10px);
+    mix-blend-mode: screen;
+    pointer-events: none;
+    animation: trueFlicker 4.3s infinite;
+    /* flickery street lamp aesthetic go brrr */
+}
+
+.glow::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+
+    /* X is horizontal (0% = left edge, 100% = right edge)
+Y is vertical (0% = top edge, 100% = bottom edge) */
+    clip-path: polygon(36% 0, 63% 0, 70% 100%, 30% 100%);
+
+
+    background: linear-gradient(to bottom,
+            rgba(207, 131, 148, 0.85) 0%,
+            rgba(207, 131, 148, 0.186) 45%,
+            rgba(207, 131, 148, 0) 100%);
+
+    /*feathering left/right cause you can't be trusted around razor sharp things -_- */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%);
+}
+
+@keyframes trueFlicker {
+
+    0%,
+    9%,
+    13%,
+    49%,
+    54%,
+    95%,
+    100% {
+        opacity: 0.9;
+
+        transform: translate(-50%, -50%);
+    }
+
+    10% {
+        opacity: 0.3;
+        transform: translate(-50%, -50%);
+    }
+
+    11% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%);
+    }
+
+    12% {
+        opacity: 0.2;
+        transform: translate(-50%, -50%);
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%);
+    }
+
+    51% {
+        opacity: 0.9;
+        transform: translate(-50%, -50%);
+    }
+
+    52% {
+        opacity: 0.4;
+        transform: translate(-50%, -50%);
+    }
+
+    53% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%);
+    }
+
+
+    96% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%);
+    }
+
+    97% {
+        opacity: 0.9;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.title-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.title {
+    font-family: "Jaini", system-ui;
+    text-align: center;
+    font-size: 2em;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    background: linear-gradient(180deg, #CF8394 17.31%, #F4CFD5 51.92%, #CF8394 83.17%);
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+    margin: 20px 0;
+
+}
 
 /* ============================= */
 /* HOME PAGE/LANDING PAGE */
@@ -182,15 +289,15 @@ input[type="submit"],
     align-items: center;
 }
 
-.tarot-wheel-container .wheel-title {
+.tarot-wheel-container .wheel-title span {
     text-align: center;
     font-family: "Jim Nightshade", cursive;
-    font-size: 40px;
+    font-size: 1.5rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     width: 360px;
-    background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
+    background: linear-gradient(180deg, #CF8394 17.31%, #F4CFD5 51.92%, #CF8394 83.17%);
 
     -webkit-background-clip: text;
     background-clip: text;
@@ -202,7 +309,7 @@ input[type="submit"],
 .meet-fate-btn {
     padding: 0 15px;
     border-radius: 25.5px;
-    background: linear-gradient(270deg, #D08596 0%, #F2CBD1 50%, #D08596 100%);
+    background: linear-gradient(270deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
     color: url('../assets/nebulaFill.png');
 }
 
@@ -240,7 +347,7 @@ input[type="submit"],
 
 
 .meet-fate-btn:hover h3 {
-    background: linear-gradient(90deg, #D08596 0%, #F2CBD1 50%, #D08596 100%);
+    background: linear-gradient(90deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
 
     -webkit-background-clip: text;
     background-clip: text;
@@ -259,10 +366,10 @@ input[type="submit"],
 
     /* - scales the card iside so it fits perfectly WITH NO CROPPING */
     /* using independant 'scale' property means it wont overwite my ✨beeautiful 'transform' animations✨ */
-    scale: min( /*cqw/h = conatiner width/height*/
-        calc(100cqw / 139.87),
-        calc(100cqh / 234.61)
-    );
+    scale: min(
+            /*cqw/h = conatiner width/height*/
+            calc(100cqw / 139.87),
+            calc(100cqh / 234.61));
 
     /* and now the tarot loader is a measureable box */
     perspective: 1000px;
@@ -330,6 +437,67 @@ img {
     object-fit: cover;
 }
 
+
+/* =========================
+TAROT WHEEL >:D 
+============================ */
+
+.tarot-wheel-container {
+    position: relative;
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.wheel-center-content {
+    position: absolute;
+    text-align: center;
+    z-index: 10;
+    max-width: 220px;
+}
+
+.wheel-card {
+    position: absolute;
+    width: 162.235px;
+    height: 253.331px;
+
+    /* Position absolutely dead center of the screen first */
+    top: 50%;
+    left: 50%;
+    margin-left: -69.935px;
+    /* Half of card width */
+    margin-top: -117.305px;
+    /* Half of card height */
+
+
+    /* 1. Calculate angle: (360deg / total cards) * current index */
+    /* 2. Rotate to angle, then translate up to form radius */
+    transform:
+        rotate(calc((360deg / var(--total)) * var(--i))) translateY(-360px);
+    /* Adjust this number to change circle radius */
+
+    transform-origin: center center;
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    filter: drop-shadow(0 0 14.2px rgba(0, 0, 0, 0.50));
+}
+
+.wheel-card img {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+}
+
+
+.wheel-card:hover {
+    z-index: 20;
+    transform:
+        rotate(calc((360deg / var(--total)) * var(--i))) translateY(-390px)
+        /* scale(1.08) */
+    ;
+}
 /* =========================
 TAROT WHEEL >:D 
 ============================ */
@@ -346,51 +514,27 @@ TAROT WHEEL >:D
 
 .tarot-wheel-container {
     position: relative;
-    width: auto;
+    width: 100vw;
     height: 100vh;
-    display: flex;
+    /* display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
+    margin: 0 auto; */
+
+    /* background-image: url(../assets/dashedBorder.svg); */
+
 }
 
 .wheel-center-content {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
     z-index: 10;
     max-width: 220px;
 }
 
-/* .wheel-card-wrapper {
-    width: 162.235px;
-    height: 253.331px;
-    position: relative;
-} */
-
-.wheel-card {
-    position: absolute;
-    width: 186.265px;
-    height: 312.431px;
-
-
-    /* Calculate angle: (360deg / total cards) * current index */
-    /* Rotate to angle, then translate up to form radius */
-    transform:
-        rotate(calc((360deg / var(--total)) * var(--i))) translateY(-360px);
-    /* Adjust circle radius */
-
-    transform-origin: center center;
-    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-    /* filter: drop-shadow(0 0 14.2px rgba(0, 0, 0, 0.50)); */
-}
-
-.wheel-card:hover {
-    z-index: 20;
-    transform:
-        rotate(calc((360deg / var(--total)) * var(--i))) translateY(-390px)
-        /* scale(1.08) */
-    ;
-}
 
 /* ==========================
     INFO CSS 
@@ -431,7 +575,7 @@ TAROT WHEEL >:D
     font-weight: 400;
     line-height: normal;
 
-    background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
+    background: linear-gradient(180deg, #CF8394 17.31%, #F4CFD5 51.92%, #CF8394 83.17%);
 
     -webkit-background-clip: text;
     background-clip: text;
@@ -446,7 +590,7 @@ TAROT WHEEL >:D
     font-weight: 400;
     line-height: normal;
 
-    background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
+    background: linear-gradient(180deg, #CF8394 17.31%, #F4CFD5 51.92%, #CF8394 83.17%);
 
     -webkit-background-clip: text;
     background-clip: text;
@@ -468,20 +612,21 @@ TAROT WHEEL >:D
 .moon-logo {
     width: 179px;
     height: auto;
-    position: absolute;
-    transform: translateY(-270px);
+
+    margin-bottom: 20px;
 }
 
 .border-wrapper {
     height: 100vh;
     background-image: url(../assets/dashedBorder.svg);
-    background-attachment: fixed;
-    background-position: center;
+    /* background-attachment: fixed; */
+    background-position: center center;
     background-size: contain;
     background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: -14rem;
 
 }
 
@@ -501,7 +646,7 @@ TAROT WHEEL >:D
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
+    background: linear-gradient(180deg, #CF8394 17.31%, #F4CFD5 51.92%, #CF8394 83.17%);
 
     -webkit-background-clip: text;
     background-clip: text;
@@ -516,12 +661,60 @@ TAROT WHEEL >:D
     -webkit-text-fill-color: transparent;
 }
 
+.auth-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    color: #CF8394;
+    position: relative;
+    padding-bottom: 12px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+
+.tab-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(270deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
+    transition: width 0.3s ease;
+    border-radius: 50px;
+}
+
+.tab-btn:hover {
+    color: #F4CFD5;
+}
+
+.tab-btn:hover::after {
+    width: 40%;
+}
+
+.tab-btn.active {
+    color: #F4CFD5;
+    text-shadow: 0 0 8px rgba(244, 207, 213, 0.3);
+}
+
+.tab-btn.active::after {
+    width: 100%;
+    /* Full width when active */
+}
+
 .login-form {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    gap: 40px;
-    width: 450px;
+    max-width: 450px;
 }
 
 .login-field-container {
@@ -537,9 +730,13 @@ TAROT WHEEL >:D
 
 }
 
+.login-field.hidden {
+    display: none !important;
+}
+
 .login-label {
     font-family: "Jim Nightshade", cursive;
-    font-size: 2.25rem;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -560,7 +757,7 @@ TAROT WHEEL >:D
     - gradient border colours (extends to border-box 
     */
     background: linear-gradient(#111111, #111111) padding-box,
-        linear-gradient(270deg, #D08596 0%, #F2CBD1 50%, #D08596 100%) border-box;
+        linear-gradient(270deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%) border-box;
     /* figers crossed this works, i could just google the answer genuinly but whatever I'm subborn */
     color: #CF8394 !important;
     padding: 15px;
@@ -596,7 +793,7 @@ button {
 
 .submit-btn {
     border-radius: 50px;
-    background: linear-gradient(270deg, #D08596 0%, #F2CBD1 50%, #D08596 100%);
+    background: linear-gradient(270deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
     text-align: center;
     font-family: "Jaini", system-ui;
     font-size: 2.25rem;
@@ -606,6 +803,7 @@ button {
     width: 214px;
     height: 53px;
     padding-bottom: 55px;
+    margin: 0 auto;
 }
 
 .submit-btn p {
@@ -623,7 +821,14 @@ button {
 }
 
 .submit-btn:hover {
-    background-image: url(../assets/nebulaFill.png);
+    border: 4px solid transparent;
+    /* i hate myself so much for working almost entirely with gradients T-T
+    - inner element background color (clipped to padding-box)
+    - gradient border colours (extends to border-box 
+    */
+    background: linear-gradient(#111111, #111111) padding-box,
+        linear-gradient(270deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%) border-box;
+    color: #F4CFD5;
     background-size: cover;
     text-align: center;
     font-family: "Jaini", system-ui;
@@ -633,31 +838,40 @@ button {
 }
 
 .submit-btn p:hover {
-    background: linear-gradient(90deg, #D08596 0%, #F2CBD1 50%, #D08596 100%);
+    text-align: center;
+
+    font-family: "Jaini", system-ui;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    background: linear-gradient(180deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
 
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-/* MOBILE LOGIN */
+/* =========================================
+   MOBILE RESPONSIVENESS 
+   ========================================= */
+
 @media (max-width: 768px) {
     .login-form {
         width: 350px;
     }
 
     .lamp-wrapper {
-        position: absolute;
-        width: 200px;
+        width: auto;
         height: 158px;
+    }
+
+    .border-wrapper {
+        background: none;
     }
 
     .login-field-container {
         margin-top: -6rem;
-    }
-
-    .login-container {
-        margin-top: 13rem;
     }
 
     .login-title {
@@ -670,8 +884,55 @@ button {
         font-size: 1.5rem;
     }
 
+    .submit-btn {
+
+        margin: 0 auto;
+    }
+
+}
+
+@media (max-width: 414px) {
+    .login-form {
+        width: 350px;
+    }
 
 
+    .glow {
+        width: 60px;
+        height: 75px;
+
+    }
+
+
+    .login-container {
+        padding: 0 !important;
+    }
+
+    .login-form {
+        width: 100%;
+        padding: 0 25px;
+        box-sizing: border-box;
+        /*  padding doesn't add to  width */
+    }
+
+    .login-title {
+
+        font-size: 3rem;
+    }
+
+    .login-label {
+
+        font-size: 1.8rem;
+    }
+
+    .submit-btn {
+
+        margin: 0 auto;
+    }
+
+    .submit-btn p {
+        font-size: 1.8rem;
+    }
 }
 
 /* ==========================
@@ -687,11 +948,16 @@ DASBOARD CSS
     overflow: hidden;
 }
 
+/* ======================= */
+/* 2D REALM MAP (CSS GRID) */
+/* ======================= */
 #stage {
-    width: 100%;
+    width: 200vw;
     height: 200vh;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    /* left-right | top-bottom */
+    grid-template-columns: 100vw 100vw;
+    grid-template-rows: 100vh 100vh;
     /* Heavyyyyy, slow drop-and-settle easing */
     transition: transform 1.4s cubic-bezier(0.7, 0, 0.2, 1);
     will-change: transform;
@@ -701,6 +967,20 @@ DASBOARD CSS
     width: 100vw;
     height: 100vh;
     flex-shrink: 0;
+}
+
+.top-chamber {
+    grid-column: 1;
+    grid-row: 1;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+}
+
+#stage.sanctum {
+    transform: translateX(-100vw);
 }
 
 /* State Trigger */
@@ -731,6 +1011,7 @@ DASBOARD CSS
     width: 100%;
     height: auto;
     pointer-events: none;
+    z-index: -1;
 
 }
 
@@ -788,6 +1069,64 @@ DASBOARD CSS
 }
 
 .dashboard-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* Change to 'flex-start' if you want it left-aligned */
+    border-radius: 50px;
+    border: 4px solid transparent;
+    /* i hate myself so much for working almost entirely with gradients T-T
+    - inner element background color (clipped to padding-box)
+    - gradient border colours (extends to border-box 
+    */
+    background: linear-gradient(#111111, #111111) padding-box,
+        linear-gradient(270deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%) border-box;
+    /* figers crossed this works, i could just google the answer genuinly but whatever I'm subborn */
+    color: #CF8394 !important;
+    padding: 10px 60px;
+    padding-top: 4px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dashboard-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(207, 131, 148, 0.15);
+}
+
+.hover-indicator {
+    height: 100px;
+    width: auto;
+}
+
+.dashboard-btn .hover-indicator {
+    width: 20px;
+    height: auto;
+    opacity: 0;
+    transform: translateX(0px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dashboard-btn:hover .hover-indicator {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+.dashboard-btn span {
+    text-align: center;
+
+    font-family: "Jaini", system-ui;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    background: linear-gradient(180deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.aasb-btn {
     border-radius: 50px;
     border: 5px solid transparent;
     /* i hate myself so much for working almost entirely with gradients T-T
@@ -795,7 +1134,7 @@ DASBOARD CSS
         - gradient border colours (extends to border-box 
         */
     background: linear-gradient(#ffffff00, #ffffff00) padding-box,
-        linear-gradient(270deg, #D08596 0%, #F2CBD1 50%, #D08596 100%) border-box;
+        linear-gradient(270deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%) border-box;
     /* figers crossed this works, i could just google the answer genuinly but whatever I'm subborn */
 
     text-align: center;
@@ -812,8 +1151,9 @@ DASBOARD CSS
 .dashboard-container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-
+    /* gap: 5rem;  */
+    width: 100%;
+    padding: 0 5rem;
 }
 
 .user-title {
@@ -823,12 +1163,13 @@ DASBOARD CSS
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
+    background: linear-gradient(180deg, #CF8394 17.31%, #F4CFD5 51.92%, #CF8394 83.17%);
 
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
 
 .dashboard-center {
     display: flex;
@@ -836,6 +1177,7 @@ DASBOARD CSS
     justify-content: space-around;
     flex-direction: column;
     gap: 56px;
+    flex: 1 1 auto;
 }
 
 .dashboard-controls {
@@ -846,16 +1188,87 @@ DASBOARD CSS
 }
 
 .window-container {
-    width: 334.97px;
-    height: 582.604px;
+    width: 100%;
+    max-width: 335px;
+    min-width: 120px;
     aspect-ratio: 23/40;
+
+    flex: 1 1 0;
 }
 
-.window img {
+img.window {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
+
+.aasb-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(10, 10, 15, 0.85);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.aasb-modal-box {
+    background:
+        linear-gradient(rgba(17, 17, 17, 17), rgb(17, 17, 17)) padding-box,
+        linear-gradient(270deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%) border-box;
+    border: 3px solid transparent;
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+.aasb-modal-box h3 {
+    margin-bottom: 0.75rem;
+    text-align: center;
+    font-family: "Jaini", system-ui;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    background: linear-gradient(180deg, #CF8394 30.95%, #F4CFD5 63.1%, #CF8394 95.24%);
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.aasb-modal-box p {
+    margin-bottom: 1.5rem;
+    font-family: "Jim Nightshade", cursive;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    background: linear-gradient(180deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.5em;
+}
+
+.aasb-modal-actions,
+.aasb-modal-actions span {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    font-size: 1.5rem;
+}
+
+
 
 /* DO NOT TOUCH ANY BOF THIS, IT IS PERFECT RIGHT NOW SO NO TOUCHY TOUCHY */
 @media (max-width: 768px) {
@@ -892,10 +1305,20 @@ DASBOARD CSS
     }
 }
 
+@media (max-width: 414px) {
+    .corner-wrapper {
+        height: 150px;
+        aspect-ratio: 177 / 140;
+    }
+
+}
+
 /* ==========================
 BOTTOM CHAMBER CSS 
 =============================*/
 .bottom-chamber {
+    grid-column: 1;
+    grid-row: 2;
     position: relative;
     width: 100%;
     height: 100vh;
@@ -906,9 +1329,10 @@ BOTTOM CHAMBER CSS
 .chamber-container,
 #loading-stage,
 #reading-stage {
-    position: absolute; /*i'm sorry*/
+    position: absolute;
+    /*i'm sorry*/
     top: 0;
-    left: 0;
+    left: 0 !important;
     width: 100%;
     height: 100%;
     display: flex;
@@ -917,6 +1341,64 @@ BOTTOM CHAMBER CSS
     align-items: center;
     padding: 2em;
     box-sizing: border-box;
+}
+
+.bottom-chamber-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0.8rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.bottom-chamber-header p {
+    text-align: center;
+    font-family: "Jim Nightshade", cursive;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    background: linear-gradient(180deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header-icon {
+    width: 120px;
+    height: auto;
+    aspect-ratio: 119/82;
+}
+
+.header-title h1 {
+    text-align: center;
+    font-family: "Jaini", system-ui;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    background: linear-gradient(180deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header-title h3 {
+    text-align: center;
+    font-family: "Jim Nightshade", cursive;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    background: linear-gradient(180deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* =========================== */
@@ -930,19 +1412,20 @@ BOTTOM CHAMBER CSS
     justify-content: center;
     align-items: flex-end;
     margin-top: 1rem;
-    overflow: visible; 
+    overflow: visible;
 }
 
 #card-spread-container .tarot-card-container {
     position: absolute;
     bottom: 30px;
     /*origin of the arc pivit point below their base to form the arc*/
-    transform-origin: 50% 270%;  /* last number controls the width*/
+    transform-origin: 50% 270%;
+    /* last number controls the width*/
     transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) z-index 0.2s ease;
 }
 
 /* fan arc rotation calculations for 15 cards (i need to find if there a DRY method for this T-T) */
-#card-spread-container .tarot-card-container:nth-child(1) { 
+#card-spread-container .tarot-card-container:nth-child(1) {
     --angle: rotate(-56deg);
     transform: var(--angle);
     z-index: 1;
@@ -961,7 +1444,7 @@ BOTTOM CHAMBER CSS
     z-index: 3;
 }
 
-#card-spread-container .tarot-card-container:nth-child(4){
+#card-spread-container .tarot-card-container:nth-child(4) {
     --angle: rotate(-32deg);
     transform: var(--angle);
     z-index: 4;
@@ -1035,7 +1518,7 @@ BOTTOM CHAMBER CSS
 
 #card-spread-container .tarot-card-container:hover {
     z-index: 50 !important;
-    transform: var(--angle) translateY(-5px) scale(1.1) !important;
+    transform: var(--angle) translateY(-1px) scale(1.1) !important;
 }
 
 
@@ -1049,7 +1532,7 @@ BOTTOM CHAMBER CSS
 
 .indicator-slot {
     width: 70px;
-    height: 110px;
+    aspect-ratio: 31/52;
     border: 2px dashed #CF8394;
     border-radius: 8px;
     display: flex;
@@ -1072,6 +1555,10 @@ BOTTOM CHAMBER CSS
     font-size: 0.9rem;
 }
 
+.indicator-slot.marked .slot-label {
+    display: none;
+}
+
 .slot-preview img {
     width: 100%;
     height: 100%;
@@ -1090,7 +1577,7 @@ BOTTOM CHAMBER CSS
 .question-text {
     font-family: 'Jim Nightshade', cursive;
     font-size: 1.8rem;
-    color: #E5C1C0;
+    color: #F4CFD5;
     text-align: center;
 }
 
@@ -1155,37 +1642,44 @@ EXIT, SHUFFLE, SPIN-OUT ANIMATIONS CSS (HAVE MERCY)
 /* SHUFFLE ANIMATIONS VERSION 2 */
 /* =================================================== */
 
-#card-spread-container.is-collapsed .tarot-card-container{
-    transform: rotate(0deg) translateY(0) !important;
+#card-spread-container.is-collapsed .tarot-card-container {
+    transform: rotate(0deg) !important;
+    transform: translateY(0);
     transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-#card-spread-container.is-shuffling .tarot-card-container:nth-child(even) {
-    animation: riffleEven 0.3s ease-in-out infinite;
+#card-spread-container.is-shuffling:nth-child(even) {
+    animation: riffleEven 5s ease-in-out infinite;
 }
 
-#card-spread-container.is-shuffling .tarot-card-container:nth-child(odd) {
-    animation: riffleOdd 0.3s ease-in-out infinite;
+#card-spread-container.is-shuffling:nth-child(odd) {
+    animation: riffleOdd 5s ease-in-out infinite;
 }
 
 @keyframes riffleEven {
-    0%, 100% {
-        transform: rotate(0deg) translateY(0);
+
+    0%,
+    100% {
+        transform: rotate(0deg) translateX(0);
         z-index: 10;
     }
+
     50% {
-        transform: rotate(0deg) translateY(-50px);
+        transform: rotate(0deg) translateX(-50px);
         z-index: 30;
     }
 }
 
 @keyframes riffleOdd {
-    0%, 100% {
-        transform: rotate(0deg) translateY(0);
+
+    0%,
+    100% {
+        transform: rotate(0deg) translateX(0);
         z-index: 10;
     }
+
     50% {
-        transform: rotate(0deg) translateY(50px);
+        transform: rotate(0deg) translateX(50px);
         z-index: 30;
     }
 }
@@ -1221,7 +1715,7 @@ EXIT, SHUFFLE, SPIN-OUT ANIMATIONS CSS (HAVE MERCY)
 .loading-bar-fill {
     width: 0%;
     height: 100%;
-    background: linear-gradient(90deg, #D08596 0%, #F2CBD1 50%, #D08596 100%);
+    background: linear-gradient(90deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
     transition: width 3.5s linear;
 }
 
@@ -1304,7 +1798,7 @@ READING CHAMBER CSS
     font-weight: 400;
     line-height: normal;
 
-    background: linear-gradient(180deg, #CF8394 17.31%, #E5C1C0 51.92%, #CF8394 83.17%);
+    background: linear-gradient(180deg, #CF8394 17.31%, #F4CFD5 51.92%, #CF8394 83.17%);
 
     -webkit-background-clip: text;
     background-clip: text;
@@ -1340,6 +1834,497 @@ READING CHAMBER CSS
     background-clip: text;
     -webkit-text-fill-color: transparent;
     overflow-y: scroll;
+}
+
+#ascend-btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    z-index: 100;
+}
+
+.chamber-toast {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    border-radius: 15px;
+    border: 3px solid transparent;
+    background:
+        linear-gradient(#111111, #111111) padding-box,
+        linear-gradient(270deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%) border-box;
+    box-shadow: 0 0 25px rgba(207, 131, 148, 0.25);
+
+
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+    z-index: 1000;
+
+    padding: 20px 25px;
+    max-width: 320px;
+    text-align: left;
+}
+
+
+.chamber-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.toast-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.toast-header h3 {
+    font-family: "Jaini", system-ui;
+    font-size: 1.1rem;
+    font-weight: 400;
+    background: linear-gradient(180deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+}
+
+.toast-close {
+    background: transparent;
+    border: none;
+    color: #CF8394;
+    font-family: "Jaini", system-ui;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+.toast-close:hover {
+    color: #F4CFD5;
+}
+
+.chamber-toast p {
+    font-family: 'Jaini', system-ui;
+    /* Or system font if you prefer readability for body text, keeping your vibe though! */
+    font-size: 0.95rem;
+    color: #F4CFD5;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* ====================================== */
+/* SIDE INNER SANCTUM (WE GOT THIS maybe) */
+/* ====================================== */
+.sanctum-chamber {
+    grid-column: 2;
+    grid-row: 1;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.sanctum-header {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.sanctum-title {
+    text-align: center;
+    font-family: "Jaini", system-ui;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    background: linear-gradient(180deg, #CF8394 30.95%, #F4CFD5 63.1%, #CF8394 95.24%);
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header-text {
+    text-align: center;
+    font-family: "Jim Nightshade", cursive;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    background: linear-gradient(180deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#return-dash-btn {
+    display: flex;
+    justify-content: center;
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    z-index: 100;
+}
+
+.desktop-carousel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    /* 3D effect? You can decided against this later*/
+    perspective: 1200px;
+}
+
+.sanctum-feed {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* gap: 1rem; */
+    /* transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); */
+}
+
+.sanctum-entry {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    /* width: not a single clue O_O; */
+    border-radius: 20px;
+    border: 2px solid rgba(207, 131, 148, 0.3);
+
+    /* opacity: 0.5;
+    transform: scale(0.85); */
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.5s ease,
+        border-color 0.4s ease,
+        height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        width 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        padding 0.5s ease;
+
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    will-change: transform, opacity, height, width;
+    ;
+}
+
+/* hide inactive text */
+.sanctum-entry .entry-right-col {
+    display: none;
+    opacity: 0;
+    width: 0;
+}
+
+.sanctum-entry.active {
+    opacity: 1;
+    transform: scale(1);
+    border: 3px solid transparent;
+
+    background:
+        linear-gradient(rgba(17, 17, 17, 0.9), rgba(17, 17, 17, 0.9)) padding-box,
+        linear-gradient(270deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%) border-box;
+
+
+    padding: 2rem 3rem;
+    box-shadow: 0 0 20px rgba(242, 203, 209, 0.2);
+    z-index: 10;
+    justify-content: center;
+
+}
+
+.sanctum-entry.active .entry-right-col {
+
+    display: block;
+    opacity: 1;
+    width: 400px;
+    margin: 0 2;
+    /*text length*/
+    animation: fadeInText 0.6s ease forwards;
+}
+
+@keyframes fadeInText {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.entry-left-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.sanctum-date {
+    text-align: center;
+    font-family: "Jaini", system-ui;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    background: linear-gradient(180deg, #CF8394 30.95%, #F4CFD5 63.1%, #CF8394 95.24%);
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+}
+
+.sanctum-cards-title {
+    text-align: center;
+    font-family: "Jim Nightshade", cursive;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    background: linear-gradient(180deg, #CF8394 15.56%, #F4CFD5 48.89%, #CF8394 82.22%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.reading-preview {
+    color: #F4CFD5;
+    text-align: center;
+    font-family: "Jim Nightshade", cursive;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    display: -webkit-box;
+    line-clamp: 5;
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all 0.3s ease;
+}
+
+
+.view-reading-btn {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease 0.3s;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+}
+
+.sanctum-entry.active .view-reading-btn {
+    opacity: 1;
+    pointer-events: auto;
+    display: flex;
+    justify-content: center !important;
+}
+
+/* trust me important is very neccisary -_- */
+.sanctum-entry.expanded {
+    max-height: 850px;
+    overflow-y: scroll;
+    transform: translate(-50%, -50%) scale(1.02) translateZ(100px) !important;
+    z-index: 1000 !important;
+    padding: 2.5rem !important;
+}
+
+.sanctum-entry.expanded .reading-preview {
+    display: block !important;
+    text-align: center;
+    font-family: "Jim Nightshade";
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    background: linear-gradient(180deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%);
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-line-clamp: unset !important;
+    line-clamp: unset;
+    overflow: visible !important;
+    max-height: 850px;
+}
+
+.sanctum-entry.expanded .view-reading-btn {
+    display: none !important;
+}
+
+/* ==========================
+   SANCTUM EMPTY STATE
+   ========================== */
+
+.sanctum-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    width: 100%;
+    padding: 2rem 0;
+}
+
+.sanctum-empty-logo {
+    width: 120px;
+    height: auto;
+    opacity: 0.85;
+}
+
+.sanctum-empty-text {
+    color: #CF8394;
+    font-family: 'Jim Nightshade', cursive;
+    font-size: 1.8rem;
+    margin: 0;
+    text-align: center;
+}
+
+
+@media (max-width: 768px) {
+
+    .sanctum-chamber {
+        grid-column: 2;
+        grid-row: 1;
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        padding: 2em;
+        box-sizing: border-box;
+    }
+
+
+    .sanctum-layout {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        padding-top: 5rem;
+        gap: 5rem;
+    }
+
+    .sanctum-preview {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    .sanctum-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow-y: hidden;
+    }
+
+    .sanctum-content .user-title {
+        text-align: left;
+        font-size: 56px;
+    }
+
+    #sanctum-subtitle {
+        text-align: left;
+        margin-bottom: 2rem;
+    }
+
+    .sanctum-feed {
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding-right: 1rem;
+    }
+
+    .sanctum-entry {
+        border-bottom: 2px solid rgba(207, 131, 148, 0.3);
+        padding-bottom: 1rem;
+        display: flex;
+        flex-direction: row;
+        gap: 3rem;
+    }
+
+    .sanctum-reading {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sanctum-date {
+        text-align: center;
+        font-family: "Jaini", system-ui;
+        font-size: 3rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+
+        background: linear-gradient(180deg, #CF8394 30.95%, #F4CFD5 63.1%, #CF8394 95.24%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .sanctum-cards {
+        text-align: center;
+        font-family: "Jim Nightshade";
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+
+        background: linear-gradient(180deg, #CF8394 15.56%, #F4CFD5 48.89%, #CF8394 82.22%);
+
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .reading-preview {
+        color: #F4CFD5;
+        text-align: center;
+        font-family: "Jim Nightshade", cursive;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
 }
 
 #footer-container {

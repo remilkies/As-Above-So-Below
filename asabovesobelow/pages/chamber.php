@@ -1,7 +1,13 @@
 <section class="chamber bottom-chamber">
+
+<button id="ascend-btn" class="aasb-btn">▲ Ascend</button>
+
     <div class="chamber-container">
-        <button id="ascend-btn" class="dashboard-btn">Ascend</button>
-        <h2 class="chamber-title">The Chamber of Enlightenment</h2>
+        <div class="bottom-chamber-header">
+            <img src="/assets/trippleMoon.svg" alt="Maiden Mother Crone" class="header-icon">
+<p>These are general interpretations. Always trust your intuition first.<br>
+Your intention, energy, and personal experience matter most.</p>
+        </div>
         <!-- dynamic card and php logic can live here -->
 
         <!-- card drawing stage -->
@@ -17,7 +23,7 @@
             </div>
         </div>
 
-        <h3 id="current-question" class="question-text">Card 1: What should I embrace?</h3>
+        <h3 id="current-question" class="question-text">Card 1: What should I look foreward to?</h3>
 
         <!-- active deck spread (my lawd have mercy on my overambitios soul) -->
 
@@ -30,13 +36,17 @@
         </div>
 
         <div class="chamber-controls">
-            <button id="shuffle-btn" class="dashboard-btn">Shuffle Deck</button>
-            <h3 id="current-question" class="question-text">Card 1: What should I embrace?</h3>
+            <button id="shuffle-btn" class="aasb-btn">Shuffle Deck</button>
         </div>
     </div>
 
     <!-- loading stage -->
     <div id="loading-stage" style="display: none;">
+        <div class="bottom-chamber-header">
+            <img src="/assets/trippleMoon.svg" alt="Maiden Mother Crone" class="header-icon">
+            <p>These are general interpretations. Always trust your intuition first.<br>
+Your intention, energy, and personal experience matter most.</p>
+        </div>
         <h2 class="loading-title">Synthesising Reading...</h2>
 
         <!-- here we go, may this work on the first try (deck animation) -->
@@ -55,7 +65,7 @@
             <div class="tarot-card-container loading-card" id="loading-card-2">
                 <div class="tarot-card-flipper">
                     <div class="card-face card-back">
-                        <img src="../assets/cardBack.png" id="loading-img-2" alt="Card 2"/>
+                        <img src="../assets/cardBack.png" alt="Card 2" />
                     </div>
 
                     <div class="card-face card-front">
@@ -78,10 +88,15 @@
 
 
 
-    <!-- Reading Stage -->
-    <!-- maybeeeeee consider adding some options? like there's multiple ways to do a two card tarot spread...althoughhhh you're going to have to make s specialised generateSynthesis() structure food each one soooooo do what you will with this suggestion o7-->
+
+
     <div id="reading-stage" style="display: none;">
-<!-- YOUU CANT ASCEND ANYMORE T-T -->
+        <div class="bottom-chamber-header">
+            <img src="/assets/trippleMoon.svg" alt="Maiden Mother Crone" class="header-icon">
+            <p>These are general interpretations. Always trust your intuition first.<br>
+Your intention, energy, and personal experience matter most.</p>
+        </div>
+        <!-- YOUU CANT ASCEND ANYMORE T-T -->
         <div class="drawn-cards-display">
             <img id="visual-card-left" class="drawn-card card-left" src="" alt="Card 1">
             <img id="visual-card-right" class="drawn-card card-right" src="" alt="Card 2">
@@ -91,11 +106,17 @@
             <h2>Your Prophecy</h2>
             <h3 id="reading-subtitle"></h3>
 
-            <div id="reading-text">
+            <div id="reading-text"></div>
 
-            </div>
         </div>
 
+        <div id="save-toast" class="chamber-toast">
+            <div class="toast-header">
+                <h3> ݁₊ ⊹ . ݁˖ . Ritual Complete ݁₊ ⊹ . ݁˖ . ݁</h3>
+                <button class="toast-close" onclick="document.getElementById('save-toast').classList.remove('show')">✕</button>
+            </div>
+            <p>You are now bound to your reading. Go to the <strong>Inner Sanctum</strong> to view &lt;3</p>
+        </div>
 
     </div>
 </section>

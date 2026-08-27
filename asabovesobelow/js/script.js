@@ -33,10 +33,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const tabLogin = document.getElementById('tab-login');
+    const tabRegister = document.getElementById('tab-register');
+    const displayName = document.getElementById('display-name');
+    const displayNameInput = document.getElementById('display_name');
+    const formAction = document.getElementById('form-action');
+    const submitText = document.getElementById('submit-text');
+
+    if (tabLogin) {
+        tabLogin.addEventListener('click', () => {
+            tabLogin.classList.add('active');
+            tabRegister.classList.remove('active');
+            displayName.classList.add('hidden');
+            displayNameInput.removeAttribute('required');
+            formAction.value = 'login';
+            submitText.textContent = 'Login';
+            if (formTitle) formTitle.textContent = 'Login'
+        });
+    }
+    if (tabRegister) {
+        tabRegister.addEventListener('click', () => {
+            tabRegister.classList.add('active');
+            tabLogin.classList.remove('active');
+            displayName.classList.remove('hidden');
+            displayNameInput.setAttribute('required', 'required');
+            formAction.value = 'register';
+            submitText.textContent = 'Register';
+            if (formTitle) formTitle.textContent = 'Initiation';
+        });
+    }
 
     const stage = document.getElementById('stage');
     const descendBtn = document.getElementById('descend-btn');
     const ascendBtn = document.getElementById('ascend-btn');
+    const savedBtn = document.getElementById('saved-btn');
+    const returnDashBtn = document.getElementById('return-dash-btn');
+    const seekFateBtn = document.getElementById('seek-fate-btn')
 
     if (descendBtn && stage) {
         descendBtn.addEventListener('click', () => {
@@ -57,7 +89,150 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    if (savedBtn && stage) {
+        savedBtn.addEventListener('click', () => {
+            console.log('Entering Inner Sanctum...')
+            stage.classList.add('sanctum');
+        })
+    }
+
+    if (returnDashBtn && stage) {
+        returnDashBtn.addEventListener('click', () => {
+            console.log('Leaving Inner Sanctum...');
+            stage.classList.remove('sanctum');
+        })
+    }
+
+
+    if (seekFateBtn && stage) {
+        seekFateBtn.addEventListener('click', () => {
+            console.log('🔮 Seeking fate... returning below');
+            stage.classList.remove('sanctum');
+
+            setTimeout(() => {
+                stage.classList.add('descended');
+            }, 1000); // Wait 1 second (1000ms) before descending into the ritual
+        });
+    }
+
+    const logoutBtn = document.getElementById('logout-btn');
+    const modal = document.getElementById('logout-modal');
+    const cancelBtn = document.getElementById('modal-cancel-btn');
+    const confirmBtn = document.getElementById('modal-confirm-btn');
+
+    if (logoutBtn && modal) {
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.style.display = 'flex';
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            modal.style.display = 'none'; 
+        });
+
+        confirmBtn.addEventListener('click', () => {
+            window.location.href = '../backend/logout.php'; 
+        });
+    }
+
     initTarotFlow();
+
+    // ==================================
+    // SAVED READINGS CAROUSEL :D
+    // ==================================
+    const carousel = document.getElementById('reading-carousel');
+    if (!carousel) return;
+
+    const entries = Array.from(carousel.querySelectorAll('.sanctum-entry'));
+    let currentIndex = 0 //most recnt enrty on def
+
+
+    function updateCarousel(activeIndex) {
+        entries.forEach((entry, index) => {
+
+
+            const offset = index - activeIndex;
+
+
+
+            if (offset === 0) {
+                entry.classList.add('active');
+                entry.style.transform = `translate(-50%, -50%) scale(1.05) translateZ(50px)`;
+                entry.style.opacity = '1';
+                entry.style.zIndex = '10';
+            } else {
+                entry.classList.remove('active');
+                // side entries: pushed left/right back and rotate
+                const direction = offset > 0 ? 1 : -1;
+                const translateX = 550 * offset; //gap
+                const translateZ = -250 * Math.abs(offset); //depth
+                const rotateY = -35 * direction; //wheel angle
+
+                entry.style.transform = `translate(-50%, -50%) translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg)`;
+
+                // back cards fade
+                entry.style.opacity = Math.abs(offset) > 2 ? '0' : '0.5';
+                entry.style.zIndex = 10 - Math.abs(offset);
+                // now that i think about it i could've poached bootsrap but it's not as customisable i think T-T
+            }
+        });
+    }
+
+    updateCarousel(currentIndex);
+
+    //click handler
+    entries.forEach((entry, index) => {
+        entry.addEventListener('click', (e) => {
+
+            if (e.target.classList.contains('view-reading-btn')) {
+                e.stopPropagation();
+
+                document.querySelectorAll('.sanctum-entry.expanded').forEach(openCard => {
+                    if (openCard !== entry) openCard.classList.remove('expanded');
+                    console.log(' The Oracle Recalls...');
+                });
+
+                entry.classList.toggle('expanded');
+                return;
+            }
+
+            if (!entry.classList.contains('expanded') && index !== currentIndex) {//click card spinnn wheel
+                currentIndex = index;
+                updateCarousel(currentIndex);
+            }
+            // transition trigger to full reading view o7
+
+        });
+    });
+
+    // ==================================
+    //        Display Only cardsss
+    // ==================================
+    
+        const displayCards = document.querySelectorAll('.wheel-card');
+    
+        displayCards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+    
+                const flipper = this.querySelector('.tarot-card-flipper');
+                if (flipper) {
+                    flipper.classList.toggle('is-flipped');
+                    console.log("✨ Display card flipped successfully!");
+                }
+            });
+        });
+    
+});
+
+document.addEventListener('click', (e) => {
+    const expandedCard = document.querySelector('.sanctum-entry.expanded');
+
+
+    if (expandedCard && !expandedCard.contains(e.target)) {
+        expandedCard.classList.remove('expanded');
+    }
 });
 
 
@@ -115,8 +290,8 @@ function initTarotFlow() {
 
     const questionEl = document.getElementById('current-question');
     const questions = [
-        "Card 1: What should I embrace?",
-        "Card 2: What should I let go out?" //like this project bc i'm doing to much but anyywayyyy
+        "Card 1: What can I look forward to?",
+        "Card 2: What should I beware?" //like this project bc i'm doing to much but anyywayyyy
     ];
 
     const cards = document.querySelectorAll('.spread-card');
@@ -305,48 +480,67 @@ function revealReading(cards) {
     const imgLeft = document.getElementById('visual-card-left');
     const imgRight = document.getElementById('visual-card-right');
 
-    // using filename aka id for the images
     imgLeft.src = `../assets/cards/${cardA.id}.png`;
     imgRight.src = `../assets/cards/${cardB.id}.png`;
 
     if (cardA.reversed) imgLeft.classList.add('reversed');
     if (cardB.reversed) imgRight.classList.add('reversed');
 
-    // aaaand name for the html display side
     const nameA = cardA.reversed ? `${cardA.name} (Reversed)` : cardA.name;
     const nameB = cardB.reversed ? `${cardB.name} (Reversed)` : cardB.name;
     document.getElementById('reading-subtitle').innerText = `${nameA} | ${nameB}`;
 
     const formData = new FormData();
     formData.append('cardA', cardA.id);
-    formData.append('cardA_reversed', cardA.reversed);
+    formData.append('cardA_reversed', cardA.reversed ? '1' : '0');
     formData.append('cardB', cardB.id);
-    formData.append('cardB_reversed', cardB.reversed);
+    formData.append('cardB_reversed', cardB.reversed ? '1' : '0');
 
     console.log("🌙 Sending a whisper to the backend Oracle...")
 
-    // AJAX SO MY TRANSITIONS STAY INTACT MUTHAFAQUAAAA
     fetch('../backend/prophecy.php', {
         method: 'POST',
         body: formData
     })
         .then(response => {
-
             if (!response.ok) {
-                throw new Error(`Oracle error status: ${response.status}`); //i swear 90% of my time coding is spent wrinting error logs to debug T-T
+                throw new Error(`Oracle error status: ${response.status}`);
             }
             console.log("🔮 The Oracle has responded <3");
             return response.text();
         })
         .then(html => {
             document.getElementById('reading-text').innerHTML = html;
-            console.log("🌙 The ritual is complete. The prophecy is rendered.")
+            console.log("🌙 The ritual is complete. The prophecy is rendered.");
+            console.log("🌙 Auto-binding prophecy to the oracle...");
+
+            // Append the prophecy text to our existing formData packet
+            formData.append('reading_text', html);
+
+            return fetch('../backend/saveReading.php', {
+                method: 'POST',
+                body: formData
+            });
+        })
+        .then(res => {
+            if (!res.ok) throw new Error("🔮 Oracle refused the binding");
+            return res.json();
+        })
+        .then(data => {
+            if (data.success) {
+                console.log("🌙 Auto-save successful");
+
+                const toast = document.getElementById('save-toast');
+
+                if (toast) {
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 10000);
+                }
+            } else {
+                console.warn("🔮 Oracle backend save declined:", data.message || data);
+            }
         })
         .catch(err => {
-            console.log("🔮 Fetch ritual interrupted. Oracle unreachable", err);
-            document.getElementById('reading-text').innerHTML = "<p class='oracle-error'>The universe is silent. Cheak database connection</p>";
-        })
-
+            console.log("🔮 Ritual or auto-save interrupted: ", err);
+        });
 }
-
-

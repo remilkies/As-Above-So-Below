@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/stylesheet.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <title>as-above--so-below</title>
+    <title>As Above So Below</title>
   </head>
   <body>
 
@@ -44,9 +44,11 @@
   <div class="wheel-center-content">
   <div class="title-container">
   <img src="assets/trippleMoon.svg" alt="Logo" />
-      <h1 class="title">As Above <br> So Below</h1>
+      <h1 class="title">As Above, So Below</h1>
     </div>
-    <p class="wheel-title">The right match changes everything</p>
+    <p class="wheel-title">
+      <span>The right match changes <br></span>
+      <span>everything</span></p>
     <button class="meet-fate-btn" onclick="window.location.href='pages/login.php';">
       <h3>Meet Your Fate</h3>
     </button>
@@ -69,7 +71,7 @@
     <div class="wheel-card" style="--i: <?php echo $i; ?>; --total: <?php echo $total_cards; ?>;">
       <div class="tarot-card-loader">
 
-        <?php include 'components/TarotCard.php'; ?>
+        <?php include 'components/displayCard.php'; ?>
       </div>
     </div>
 
@@ -132,7 +134,7 @@
   <div id="footer-container">
     <div id="footer">
     <!-- <img src="assets/rembyte.svg"alt="REMByte Logo" /> -->
-    <h1>Brought to you by REMByte</h1>
+    <!-- <h1>Brought to you by REMByte</h1> -->
   </div>
   </div>
 </footer>
