@@ -9,6 +9,62 @@ if (session_status() === PHP_SESSION_NONE) {
 require_once __DIR__ . '/oracle.php';
 // NO MORE BUNCHA HARDCODED LEGACY CODE, NOW MYSQL COMES TO THE RESCUE (even though i just had to write everything i already wrote into the code base so i just did double and a half more work BUT YAYYY MYSQL) >:S
 
+function reduceMajorNumerology($pdo, $number)
+{
+
+    if (!is_numeric($number)) {
+        return [
+            'name' => ucfirst($number),
+            'meaning' => 'a profound archetype of cosmic transformation'
+        ];
+    }
+
+    $numInt = (int)$number;
+
+
+    $fetchNumMeaning = function($num) use ($pdo) {
+        $stmt = $pdo->prepare("SELECT name, meaning FROM major_numerology WHERE id = :id");
+        $stmt->execute(['id' => $num]);
+        return $stmt->fetch() ?: [
+            'name' => (string)$num,
+            'meaning' => 'a foundational cosmic vibration'
+        ];
+    };
+
+    if ($numInt < 10) {
+        $data = $fetchNumMeaning($numInt);
+        return [
+            'name' => $data['name'],
+            'meaning' => $data['meaning']
+        ];
+    }
+
+
+    $strNum = (string)$numInt;
+    $digit1 = (int)$strNum[0];
+    $digit2 = (int)$strNum[1];
+    $sum = $digit1 + $digit2;
+
+    $num1Data = $fetchNumMeaning($digit1);
+    $num2Data = $fetchNumMeaning($digit2);
+    $sumData  = $fetchNumMeaning($sum);
+
+    $synthesisedMeaning = "the number {$digit1}, representing {$num1Data['meaning']}, is preceded by {$digit2}, pointing to {$num2Data['meaning']}. The resolution of these frequencies guides you to {$sum}, which tells a journey of {$sumData['meaning']}";
+
+
+    if ($numInt == 10 || $numInt == 21) {
+        $specialData = $fetchNumMeaning($numInt);
+        if ($specialData) {
+            $synthesisedMeaning .= ". Ultimately, this culminates in " . $specialData['meaning'];
+        }
+    }
+
+    return [
+        'name' => (string)$number,
+        'meaning' => $synthesisedMeaning
+    ];
+}
+
 function getCardData($pdo, $cardId, $isReversed)
 {
     // THIS IS TOO BASIC EVEN FOR DUMMY TEXT, REMBER TO CHANGE THIS LATER CAUASE I'M TOO TIRED NOW
@@ -63,24 +119,26 @@ function getCardData($pdo, $cardId, $isReversed)
     // major arcana cheakkkkk: bypassing minor logic if we have a suit suffix (shoutout English Teacher)
     // we treat these cards with the respect and ATTENTION like the grand cosmic archetypes they are >:D
     if ($cardInfo['arcana_id'] === 'major' || empty($rawName)) {
+        $majorNumData = reduceMajorNumerology($pdo, $cardNumOrRank);
+
         $formattedCardName = !empty($rawName)
             ? ucwords(preg_replace('/(?<!^)[A-Z]/', ' $0', $rawName))
             : ucwords(str_replace('_', ' ', $cardId));
 
-            return [
-                'cardId'        => $cardId,
-                'cardName'      => $formattedCardName,
-                'isReversed'    => $isReversed,
-                'cardPosition'  => $isReversed ? 'Reversed' : 'Upright',
-                'arcana'        => 'major',
-                'arcanaName'    => $cardInfo['arcanaName'],
-                'arcanaMeaning' => $cardInfo['arcanaMeaning'],
-                'suitName'      => 'The Universe',
-                'suitMeaning'   => 'the grand narrative of life and transformative spiritual lessons',
-                'numName'    => ucfirst($cardNumOrRank),
-                'numMeaning'    => 'a profound cosmic archetype',
-                'cardMeaning'   => $uniqueMeaning
-            ];
+        return [
+            'cardId'        => $cardId,
+            'cardName'      => $formattedCardName,
+            'isReversed'    => $isReversed,
+            'cardPosition'  => $isReversed ? 'Reversed' : 'Upright',
+            'arcana'        => 'major',
+            'arcanaName'    => $cardInfo['arcanaName'],
+            'arcanaMeaning' => $cardInfo['arcanaMeaning'],
+            'suitName'      => 'The Universe',
+            'suitMeaning'   => 'the grand narrative of life and transformative spiritual lessons',
+            'numName'       => $majorNumData['name'],
+            'numMeaning'    => $majorNumData['meaning'],
+            'cardMeaning'   => $uniqueMeaning
+        ];
     }
 
     // ELCOME TO THE MINOR ARCANA
@@ -126,34 +184,44 @@ function generateSynthesis($cardA, $cardB)
 {
 
 // i might need to account for the fact that some cards share the same numerology and stuff and edit the structuring for those cases so it's not this card indicates y while this card indicates y and instead says the duality of these cards emphasises y
+if ($cardA['arcana'] === 'major' && $cardB['arcana'] === 'major') {
+    $arcanaParagraph = "This reading is rooted in the " . $cardA['arcanaName'] . ", highlighting " . $cardA['arcanaMeaning'] . ". The Universe is talking about your soul path. Embrace new beginnings and transformation.";
+} elseif ($cardA['arcana'] === 'minor' && $cardB['arcana'] === 'minor') {
+    $arcanaParagraph = "This reading is grounded in " . $cardA['arcanaName'] . ", focusing on " . $cardA['arcanaMeaning'] . ".";
+} else {
+    $arcanaParagraph = "This reading bridges the spiritual scope of the " . $cardA['arcanaName'] . " which represents, " . $cardA['arcanaMeaning'] . ", with the grounded nature of the " . $cardB['arcanaName'] . ", which looks at " . $cardB['arcanaMeaning'] . ".";
+}
 
-    if ($cardA['arcana'] === 'major' && $cardB['arcana'] === 'major') {
-        $arcanaParagraph = "This reading is rooted in the " . $cardA['arcanaName'] . ", highlighting " . $cardA['arcanaMeaning'] . ". The Universe is talking about your soul path. Embrace new beginnings and transformation.";
-    } elseif ($cardA['arcana'] === 'minor' && $cardB['arcana'] === 'minor') {
-        $arcanaParagraph = "This reading is grounded in " . $cardA['arcanaName'] . ", focusing on " . $cardA['arcanaMeaning'] . ". You're not at a fated crossroads. You're in the middle of everyday life, making the small decisions that quietly add up to the person you're becoming. That's where most of the real work happens.";
+if ($cardA['suitName'] === $cardB['suitName']) {
+        $suitParagraph = "Your reading is governed by the shared element of " . $cardA['suitName'] . ". The duality of these cards emphasizes a single focused domain you are asked to embrace " . $cardA['suitMeaning'] ;
+} else {
+$suitParagraph = "Your reading is governed by the collision of " . $cardA['suitName'] . " and " . $cardB['suitName'] . ". This cosmic alignment forces you into a space of " . $cardA['suitMeaning'] . ". " .
+    "which is sees to be opposing " . $cardB['suitMeaning'] . ".";
+}
+
+if ($cardA['numName'] === $cardB['numName']) {
+    $numParagraph = "A numerological echo runs through this draw: the shared vibration of the " . $cardA['numName'] . " emphasizes a singular lesson. ";
+
+    $numParagraph .= ucfirst($cardA['numMeaning']) . " This is what you must lean into, while " . $cardB['numMeaning'] . " is what you are outgrowing.";
+} else {
+    $numParagraph = "The underlying numerological current pairs the progress of the " . $cardA['numName'] . " with the testing energy of the " . $cardB['numName'] . ". ";
+    
+ 
+    if ($cardA['arcana'] === 'major') {
+        $numParagraph .= ucfirst($cardA['numMeaning']) . " However, this energy is currently being disrupted by " . $cardB['numMeaning'] . ".";
     } else {
-        $arcanaParagraph = "This reading bridges the spiritual scope of the " . $cardA['arcanaName'] . " which represents, " . $cardA['arcanaMeaning'] . ", with the grounded nature of the " . $cardB['arcanaName'] . ", which looks at " . $cardB['arcanaMeaning'] . ".";
+
+        $numParagraph .= "The universe indicates that " . $cardA['numMeaning'] . " is being somewhat smother by " . $cardB['numMeaning'] . ".";
     }
+}
+$prophecyParagraph = "Ultimately, these energies manifest as a dual truth: you are experiencing the " . $cardA['cardMeaning'] . ", of the " . $cardA['cardName'] . ($cardA['isReversed'] ? " and its reversal" : '') . " yet you must prepare for the " . $cardB['cardMeaning'] . " brought by the " . ($cardB['isReversed'] ? "reversed " : '') . $cardB['cardName'] . ". The path forward requires the balance of both.";
 
-    $suitParagraph = "Your reading is governed by the collision of " . $cardA['suitName'] . " and " . $cardB['suitName'] . ". " .
-        "This cosmic alignment forces you into a space of " . $cardA['suitMeaning'] . ", " .
-        "which is actively clashing with " . $cardB['suitMeaning'] . ".";
-
-
-
-    $numParagraph = "The underlying numerological current pairs the progress of the " . $cardA['numName'] . " " .
-        "with the testing energy of the " . $cardB['numName'] . ". " .
-        "The universe indicates that " . $cardA['numMeaning'] . " is currently being disrupted by " . $cardB['numMeaning'] . ".";
-
-    $prophecyParagraph = "Ultimately, these energies manifest as a dual truth: you are experiencing the " . $cardA['cardMeaning'] . ", of the " . $cardA['cardName'] . ($cardA['isReversed'] ? " and its reversal" : '') . " yet you must prepare for the " . $cardB['cardMeaning'] . " brought by the " . ($cardB['isReversed'] ? "reversed " : '') . $cardB['cardName'] . ". The path forward requires the balance of both.";
-
-    return [
-        'arcana'   => $arcanaParagraph,
-        'suits'    => $suitParagraph,
-        'numerology'  => $numParagraph,
-        'prophecy' => $prophecyParagraph
-    ];
-
+return [
+    'arcana'   => $arcanaParagraph,
+    'suits'    => $suitParagraph,
+    'numerology'  => $numParagraph,
+    'prophecy' => $prophecyParagraph
+];
 
     //AJAJAJAJAJAJAJAX
 }

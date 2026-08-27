@@ -1,13 +1,13 @@
 <section class="chamber bottom-chamber">
 
-
+<button id="ascend-btn" class="aasb-btn">▲ Ascend</button>
 
     <div class="chamber-container">
         <div class="bottom-chamber-header">
             <img src="/assets/trippleMoon.svg" alt="Maiden Mother Crone" class="header-icon">
-            <button id="ascend-btn" class="aasb-btn">Ascend</button>
+<p>These are general interpretations. Always trust your intuition first.<br>
+Your intention, energy, and personal experience matter most.</p>
         </div>
-        <h2 class="chamber-title">The Chamber of Enlightenment</h2>
         <!-- dynamic card and php logic can live here -->
 
         <!-- card drawing stage -->
@@ -44,8 +44,8 @@
     <div id="loading-stage" style="display: none;">
         <div class="bottom-chamber-header">
             <img src="/assets/trippleMoon.svg" alt="Maiden Mother Crone" class="header-icon">
-            <p>The tripple monn is a reminder that we are all three. <br> You are the dreamer, the nurtuer, and the wise one. <br> honor every phase of yourself, as the moon honours every phase of life </p>  <!-- <3 -->
-            <button id="ascend-btn" class="aasb-btn">Ascend</button>
+            <p>These are general interpretations. Always trust your intuition first.<br>
+Your intention, energy, and personal experience matter most.</p>
         </div>
         <h2 class="loading-title">Synthesising Reading...</h2>
 
@@ -93,7 +93,8 @@
     <div id="reading-stage" style="display: none;">
         <div class="bottom-chamber-header">
             <img src="/assets/trippleMoon.svg" alt="Maiden Mother Crone" class="header-icon">
-            <button id="ascend-btn" class="aasb-btn">Ascend</button>
+            <p>These are general interpretations. Always trust your intuition first.<br>
+Your intention, energy, and personal experience matter most.</p>
         </div>
         <!-- YOUU CANT ASCEND ANYMORE T-T -->
         <div class="drawn-cards-display">
@@ -109,7 +110,13 @@
 
         </div>
 
-        <div id="save-toast" class="chamber-toast"></div>
+        <div id="save-toast" class="chamber-toast">
+            <div class="toast-header">
+                <h3> ݁₊ ⊹ . ݁˖ . Ritual Complete ݁₊ ⊹ . ݁˖ . ݁</h3>
+                <button class="toast-close" onclick="document.getElementById('save-toast').classList.remove('show')">✕</button>
+            </div>
+            <p>You are now bound to your reading. Go to the <strong>Inner Sanctum</strong> to view &lt;3</p>
+        </div>
 
     </div>
 </section>

@@ -97,20 +97,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-    <!-- MAYBE MAKE THIS A REUSABLE COMPONENET SO WE CAN GLOBALLY ANCHOR IT ON EVERY PAGE?? -->
-    <div class="header-container">
+  <!-- MAYBE MAKE THIS A REUSABLE COMPONENET SO WE CAN GLOBALLY ANCHOR IT ON EVERY PAGE?? -->
+  <div class="header-container">
 
-      <div class="lamp-wrapper" id="left-lamp">
-        <img src="../assets/lamp.png" class="lamp" alt="Left Lamp" />
-        <div class="glow"></div>
-      </div>
-
-
-      <div class="lamp-wrapper" id="right-lamp">
-        <img src="../assets/lamp.png" class="lamp" alt="Right Lamp" />
-        <div class="glow"></div>
-      </div>
+    <div class="lamp-wrapper" id="left-lamp">
+      <img src="../assets/lamp.png" class="lamp" alt="Left Lamp" />
+      <div class="glow"></div>
     </div>
+
+
+    <div class="lamp-wrapper" id="right-lamp">
+      <img src="../assets/lamp.png" class="lamp" alt="Right Lamp" />
+      <div class="glow"></div>
+    </div>
+  </div>
 
   <div class="border-wrapper">
     <div class="login-container">
@@ -125,18 +125,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <button type="button" class="tab-btn <?php echo $active_tab === 'register' ? 'active' : ''; ?>" id="tab-register">Register</button>
         </div>
 
-        <?php if (!empty($error_message)): ?>
-        <p style="color: #CF8394; text-align: center; font-family: 'Jim Nightshade', cursive; font-size: 1.1rem;">
-          <?php echo htmlspecialchars($error_message); ?>
-        </p>
-        <?php endif; ?>
-
         <h2 class="login-title" id="form-title"><?php echo $active_tab === 'login' ? 'Login' : 'Initiation'; ?></h2>
-        <?php echo $error_message; ?>
+        <p style="color: #CF8394; text-align: center; font-family: 'Jim Nightshade', cursive; font-size: 1.1rem;"><?php echo $error_message; ?>
+        </p>
         <form action="login.php" method="post" class="login-field-container" id="auth-form">
           <input type="hidden" name="action" id="form-action" value="<?php echo $active_tab; ?>">
 
-          <div class="login-field <?php echo $active_tab === 'login'? 'hidden' : ''; ?>" id="display-name">
+          <div class="login-field <?php echo $active_tab === 'login' ? 'hidden' : ''; ?>" id="display-name">
             <label for="display_name" class="login-label">Display Name</label>
             <input type="text" class="login-control" id="display_name" name="display_name">
           </div>
