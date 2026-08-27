@@ -132,7 +132,7 @@
   <div id="footer-container">
     <div id="footer">
     <!-- <img src="assets/rembyte.svg"alt="REMByte Logo" /> -->
-    <h1>Brought to you by REMByte</h1>
+    <!-- <h1>Brought to you by REMByte</h1> -->
   </div>
   </div>
 </footer>

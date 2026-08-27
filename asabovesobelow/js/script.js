@@ -205,6 +205,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // ==================================
+    //        Display Only cardsss
+    // ==================================
+    const wheelCards = document.querySelectorAll('.wheel-card');
+
+    wheelCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+            
+            e.preventDefault(); 
+            
+            
+            e.stopPropagation(); 
+            
+            
+            const flipper = this.querySelector('.tarot-card-flipper'); 
+            if (flipper) {
+                flipper.classList.toggle('is-flipped');
+                console.log("✨ Just showing off the art...");
+            }
+        });
+    });
 });
 
 document.addEventListener('click', (e) => {
@@ -271,8 +292,8 @@ function initTarotFlow() {
 
     const questionEl = document.getElementById('current-question');
     const questions = [
-        "Card 1: What should I embrace?",
-        "Card 2: What should I let go out?" //like this project bc i'm doing to much but anyywayyyy
+        "Card 1: What can I look forward to?",
+        "Card 2: What should I beware?" //like this project bc i'm doing to much but anyywayyyy
     ];
 
     const cards = document.querySelectorAll('.spread-card');

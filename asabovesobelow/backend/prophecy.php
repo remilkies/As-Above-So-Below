@@ -202,7 +202,7 @@ $suitParagraph = "Your reading is governed by the collision of " . $cardA['suitN
 if ($cardA['numName'] === $cardB['numName']) {
     $numParagraph = "A numerological echo runs through this draw: the shared vibration of the " . $cardA['numName'] . " emphasizes a singular lesson. ";
 
-    $numParagraph .= ucfirst($cardA['numMeaning']) . " This is what you must lean into, while " . $cardB['numMeaning'] . " is what you are outgrowing.";
+    $numParagraph .= ucfirst($cardA['numMeaning']) . ", don't mistake a single unit as there are demensions to this energy that you have yet to pay attention to and understand. ";
 } else {
     $numParagraph = "The underlying numerological current pairs the progress of the " . $cardA['numName'] . " with the testing energy of the " . $cardB['numName'] . ". ";
     

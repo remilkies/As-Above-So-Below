@@ -23,7 +23,7 @@ Your intention, energy, and personal experience matter most.</p>
             </div>
         </div>
 
-        <h3 id="current-question" class="question-text">Card 1: What should I embrace?</h3>
+        <h3 id="current-question" class="question-text">Card 1: What should I look foreward to?</h3>
 
         <!-- active deck spread (my lawd have mercy on my overambitios soul) -->
 
