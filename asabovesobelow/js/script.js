@@ -208,24 +208,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==================================
     //        Display Only cardsss
     // ==================================
-    const wheelCards = document.querySelectorAll('.wheel-card');
-
-    wheelCards.forEach(card => {
-        card.addEventListener('click', function(e) {
-            
-            e.preventDefault(); 
-            
-            
-            e.stopPropagation(); 
-            
-            
-            const flipper = this.querySelector('.tarot-card-flipper'); 
-            if (flipper) {
-                flipper.classList.toggle('is-flipped');
-                console.log("✨ Just showing off the art...");
-            }
+    
+        const displayCards = document.querySelectorAll('.wheel-card');
+    
+        displayCards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+    
+                const flipper = this.querySelector('.tarot-card-flipper');
+                if (flipper) {
+                    flipper.classList.toggle('is-flipped');
+                    console.log("✨ Display card flipped successfully!");
+                }
+            });
         });
-    });
+    
 });
 
 document.addEventListener('click', (e) => {

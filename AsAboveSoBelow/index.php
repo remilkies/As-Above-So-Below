@@ -44,9 +44,11 @@
   <div class="wheel-center-content">
   <div class="title-container">
   <img src="assets/trippleMoon.svg" alt="Logo" />
-      <h1 class="title">As Above <br> So Below</h1>
+      <h1 class="title">As Above, So Below</h1>
     </div>
-    <p class="wheel-title">The right match changes everything</p>
+    <p class="wheel-title">
+      <span>The right match changes <br></span>
+      <span>everything</span></p>
     <button class="meet-fate-btn" onclick="window.location.href='pages/login.php';">
       <h3>Meet Your Fate</h3>
     </button>
@@ -69,7 +71,7 @@
     <div class="wheel-card" style="--i: <?php echo $i; ?>; --total: <?php echo $total_cards; ?>;">
       <div class="tarot-card-loader">
 
-        <?php include 'components/TarotCard.php'; ?>
+        <?php include 'components/displayCard.php'; ?>
       </div>
     </div>
 

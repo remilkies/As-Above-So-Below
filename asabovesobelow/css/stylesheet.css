@@ -264,7 +264,7 @@ Y is vertical (0% = top edge, 100% = bottom edge) */
 .title {
     font-family: "Jaini", system-ui;
     text-align: center;
-    font-size: 64px;
+    font-size: 2em;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -274,6 +274,7 @@ Y is vertical (0% = top edge, 100% = bottom edge) */
 
     -webkit-text-fill-color: transparent;
     margin: 20px 0;
+
 }
 
 /* ============================= */
@@ -288,10 +289,10 @@ Y is vertical (0% = top edge, 100% = bottom edge) */
     align-items: center;
 }
 
-.tarot-wheel-container .wheel-title {
+.tarot-wheel-container .wheel-title span {
     text-align: center;
     font-family: "Jim Nightshade", cursive;
-    font-size: 40px;
+    font-size: 1.5rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -436,6 +437,67 @@ img {
     object-fit: cover;
 }
 
+
+/* =========================
+TAROT WHEEL >:D 
+============================ */
+
+.tarot-wheel-container {
+    position: relative;
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.wheel-center-content {
+    position: absolute;
+    text-align: center;
+    z-index: 10;
+    max-width: 220px;
+}
+
+.wheel-card {
+    position: absolute;
+    width: 162.235px;
+    height: 253.331px;
+
+    /* Position absolutely dead center of the screen first */
+    top: 50%;
+    left: 50%;
+    margin-left: -69.935px;
+    /* Half of card width */
+    margin-top: -117.305px;
+    /* Half of card height */
+
+
+    /* 1. Calculate angle: (360deg / total cards) * current index */
+    /* 2. Rotate to angle, then translate up to form radius */
+    transform:
+        rotate(calc((360deg / var(--total)) * var(--i))) translateY(-360px);
+    /* Adjust this number to change circle radius */
+
+    transform-origin: center center;
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    filter: drop-shadow(0 0 14.2px rgba(0, 0, 0, 0.50));
+}
+
+.wheel-card img {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+}
+
+
+.wheel-card:hover {
+    z-index: 20;
+    transform:
+        rotate(calc((360deg / var(--total)) * var(--i))) translateY(-390px)
+        /* scale(1.08) */
+    ;
+}
 /* =========================
 TAROT WHEEL >:D 
 ============================ */
@@ -454,10 +516,10 @@ TAROT WHEEL >:D
     position: relative;
     width: 100vw;
     height: 100vh;
-    display: flex;
+    /* display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
+    margin: 0 auto; */
 
     /* background-image: url(../assets/dashedBorder.svg); */
 
@@ -465,41 +527,14 @@ TAROT WHEEL >:D
 
 .wheel-center-content {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
     z-index: 10;
     max-width: 220px;
 }
 
-/* .wheel-card-wrapper {
-    width: 162.235px;
-    height: 253.331px;
-    position: relative;
-} */
-
-.wheel-card {
-    position: absolute;
-    width: 186.265px;
-    height: 312.431px;
-
-
-    /* Calculate angle: (360deg / total cards) * current index */
-    /* Rotate to angle, then translate up to form radius */
-    transform:
-        rotate(calc((360deg / var(--total)) * var(--i))) translateY(-230px);
-    /* Adjust circle radius */
-
-    transform-origin: center center;
-    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-    /* filter: drop-shadow(0 0 14.2px rgba(0, 0, 0, 0.50)); */
-}
-
-.wheel-card:hover {
-    z-index: 20;
-    transform:
-        rotate(calc((360deg / var(--total)) * var(--i))) translateY(-250px)
-        /* scale(1.08) */
-    ;
-}
 
 /* ==========================
     INFO CSS 
@@ -793,7 +828,7 @@ button {
     */
     background: linear-gradient(#111111, #111111) padding-box,
         linear-gradient(270deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%) border-box;
- color: #F4CFD5;
+    color: #F4CFD5;
     background-size: cover;
     text-align: center;
     font-family: "Jaini", system-ui;
@@ -1036,7 +1071,8 @@ DASBOARD CSS
 .dashboard-btn {
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Change to 'flex-start' if you want it left-aligned */
+    justify-content: flex-start;
+    /* Change to 'flex-start' if you want it left-aligned */
     border-radius: 50px;
     border: 4px solid transparent;
     /* i hate myself so much for working almost entirely with gradients T-T
@@ -1057,22 +1093,22 @@ DASBOARD CSS
     box-shadow: 0 4px 20px rgba(207, 131, 148, 0.15);
 }
 
-.hover-indicator{
+.hover-indicator {
     height: 100px;
     width: auto;
 }
 
 .dashboard-btn .hover-indicator {
-    width: 20px; 
+    width: 20px;
     height: auto;
     opacity: 0;
-    transform: translateX(0px); 
+    transform: translateX(0px);
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .dashboard-btn:hover .hover-indicator {
     opacity: 1;
-    transform: translateY(-50%) translateX(0); 
+    transform: translateY(-50%) translateX(0);
 }
 
 .dashboard-btn span {
@@ -1183,8 +1219,8 @@ img.window {
 
 .aasb-modal-box {
     background:
-    linear-gradient(rgba(17, 17, 17, 17), rgb(17, 17, 17)) padding-box,
-    linear-gradient(270deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%) border-box;
+        linear-gradient(rgba(17, 17, 17, 17), rgb(17, 17, 17)) padding-box,
+        linear-gradient(270deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%) border-box;
     border: 3px solid transparent;
     padding: 2rem;
     border-radius: 8px;
@@ -1224,11 +1260,12 @@ img.window {
     font-size: 1.5em;
 }
 
-.aasb-modal-actions, .aasb-modal-actions span{
-display: flex;
+.aasb-modal-actions,
+.aasb-modal-actions span {
+    display: flex;
     justify-content: center;
-gap: 1em;
-font-size: 1.5rem;
+    gap: 1em;
+    font-size: 1.5rem;
 }
 
 
@@ -1906,7 +1943,7 @@ READING CHAMBER CSS
     font-size: 1rem;
 }
 
-.sanctum-title{
+.sanctum-title {
     text-align: center;
     font-family: "Jaini", system-ui;
     font-size: 2rem;
@@ -1921,7 +1958,7 @@ READING CHAMBER CSS
     -webkit-text-fill-color: transparent;
 }
 
-.header-text{
+.header-text {
     text-align: center;
     font-family: "Jim Nightshade", cursive;
     font-size: 1rem;
@@ -1997,7 +2034,8 @@ READING CHAMBER CSS
 
     transform-style: preserve-3d;
     backface-visibility: hidden;
-    will-change: transform, opacity, height, width;;
+    will-change: transform, opacity, height, width;
+    ;
 }
 
 /* hide inactive text */
@@ -2094,7 +2132,7 @@ READING CHAMBER CSS
 
     display: -webkit-box;
     line-clamp: 5;
-    -webkit-line-clamp: 5; 
+    -webkit-line-clamp: 5;
     line-clamp: 5;
     -webkit-box-orient: vertical;
     overflow: hidden;
@@ -2120,14 +2158,14 @@ READING CHAMBER CSS
 
 /* trust me important is very neccisary -_- */
 .sanctum-entry.expanded {
-max-height: 850px;
+    max-height: 850px;
     overflow-y: scroll;
     transform: translate(-50%, -50%) scale(1.02) translateZ(100px) !important;
     z-index: 1000 !important;
     padding: 2.5rem !important;
 }
 
-.sanctum-entry.expanded .reading-preview{
+.sanctum-entry.expanded .reading-preview {
     display: block !important;
     text-align: center;
     font-family: "Jim Nightshade";
