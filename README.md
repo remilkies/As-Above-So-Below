@@ -14,9 +14,9 @@ Tarot is an ancient tool for self-discovery, guidance, and personal growth. It h
 
 The entire architecture of this application is designed to encompass the classic hermetic maxim: *As above, so below* - that the unconscious mind and materal reality are only reflections of one another. Or as I have lay it out:
 
-* **As Above:** Your first card drawn—representing the unconscious cosmic path we walk ahead, *what you should look forward to*.
-* **So Below:** Your second card drawn—representing the Earth around you, an element you can't control making up a whole reality, **what should you beware**.
----
+* **As Above:** Your first card drawn—representing tbe skyward current. Not a fortune told, but the raw spark of unmanifest voltage waiting to descend. The subtle ideal seeking a vessel-the pure frequency of revelation ready to move through you if your lens is clear.
+* **So Below:** Your second card drawn-representing the shadow in the soil. Where high voltage degrades into static. Because the same lightning that illuminates can scorch, this shows where unexamined attention turns potential power into friction, inertia, or lost ground..
+
 
 ## 🌀 Philosophical Framework: Hegelian Dialectics in Code
 
