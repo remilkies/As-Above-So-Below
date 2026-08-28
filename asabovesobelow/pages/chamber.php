@@ -28,11 +28,21 @@ Your intention, energy, and personal experience matter most.</p>
         <!-- active deck spread (my lawd have mercy on my overambitios soul) -->
 
         <div id="card-spread-container">
-            <?php
-            for ($i = 0; $i < 15; $i++) {
-                include '../components/TarotCard.php';
-            }
-            ?>
+           <?php
+    $total_cards = 15;
+    $start_angle = -56;
+    $end_angle = 56;
+    $step = ($end_angle - $start_angle) / ($total_cards - 1);
+
+    for ($i = 0; $i < $total_cards; $i++) {
+        $angle = $start_angle + ($i * $step);
+        $index = $i + 1;
+
+        echo "<div class='tarot-card-wrapper' style='--base-angle: {$angle}deg; --i: {$index}; z-index: {$index};'>";
+        include '../components/TarotCard.php';
+        echo "</div>";
+    }
+    ?>
         </div>
 
         <div class="chamber-controls">
