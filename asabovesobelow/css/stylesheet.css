@@ -498,6 +498,7 @@ TAROT WHEEL >:D
         /* scale(1.08) */
     ;
 }
+
 /* =========================
 TAROT WHEEL >:D 
 ============================ */
@@ -542,7 +543,9 @@ TAROT WHEEL >:D
 
 #about-section {
     position: relative;
-    margin: 20em 5em 0 5em;
+    margin: 0em 5em 0em 5em;
+    padding: 2em;
+    height: 100vh;
 }
 
 .about-row {
@@ -574,14 +577,16 @@ TAROT WHEEL >:D
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+}
 
+
+.about-text span{
     background: linear-gradient(180deg, #CF8394 17.31%, #F4CFD5 51.92%, #CF8394 83.17%);
 
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-
 .about-text p {
     text-align: center;
     font-family: "Jim Nightshade", cursive;
@@ -603,6 +608,14 @@ TAROT WHEEL >:D
     max-width: 500px;
     border-radius: 20px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 500px) {
+
+    .about-text h2 {
+        font-size: 2rem;
+    }
+    
 }
 
 /* ==========================
@@ -1413,6 +1426,8 @@ BOTTOM CHAMBER CSS
     align-items: flex-end;
     margin-top: 1rem;
     overflow: visible;
+    touch-action: none;
+    /*prevent mobile dragging while spinningg cardsss*/
 }
 
 #card-spread-container .tarot-card-container {
@@ -1421,11 +1436,12 @@ BOTTOM CHAMBER CSS
     /*origin of the arc pivit point below their base to form the arc*/
     transform-origin: 50% 270%;
     /* last number controls the width*/
+
     transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) z-index 0.2s ease;
 }
 
 /* fan arc rotation calculations for 15 cards (i need to find if there a DRY method for this T-T) */
-#card-spread-container .tarot-card-container:nth-child(1) {
+/* #card-spread-container .tarot-card-container:nth-child(1) {
     --angle: rotate(-56deg);
     transform: var(--angle);
     z-index: 1;
@@ -1514,15 +1530,26 @@ BOTTOM CHAMBER CSS
     --angle: rotate(56deg);
     transform: var(--angle);
     z-index: 15;
-}
+} */
 
 #card-spread-container .tarot-card-container:hover {
     z-index: 50 !important;
     transform: var(--angle) translateY(-1px) scale(1.1) !important;
 }
 
+#card-spread-container .tarot-card-wrapper {
+    position: absolute;
+    bottom: 30px;
+    transform-origin: 50% 270%;
+    /* base angle + dynamic spin offset angle */
+    transform: rotate(calc(var(--base-angle) + var(--spin-offset, 0deg)));
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
 
-
+#card-spread-container .tarot-card-wrapper:hover {
+    z-index: 50 !important;
+    transform: rotate(calc(var(--base-angle) + var(--spin-offset, 0deg))) translateY(-10px) scale(1.1) !important;
+}
 
 .card-indicators {
     display: flex;

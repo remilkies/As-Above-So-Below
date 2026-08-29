@@ -94,7 +94,8 @@
 
   <div class="about-content">
     <div class="about-text">
-      <h2>The Hands of the Universe</h2>
+      <!-- this is the 0nly way i can get the gradient on without it being shared across the whole container  -->
+      <h2><span>The </span><span>Hands</span> <span>of</span> <span>the</span> <span>Universe</span></h2>
       <p>The admin is not seen for no moderation is required, <br> the movement of the cosmos is your only hope</p>
     </div>
 
@@ -102,13 +103,13 @@
   <div class="col-md-6 text-container">
 
     <div class="about-text">
-      <h2>The Right Match
-      Changes Everything</h2>
+      <h2><span>The</span> <span>Right</span> <span>Match</span>
+      <span>Changes</span> <span>Everything</span></h2>
       <p>There are no mistakes and no coincidences, each choice has a meaning but can be turned on it's head when paired with anouther.</p>
     </div>
 
     <div class="about-text">
-      <h2>Time's Arrow Only Marches Forward</h2>
+      <h2><span>Time's</span> <span>Arrow</span> <span>Only</span> <span>Marches</span> <span>Forward</span></h2>
       <p>The universe is forever moving, fates conatantly changing. <br>Readings will expire wintin 7 days of drawing.</p>
     </div>
   </div>

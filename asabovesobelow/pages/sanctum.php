@@ -8,7 +8,7 @@
         <div class="header-text">
         <img src="/assets/trippleMoon.svg" alt="Maiden Mother Crone" class="header-icon">
             <h1 class="sanctum-title"><?php echo htmlspecialchars($displayName) . "'s"; ?> Inner Sanctum</h1>
-
+<!-- prophecies obtained coven initiation -->
             <p>The tripple monn is a reminder that we are all three. <br> You are the dreamer, the nurtuer, and the wise one. <br> honor every phase of yourself, as the moon honours every phase of life &lt;3</p>
             
             

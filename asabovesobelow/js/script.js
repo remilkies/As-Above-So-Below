@@ -237,19 +237,19 @@ document.addEventListener('click', (e) => {
 
 
 //   carot card component
-// document.addEventListener("DOMContentLoaded", () => {
-//     const containers = document.querySelectorAll('.tarot-card-container');
+document.addEventListener("DOMContentLoaded", () => {
+    const containers = document.querySelectorAll('.display-card-container');
 
-//     containers.forEach(container => {
-//         const flipper = container.querySelector('.tarot-card-flipper');
+    containers.forEach(container => {
+        const flipper = container.querySelector('.tarot-card-flipper');
 
-//         if (container && flipper) {
-//             container.addEventListener('click', function () {
-//                 flipper.classList.toggle('is-flipped');
-//             });
-//         }
-//     });
-// });
+        if (container && flipper) {
+            container.addEventListener('click', function () {
+                flipper.classList.toggle('is-flipped');
+            });
+        }
+    });
+});
 
 
 
@@ -544,3 +544,43 @@ function revealReading(cards) {
             console.log("🔮 Ritual or auto-save interrupted: ", err);
         });
 }
+
+// ============================
+// MOBILE TAROT SCROLLING >:D
+// ============================
+// const spreadContainer = document.getElementById('card-spread-container');
+// let isDragging = false;
+// let startX = 0;
+// let currentRotation = 0;
+// let targetRotation = 0;
+
+// //max deg users can spin left/right
+// const MIN_ROTATION = -45;
+// const MAX_ROTATION = 45;
+
+// spreadContainer.addEventListener('pointerdown', (e) => {
+//     isDragging = true;
+//     startX = e.clientX;
+//     spreadContainer.style.cursor = 'grabbing';
+// });
+
+// window.addEventListener('pointermove', (e) => {
+//     if (!isDragging) return;
+
+//     const deltaX = e.clientX - startX;
+//     // .25 controls sensitivity (drag dist to rotation angle :D)
+//     newRotation = currentRotation + (deltaX * 0.25);
+
+//     //clamp values so the deck doesn't spin inifinitly into the void
+//     targetRotation = Math.max(MIN_ROTATION, Math.min(MAX_ROTATION, newRotation));
+
+//     spreadContainer.style.setProperty('--spin-offset', `${targetRotation}deg`);
+// });
+
+// window.addEventListener('pointerup', () => {
+//     if (isDragging) {
+//         isDragging = false;
+//         currentRotation = targetRotation;
+//         spreadContainer.style.cursor = 'defualt';
+//     }
+// })
