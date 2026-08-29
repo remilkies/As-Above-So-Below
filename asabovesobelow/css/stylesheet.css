@@ -157,7 +157,7 @@ input[type="submit"],
     z-index: -1;
 
 
-    top: 86%;
+    top: 98%;
     left: 65%;
 
     width: 300px;
@@ -194,6 +194,11 @@ Y is vertical (0% = top edge, 100% = bottom edge) */
     mask-image: linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%);
 }
 
+@media (max-width: 500px) {
+    .glow::before{
+    clip-path: polygon(45% 0, 55% 0, 70% 100%, 30% 100%);
+    }
+}
 @keyframes trueFlicker {
 
     0%,
@@ -442,6 +447,20 @@ img {
 TAROT WHEEL >:D 
 ============================ */
 
+.hero-wrapper {
+    height: 100vh;
+    background-image: url(../assets/dashedBorder.svg);
+    /* background-attachment: fixed; */
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -14rem;
+
+}
+
 .tarot-wheel-container {
     position: relative;
     width: auto;
@@ -536,6 +555,13 @@ TAROT WHEEL >:D
     max-width: 220px;
 }
 
+@media (max-width: 900px) {
+    .cards-ring{
+        display: none !important;
+    }
+
+    
+}
 
 /* ==========================
     INFO CSS 
@@ -679,6 +705,7 @@ TAROT WHEEL >:D
     justify-content: center;
     gap: 3rem;
     margin-bottom: 1.5rem;
+    font-family: "Jaini", system-ui;
 }
 
 .tab-btn {
@@ -728,6 +755,7 @@ TAROT WHEEL >:D
     justify-content: center;
     flex-direction: column;
     max-width: 450px;
+    position: relative;
 }
 
 .login-field-container {
@@ -735,6 +763,7 @@ TAROT WHEEL >:D
     justify-content: center;
     flex-direction: column;
     gap: 20px;
+    position: relative;
 }
 
 .login-field {
@@ -883,10 +912,19 @@ button {
         background: none;
     }
 
+    .auth-tabs{
+        margin-bottom: 3rem;
+    }
+    .login-container{
+
+        margin-top: 6rem;
+    }
     .login-field-container {
         margin-top: -6rem;
     }
-
+/* .login-form{
+    gap: 3rem;
+} */
     .login-title {
         font-size: 3rem;
         margin-bottom: 1em;
@@ -904,17 +942,17 @@ button {
 
 }
 
-@media (max-width: 414px) {
+@media (max-width: 500px) {
     .login-form {
         width: 350px;
     }
 
 
-    .glow {
+    /* .glow {
         width: 60px;
         height: 75px;
 
-    }
+    } */
 
 
     .login-container {
@@ -1057,6 +1095,7 @@ DASBOARD CSS
     flex-direction: column;
     /* margin-top: -17em; */
     width: 100%;
+
 }
 
 .moon-container {
@@ -1323,6 +1362,13 @@ img.window {
         height: 150px;
         aspect-ratio: 177 / 140;
     }
+    .chamber-content{
+        height: 100vh !important;
+    }
+
+    .dashboard-btn span{
+        font-size: 1rem;
+    }
 
 }
 
@@ -1427,18 +1473,19 @@ BOTTOM CHAMBER CSS
     margin-top: 1rem;
     overflow: visible;
     touch-action: none;
+
     /*prevent mobile dragging while spinningg cardsss*/
 }
 
-#card-spread-container .tarot-card-container {
+/* #card-spread-container .tarot-card-container {
     position: absolute;
     bottom: 30px;
-    /*origin of the arc pivit point below their base to form the arc*/
+
     transform-origin: 50% 270%;
-    /* last number controls the width*/
+    
 
     transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) z-index 0.2s ease;
-}
+} */
 
 /* fan arc rotation calculations for 15 cards (i need to find if there a DRY method for this T-T) */
 /* #card-spread-container .tarot-card-container:nth-child(1) {
@@ -1532,23 +1579,32 @@ BOTTOM CHAMBER CSS
     z-index: 15;
 } */
 
-#card-spread-container .tarot-card-container:hover {
+/* #card-spread-container .tarot-card-container:hover {
     z-index: 50 !important;
     transform: var(--angle) translateY(-1px) scale(1.1) !important;
-}
+} */
 
 #card-spread-container .tarot-card-wrapper {
     position: absolute;
     bottom: 30px;
     transform-origin: 50% 270%;
+    overflow-y: scroll;
     /* base angle + dynamic spin offset angle */
     transform: rotate(calc(var(--base-angle) + var(--spin-offset, 0deg)));
-    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: transform 0.1s ease-out, z-index 0.2s ease;
+}
+
+/* disable during dragggg so finger tracking feels instant */
+#card-spread-container.is-dragging .tarot-card-wrapper{
+    transform: none !important;
+
 }
 
 #card-spread-container .tarot-card-wrapper:hover {
     z-index: 50 !important;
     transform: rotate(calc(var(--base-angle) + var(--spin-offset, 0deg))) translateY(-10px) scale(1.1) !important;
+    overflow-y: scroll;
+
 }
 
 .card-indicators {
@@ -2030,6 +2086,7 @@ READING CHAMBER CSS
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-y: scroll;
     /* gap: 1rem; */
     /* transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); */
 }
@@ -2245,113 +2302,46 @@ READING CHAMBER CSS
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 700px) {
 
-    .sanctum-chamber {
-        grid-column: 2;
-        grid-row: 1;
-        position: relative;
-        width: 100vw;
-        height: 100vh;
-        overflow: hidden;
-        padding: 2em;
-        box-sizing: border-box;
-    }
-
-
-    .sanctum-layout {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        height: 100%;
-        padding-top: 5rem;
-        gap: 5rem;
-    }
-
-    .sanctum-preview {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-    }
-
-    .sanctum-content {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        overflow-y: hidden;
-    }
-
-    .sanctum-content .user-title {
-        text-align: left;
-        font-size: 56px;
-    }
-
-    #sanctum-subtitle {
-        text-align: left;
-        margin-bottom: 2rem;
-    }
-
-    .sanctum-feed {
-        overflow-y: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        padding-right: 1rem;
-    }
-
-    .sanctum-entry {
-        border-bottom: 2px solid rgba(207, 131, 148, 0.3);
-        padding-bottom: 1rem;
-        display: flex;
-        flex-direction: row;
-        gap: 3rem;
-    }
-
-    .sanctum-reading {
+    .sanctum-feed{
         display: flex;
         flex-direction: column;
     }
 
-    .sanctum-date {
-        text-align: center;
-        font-family: "Jaini", system-ui;
-        font-size: 3rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
+/* 1. Truncate the text by default */
+.reading-preview {
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    line-clamp: 7;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all 0.3s ease;
+}
 
-        background: linear-gradient(180deg, #CF8394 30.95%, #F4CFD5 63.1%, #CF8394 95.24%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
 
-    .sanctum-cards {
-        text-align: center;
-        font-family: "Jim Nightshade";
-        font-size: 24px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
+.sanctum-entry.expanded {
+    flex-direction: column; /* Stacks image at the top, text at the bottom */
+    height: auto;
+    max-height: 80vh; /* Prevents it from being taller than the screen */
+    overflow-y: auto; /* Makes the inside scrollable */
+    position: relative;
+    z-index: 100; /* Pops it above the other cards */
 
-        background: linear-gradient(180deg, #CF8394 15.56%, #F4CFD5 48.89%, #CF8394 82.22%);
+}
 
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
+.sanctum-entry.expanded .reading-preview {
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+    display: block;
+    overflow: visible;
+}
 
-    .reading-preview {
-        color: #F4CFD5;
-        text-align: center;
-        font-family: "Jim Nightshade", cursive;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
+
+.sanctum-entry.expanded .view-reading-btn {
+    display: none;
+}
 }
 
 #footer-container {

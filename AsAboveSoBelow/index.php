@@ -33,7 +33,7 @@
 
 <!-- HTML -->
  <section id="hero-section">
-  <div class="border-wrapper">
+  <div class="hero-wrapper">
 <div class="conatiner-fluid">
   <div class="row">
     <div class="col-12">

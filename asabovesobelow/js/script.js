@@ -127,11 +127,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         cancelBtn.addEventListener('click', () => {
-            modal.style.display = 'none'; 
+            modal.style.display = 'none';
         });
 
         confirmBtn.addEventListener('click', () => {
-            window.location.href = '../backend/logout.php'; 
+            window.location.href = '../backend/logout.php';
         });
     }
 
@@ -208,22 +208,68 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==================================
     //        Display Only cardsss
     // ==================================
-    
-        const displayCards = document.querySelectorAll('.wheel-card');
-    
-        displayCards.forEach(card => {
-            card.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-    
-                const flipper = this.querySelector('.tarot-card-flipper');
-                if (flipper) {
-                    flipper.classList.toggle('is-flipped');
-                    console.log("✨ Display card flipped successfully!");
-                }
-            });
+
+    const displayCards = document.querySelectorAll('.wheel-card');
+
+    displayCards.forEach(card => {
+        card.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const flipper = this.querySelector('.tarot-card-flipper');
+            if (flipper) {
+                flipper.classList.toggle('is-flipped');
+                console.log("✨ Display card flipped successfully!");
+            }
         });
-    
+    });
+
+    // ============================
+// MOBILE TAROT SCROLLING >:D
+// ============================
+const spreadContainer = document.getElementById('card-spread-container');
+if (spreadContainer) {
+    let isDragging = false;
+    let startX = 0;
+    let currentRotation = 0;
+    let targetRotation = 0;
+
+    //max deg users can spin left/right
+    const MIN_ROTATION = -45;
+    const MAX_ROTATION = 45;
+
+    spreadContainer.addEventListener('pointerdown', (e) => {
+        isDragging = true;
+        startX = e.clientX;
+        spreadContainer.classList('is-dragging');
+        spreadContainer.style.cursor = 'grabbing';
+    });
+
+    window.addEventListener('pointermove', (e) => {
+        if (!isDragging) return;
+
+        const deltaX = e.clientX - startX;
+        // .25 controls sensitivity (drag dist to rotation angle :D)
+        newRotation = currentRotation + (deltaX * 0.35);
+
+        //clamp values so the deck doesn't spin inifinitly into the void
+        targetRotation = Math.max(MIN_ROTATION, Math.min(MAX_ROTATION, newRotation));
+
+        spreadContainer.style.setProperty('--spin-offset', `${targetRotation}deg`);
+    });
+
+    const stopDragging = () => {
+        if (isDragging) {
+            isDragging = false;
+            currentRotation = targetRotation;
+            spreadContainer.classList.remove('is-dragging');
+            spreadContainer.style.cursor = 'defualt';
+        }
+    };
+    window.addEventListener('pointerup', stopDragging);
+    window.addEventListener('pointercancel', stopDragging);
+}
+
 });
 
 document.addEventListener('click', (e) => {
@@ -545,42 +591,4 @@ function revealReading(cards) {
         });
 }
 
-// ============================
-// MOBILE TAROT SCROLLING >:D
-// ============================
-// const spreadContainer = document.getElementById('card-spread-container');
-// let isDragging = false;
-// let startX = 0;
-// let currentRotation = 0;
-// let targetRotation = 0;
 
-// //max deg users can spin left/right
-// const MIN_ROTATION = -45;
-// const MAX_ROTATION = 45;
-
-// spreadContainer.addEventListener('pointerdown', (e) => {
-//     isDragging = true;
-//     startX = e.clientX;
-//     spreadContainer.style.cursor = 'grabbing';
-// });
-
-// window.addEventListener('pointermove', (e) => {
-//     if (!isDragging) return;
-
-//     const deltaX = e.clientX - startX;
-//     // .25 controls sensitivity (drag dist to rotation angle :D)
-//     newRotation = currentRotation + (deltaX * 0.25);
-
-//     //clamp values so the deck doesn't spin inifinitly into the void
-//     targetRotation = Math.max(MIN_ROTATION, Math.min(MAX_ROTATION, newRotation));
-
-//     spreadContainer.style.setProperty('--spin-offset', `${targetRotation}deg`);
-// });
-
-// window.addEventListener('pointerup', () => {
-//     if (isDragging) {
-//         isDragging = false;
-//         currentRotation = targetRotation;
-//         spreadContainer.style.cursor = 'defualt';
-//     }
-// })
