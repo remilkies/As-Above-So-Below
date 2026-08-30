@@ -2086,22 +2086,18 @@ READING CHAMBER CSS
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow-y: scroll;
     /* gap: 1rem; */
     /* transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); */
 }
 
-.sanctum-entry {
+.sanctum-entry-container {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 2rem;
-    padding: 2rem;
+
+    /* padding: 2rem; */
     /* width: not a single clue O_O; */
     border-radius: 20px;
     border: 2px solid rgba(207, 131, 148, 0.3);
@@ -2119,17 +2115,26 @@ READING CHAMBER CSS
     transform-style: preserve-3d;
     backface-visibility: hidden;
     will-change: transform, opacity, height, width;
-    ;
+    
 }
 
+.sanctum-entry{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 3rem;
+}
 /* hide inactive text */
 .sanctum-entry .entry-right-col {
     display: none;
     opacity: 0;
     width: 0;
+
 }
 
-.sanctum-entry.active {
+.sanctum-entry-container.active {
     opacity: 1;
     transform: scale(1);
     border: 3px solid transparent;
@@ -2139,21 +2144,21 @@ READING CHAMBER CSS
         linear-gradient(270deg, #CF8394 0%, #F4CFD5 50%, #CF8394 100%) border-box;
 
 
-    padding: 2rem 3rem;
+
     box-shadow: 0 0 20px rgba(242, 203, 209, 0.2);
     z-index: 10;
     justify-content: center;
 
 }
 
-.sanctum-entry.active .entry-right-col {
-
+.sanctum-entry-container.active .entry-right-col {
     display: block;
     opacity: 1;
-    width: 400px;
+    width: 100%;
     margin: 0 2;
     /*text length*/
     animation: fadeInText 0.6s ease forwards;
+
 }
 
 @keyframes fadeInText {
@@ -2167,6 +2172,59 @@ READING CHAMBER CSS
         transform: translateX(0);
     }
 }
+
+.bin-icon{
+    display: none;
+}
+.sanctum-entry-container.active .bin-icon{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    height: 40px;
+    width: auto;
+    display: inline;
+    transition: transform 0.2s, box-shadow 0.2s ease;
+    background: transparent;
+}
+
+.sanctum-entry-container.active .bin-icon:hover{
+    transform:  scale(1) ;
+    animation: binWiggle 2.5s infinite ease-in-out;
+    box-shadow: 0 0 15px rgba(207, 131, 148, 0.5);
+}
+
+.bin-icon img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sanctum-entry-container.active .bin-icon .bin-default{
+    display: block;
+    
+}
+
+.sanctum-entry-container.active .bin-icon .bin-hover{
+    display: none;
+}
+
+.sanctum-entry-container.active .bin-icon:hover .bin-default{
+    display: none;
+}
+
+.sanctum-entry-container.active .bin-icon:hover .bin-hover {
+    display: block;
+
+}
+
+@keyframes binWiggle{
+    0%, 100% { transform: rotate(0deg); }
+    10%, 30% { transform: rotate(-8deg); }
+    20%, 40% { transform: rotate(8deg); }
+    50% { transform: rotate(0deg); }
+  }
+
+
 
 .entry-left-col {
     display: flex;
@@ -2233,7 +2291,7 @@ READING CHAMBER CSS
     font-size: 1.5rem;
 }
 
-.sanctum-entry.active .view-reading-btn {
+.sanctum-entry-container.active .view-reading-btn {
     opacity: 1;
     pointer-events: auto;
     display: flex;
@@ -2241,7 +2299,7 @@ READING CHAMBER CSS
 }
 
 /* trust me important is very neccisary -_- */
-.sanctum-entry.expanded {
+.sanctum-entry-container.expanded {
     max-height: 850px;
     overflow-y: scroll;
     transform: translate(-50%, -50%) scale(1.02) translateZ(100px) !important;
@@ -2249,7 +2307,7 @@ READING CHAMBER CSS
     padding: 2.5rem !important;
 }
 
-.sanctum-entry.expanded .reading-preview {
+.sanctum-entry-container.expanded .reading-preview {
     display: block !important;
     text-align: center;
     font-family: "Jim Nightshade";
@@ -2269,7 +2327,7 @@ READING CHAMBER CSS
     max-height: 850px;
 }
 
-.sanctum-entry.expanded .view-reading-btn {
+.sanctum-entry-container.expanded .view-reading-btn {
     display: none !important;
 }
 
@@ -2309,7 +2367,7 @@ READING CHAMBER CSS
         flex-direction: column;
     }
 
-/* 1. Truncate the text by default */
+/* Truncate the text by default */
 .reading-preview {
     display: -webkit-box;
     -webkit-line-clamp: 7;
@@ -2321,17 +2379,17 @@ READING CHAMBER CSS
 }
 
 
-.sanctum-entry.expanded {
-    flex-direction: column; /* Stacks image at the top, text at the bottom */
+.sanctum-entry-container.expanded {
+    flex-direction: column; 
     height: auto;
-    max-height: 80vh; /* Prevents it from being taller than the screen */
-    overflow-y: auto; /* Makes the inside scrollable */
+    max-height: 80vh;
+    overflow-y: auto; 
     position: relative;
-    z-index: 100; /* Pops it above the other cards */
+    z-index: 100; 
 
 }
 
-.sanctum-entry.expanded .reading-preview {
+.sanctum-entry-container.expanded .reading-preview {
     -webkit-line-clamp: unset;
     line-clamp: unset;
     display: block;
@@ -2339,7 +2397,7 @@ READING CHAMBER CSS
 }
 
 
-.sanctum-entry.expanded .view-reading-btn {
+.sanctum-entry-container.expanded .view-reading-btn {
     display: none;
 }
 }

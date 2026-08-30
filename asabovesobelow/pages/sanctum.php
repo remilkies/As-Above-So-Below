@@ -47,7 +47,14 @@ $titleB = $cleanB . ($cardBReversed ? ' (reversed)' : '');
 
                     $prophecyText = $reading['reading_text'] ?? $reading['prophecy'] ?? $reading['reading'] ?? '';
                 ?>
-                    <div class="sanctum-entry <?php echo $isActive; ?>" data-id="<?php echo htmlspecialchars($reading['id']); ?>">
+                <div class="sanctum-entry-container <?php echo $isActive; ?>" data-id="<?php echo htmlspecialchars($reading['id']); ?>">
+                    <div class="sanctum-entry">
+                        
+                    <div class="bin-icon">
+                        <img src="../assets/bin-icon.svg" alt="Delete Icon" class="bin-default">
+                        <img src="../assets/bin-icon-active.svg" alt="Delete Icon Active" class="bin-hover">
+                        </div>
+
                         <div class="entry-left-col">
                             <div class="drawn-cards-display">
                                 <div class="drawn-card card-left <?php echo $cardAReversed; ?>">
@@ -63,10 +70,13 @@ $titleB = $cleanB . ($cardBReversed ? ' (reversed)' : '');
                         </div>
 
                         <div class="entry-right-col reading-text">
+
                             <p class="reading-preview"><?php echo nl2br(htmlspecialchars($prophecyText)); ?></p>
                             <button class="view-reading-btn aasb-btn">View Full Reading</button>
                         </div>
+
                     </div>
+                </div>
                 <?php endforeach; ?>
                 <?php else: ?>
         <div class="sanctum-entry active empty-entry">

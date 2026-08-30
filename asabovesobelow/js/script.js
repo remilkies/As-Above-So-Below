@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const carousel = document.getElementById('reading-carousel');
     if (!carousel) return;
 
-    const entries = Array.from(carousel.querySelectorAll('.sanctum-entry'));
+    const entries = Array.from(carousel.querySelectorAll('.sanctum-entry-container'));
     let currentIndex = 0 //most recnt enrty on def
 
 
@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.target.classList.contains('view-reading-btn')) {
                 e.stopPropagation();
 
-                document.querySelectorAll('.sanctum-entry.expanded').forEach(openCard => {
+                document.querySelectorAll('.sanctum-entry-container.expanded').forEach(openCard => {
                     if (openCard !== entry) openCard.classList.remove('expanded');
                     console.log(' The Oracle Recalls...');
                 });
@@ -273,7 +273,7 @@ if (spreadContainer) {
 });
 
 document.addEventListener('click', (e) => {
-    const expandedCard = document.querySelector('.sanctum-entry.expanded');
+    const expandedCard = document.querySelector('.sanctum-entry-container.expanded');
 
 
     if (expandedCard && !expandedCard.contains(e.target)) {
