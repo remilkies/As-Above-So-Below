@@ -3,12 +3,9 @@
 > *"What should I look forward to? What should I beware?"*  
 > *It's not about fate. It's about awareness, and awareness creates freedom.*
 
-**As Above, So Below** is a celestial full-stack tarot engine that merges Hegelian dialectics with dynamic card synthesis. Draw dual archetypes through an interactive 3D card spread to generate real-time synthesized prophecies derived from suit collisions, elemental dignities, arcana alignments, and card reversals.
+**As Above, So Below** is a celestial full-stack tarot engine that merges Hegelian dialectics with dynamic card synthesis. Draw card pairs through an interactive 3D card spread within a strict dialectical framework—treating Card A as the **Thesis** (*what to look forward to*) and Card B as the **Antithesis** (*what to beware*). The backend PHP stitching engine resolves opposing forces into a unified **Synthesis** prophecy derived from suit collisions, elemental dignities, arcana alignments, and card reversals. 
 
 ## Core Features
-
-### 🌀 Hegelian Synthesis Engine
-Processes card pairs through a strict dialectical framework—treating Card A as the **Thesis** (*what to look forward to*) and Card B as the **Antithesis** (*what to beware*). The backend PHP stitching engine resolves opposing forces into a unified **Synthesis** prophecy. 
 
 ### 🔮 Dynamic Reading Synthesis
 
