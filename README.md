@@ -153,10 +153,14 @@ try {
 ---
 
 ## 🌌 The Unseen Admin Notice
-
-
+<p align="left">
+<img src="/asabovesobelow/icons/rembyte.png" height="60px">
+  <p>
 Not created by **REMByte** <3
 *Home of Aesthetic Functionality*
+  </p>
+</p>
+
 > *"Do not search the codebase for a moderator profile, an admin portal, or a creator credential. The architect has stepped aside to let the system run on pure, beautiful, cosmic entropy."*
 
 
