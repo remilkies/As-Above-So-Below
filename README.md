@@ -5,7 +5,8 @@
 
 **As Above, So Below** is a celestial full-stack tarot engine that merges Hegelian dialectics with dynamic card synthesis. Draw card pairs through an interactive 3D card spread within a strict dialectical framework—treating Card A as the **Thesis** (*what to look forward to*) and Card B as the **Antithesis** (*what to beware*). The backend PHP stitching engine resolves opposing forces into a unified **Synthesis** prophecy derived from suit collisions, elemental dignities, arcana alignments, and card reversals. 
 
-## Core Features
+<img src="/asabovesobelow/public/divider.png" width="100%">
+<img src="/asabovesobelow/public/CoreFeatures.png" height="60px">
 
 ### 🔮 Dynamic Reading Synthesis
 
@@ -24,8 +25,9 @@ Built-in background cleanup to maintain cosmic fluidity and lean database hygien
 ### ✨ Celestial Dark UI & Custom Card Deck
 
 Hand-crafted line illustrations and custom tarot card vectors set inside a dark celestial interface complete with interactive card wheels and crystal iconography.
+<img src="/asabovesobelow/public/divider.png" width="100%">
 
-## Tech Stack
+<img src="/asabovesobelow/public/TechStack.png" height="60px">
 
 ### Frontend Rituals
 
@@ -43,7 +45,10 @@ Hand-crafted line illustrations and custom tarot card vectors set inside a dark 
 
 * **MySQL / MariaDB:** Relational database schema storing users, readings, and card attributes. (Foreign Keys, Left Joins)
 
-## Application Flow
+<img src="/asabovesobelow/public/divider.png" width="100%">
+
+<img src="/asabovesobelow/public/ApplicationFlow.png" height="60px">
+
 ```text
 User Draws Cards → Interactive Wheel UI → AJAX Request (POST)
                                                  ↓
@@ -55,7 +60,7 @@ User Draws Cards → Interactive Wheel UI → AJAX Request (POST)
                                                  ↓
                          HTML Response Payload & Sanctum Record Created
 ```
----
+<img src="/asabovesobelow/public/divider.png" width="100%">
 
 ## 🃏 The Random Card Constraints
 
@@ -78,10 +83,10 @@ DELETE FROM saved_readings WHERE created_at < NOW() - INTERVAL 7 DAY;
 
 There is no human admin controlling the cards, managing the database, or moderating your path. The "Admin" is the unseen, chaotic hand of the universe. The system runs entirely on its own code, completely unmonitored, untamed, and free of human ego.
 
----
+<img src="/asabovesobelow/public/divider.png" width="100%">
 
 
-## 🔮 Generate Your Prophecy
+<img src="/asabovesobelow/public/Profecy.png" height="60px">
 
 ### Prerequisites
 
@@ -147,9 +152,8 @@ try {
 
 4. **Launch:** Start Apache and MySQL, then navigate to `http://localhost/as-above-so-below` in your browser to begin the ritual.
 
----
+<img src="/asabovesobelow/public/divider.png" width="100%">
 
-## 🌌 The Unseen Admin Notice
 <p align="left">
 <img src="/asabovesobelow/icons/rembyte.png" height="60px">
 <p>
