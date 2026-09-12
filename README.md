@@ -5,14 +5,42 @@
 
 **As Above, So Below** is a celestial full-stack tarot engine that merges Hegelian dialectics with dynamic card synthesis. Draw card pairs through an interactive 3D card spread within a strict dialectical framework—treating Card A as the **Thesis** (*what to look forward to*) and Card B as the **Antithesis** (*what to beware*). The backend PHP stitching engine resolves opposing forces into a unified **Synthesis** prophecy derived from suit collisions, elemental dignities, arcana alignments, and card reversals. 
 
+<details>
+<summary>🌌 The Cosmic Core — the theory behind the engine</summary>
+<br>
+The entire architecture of this application is built around the hermetic maxim *as above, so below* — the idea that the unconscious mind and material reality are reflections of one another:
+ 
+* **As Above:** Your first card drawn, representing the skyward current — not a fortune told, but the raw spark of unmanifest potential waiting to descend. The pure frequency of revelation, ready to move through you if your lens is clear.
+* **So Below:** Your second card drawn, representing the shadow in the soil — where high voltage degrades into static. The same lightning that illuminates can scorch; this shows where unexamined attention turns potential power into friction, inertia, or lost ground.
+This platform's database architecture and "stitching" engine are rooted in Hegelian dialectical theory — the idea that reality is a dynamic process, constantly changing as opposing forces interact and resolve.
+ 
+```text
+[ Card A: THESIS ]              [ Card B: ANTITHESIS ]
+  (What to look forward to)       (What to beware)
+             \                                 /
+              \                               /
+               ▼                             ▼
+               [ THE SYSTEM'S STITCHING ENGINE ]
+                             │
+                             ▼
+                     [ THE SYNTHESIS ]
+                  (Your Custom Prophecy)
+```
+ 
+* **The Thesis (Card A):** The cosmic path you're actively stepping into.
+* **The Antithesis (Card B):** Not a polar opposite, but a conflicting pressure — the earthly warning confronting your current trajectory.
+* **The Synthesis (The Dynamic Reading):** The PHP backend processes both values, dynamically stitching their meanings, numerologies, and elemental dignities together into a cohesive Synthesis — a fresh reading that is neither Card A nor Card B, but a unified culmination of both.
+</details>
+
 <img src="/asabovesobelow/public/divider.png" width="100%">
 <img src="/asabovesobelow/public/CoreFeatures.png" height="60px">
 
 ### 🔮 Dynamic Reading Synthesis
 
-This system acts as a digital simulation of Hegelian dialectics. Instead of hardcoding thousands of unique pairings, the PHP backend acts as an object-oriented synthesis engine. An algorithmic reading generator parses drawn card pairs and calculates multi-layered outputs—evaluating Major vs. Minor Arcana weight, suit/element collisions, numerological digit reduction, and upright or reversed card states.
+This system acts as a digital simulation of Hegelian dialectics. Instead of hardcoding thousands of unique pairings, the PHP backend acts as an object-oriented synthesis engine. An algorithmic reading generator parses drawn card pairs and calculates multi-layered outputs — evaluating Major vs. Minor Arcana weight, suit/element collisions, numerological digit reduction, and upright or reversed card states.
 
 ### 🌙 Interactive Wheel & Touch Spread
+
 Features a 15-card angled spread equipped with pointer-event dragging, deck collapse animation, custom reshuffling state locks, and 3D CSS card flipping.
 
 ### 🌙 Inner Sanctum & Past Prophecies
@@ -20,11 +48,13 @@ Features a 15-card angled spread equipped with pointer-event dragging, deck coll
 Authenticated seekers can step into their personal portal to review previous daily readings, track recurring archetypes, and revisit past readings over time. An interactive 3D spatial carousel displays active saved readings, inverted card indicators, and auto-cleansed date logs.
 
 ### 🧹 Automated 7-Day Purge Logic
+
 Built-in background cleanup to maintain cosmic fluidity and lean database hygiene; past readings self-purge after seven days upon database connection.
 
 ### ✨ Celestial Dark UI & Custom Card Deck
 
 Hand-crafted line illustrations and custom tarot card vectors set inside a dark celestial interface complete with interactive card wheels and crystal iconography.
+
 <img src="/asabovesobelow/public/divider.png" width="100%">
 
 <img src="/asabovesobelow/public/TechStack.png" height="60px">
@@ -64,11 +94,11 @@ User Draws Cards → Interactive Wheel UI → AJAX Request (POST)
 
 ## 🃏 The Random Card Constraints
 
-This project was born from a random deck shuffle, and its core mechanics are dictated by three unyielding constraints:
+This project was born from a random deck shuffle, special shoutout to be 2nd year Lectuers who facilitated this aesthetic torture, and its core mechanics are dictated by three unyielding constraints:
 
 ### 🟢 Human Truth: The Right Match Changes Everything
 
-A single card holds a singular truth, but **the right match changes the entire prophecy**. Instead of hardcoding thousands of unique pairings, the PHP backend acts as an object-oriented synthesis engine. It evaluates the suit, numerology, and rank of the Thesis and weaves them with the Antithesis to generate a completely customized reading.
+A single card holds a singular truth, but **the right match changes the entire prophecy**. Instead of hardcoding thousands of unique pairings, the PHP backend acts as an object-oriented synthesis engine. It evaluates the suit, numerology, and rank of the Thesis and weaves them with the Antithesis to generate a completely customised reading.
 
 ### 🔵 Behavioural Twist: Readings Expire After One Week
 
@@ -84,7 +114,6 @@ DELETE FROM saved_readings WHERE created_at < NOW() - INTERVAL 7 DAY;
 There is no human admin controlling the cards, managing the database, or moderating your path. The "Admin" is the unseen, chaotic hand of the universe. The system runs entirely on its own code, completely unmonitored, untamed, and free of human ego.
 
 <img src="/asabovesobelow/public/divider.png" width="100%">
-
 
 <img src="/asabovesobelow/public/Profecy.png" height="60px">
 
