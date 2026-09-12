@@ -12,7 +12,7 @@ The entire architecture of this application is built around the hermetic maxim *
  
 * **As Above:** Your first card drawn, representing the skyward current — not a fortune told, but the raw spark of unmanifest potential waiting to descend. The pure frequency of revelation, ready to move through you if your lens is clear.
 * **So Below:** Your second card drawn, representing the shadow in the soil — where high voltage degrades into static. The same lightning that illuminates can scorch; this shows where unexamined attention turns potential power into friction, inertia, or lost ground.
-This platform's database architecture and "stitching" engine are rooted in Hegelian dialectical theory — the idea that reality is a dynamic process, constantly changing as opposing forces interact and resolve.
+This platform's database architecture and "stitching" engine are rooted in Hegelian dialectical theory, the idea that reality is a dynamic process, constantly changing as opposing forces interact and resolve.
  
 ```text
 [ Card A: THESIS ]              [ Card B: ANTITHESIS ]
