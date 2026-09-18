@@ -143,7 +143,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const carousel = document.getElementById('reading-carousel');
     if (!carousel) return;
 
-    const entries = Array.from(carousel.querySelectorAll('.sanctum-entry-container'));
+    // changed this from const to let so i can update the list when a new reading drops
+    let entries = Array.from(carousel.querySelectorAll('.sanctum-entry-container'));
     let currentIndex = 0 //most recnt enrty on def
 
 
@@ -574,6 +575,8 @@ function revealReading(cards) {
         })
         .then(data => {
             if (data.success) {
+
+
                 console.log("🌙 Auto-save successful");
 
                 const toast = document.getElementById('save-toast');
@@ -581,6 +584,89 @@ function revealReading(cards) {
                 if (toast) {
                     toast.classList.add('show');
                     setTimeout(() => toast.classList.remove('show'), 10000);
+                }
+
+                // ===================================
+                // ✨DYNAMIC CAROUSEL INJECTION SPELL✨ (SO WE DON'T HAVE TO RELOARD THE PAGEEE)
+                // ===================================
+
+                const carousel = document.getElementById('reading-carousel');
+
+                if (carousel) {
+                    const emptyState = carousel.querySelector('.empty-entry');
+                    if (emptyState) {
+                        emptyState.remove();
+                    }
+
+                    const today = new Date();
+                    const createdDate = today.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
+
+                    const cardAReversed = cardA.reversed ? 'reveersed' : '';
+                    const cardBReversed = cardB.reversed ? 'reveersed' : '';
+                    const cardsSummary = `${cardA.name} ${cardAReversed} | ${cardB.name} ${cardBReversed}`;
+
+                    const newEntry = document.createElement('div');
+                    newEntry.className = 'sanctum-entry-container';
+
+                    newEntry.innerHTML = `
+                                        <div class="sanctum-entry">
+                        
+                    <div class="bin-icon">
+                        <img src="../assets/bin-icon.svg" alt="Delete Icon" class="bin-default">
+                        <img src="../assets/bin-icon-active.svg" alt="Delete Icon Active" class="bin-hover">
+                        </div>
+
+                        <div class="entry-left-col">
+                            <div class="drawn-cards-display">
+                                <div class="drawn-card card-left ${cardAReversed}">
+                                    <img src="../assets/cards/${cardA.id}.png" alt="${cardA.name}">
+                                </div>
+                                <div class="drawn-card card-right ${cardBReversed}">
+                                    <img src="../assets/cards/${cardB.id}.png" alt="${cardB.name}">
+                                </div>
+                            </div>
+
+                            <h3 class="sanctum-date">${createdDate}</h3>
+                            <p class="sanctum-cards-title">${cardsSummary}</p>
+                        </div>
+
+                        <div class="entry-right-col reading-text">
+
+                            <p class="reading-preview">${html}</p>
+                            <button class="view-reading-btn aasb-btn">View Full Reading</button>
+                        </div>
+
+                    </div>
+                    `;
+
+                    carousel.prepend(newEntry);
+
+                    entries = Array.from(carousel.querySelectorAll('.sanctum-entry-container'));
+
+                    newEntry.addEventListener('click', (e) => {
+                        if (e.target.classList.contains('view-reading-btn')) {
+                            e.stopPropagation();
+
+                            document.querySelectorAll('.sanctum-entry-container.expanded').forEach(openCard => {
+                                if (openCard !== newEntry) openCard.classList.remove('expanded');
+                                console.log(' The Oracle Recalls...');
+                            });
+
+                            newEntry.classList.toggle('expanded');
+                            return;
+                        }
+
+                        if (!newEntry.classList.contains('expanded') && entries.indexOf(newEntry) !== currentIndex) {
+                            currentIndex = entries.indexOf(newEntry);
+                            updateCarousel(currentIndex);
+                        }
+                    });
+
+                    // force the carousel to spin back to the most recent entry drop >:D
+                    currentIndex = 0;
+                    updateCarousel(currentIndex);
+                    console.log("🌙 The Oracle's memory has been updated. The new prophecy is now bound to the Sanctum.");
+
                 }
             } else {
                 console.warn("🔮 Oracle backend save declined:", data.message || data);
